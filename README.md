@@ -1,6 +1,6 @@
 apporchard
 ==========
 
-Contributors:
-Nick Venenga
-Brett Tomcko
+Contributors:  
+Nick Venenga  
+Brett Tomcko  
