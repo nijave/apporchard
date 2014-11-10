@@ -19,6 +19,11 @@
 	float: right;
 }
 
+#search-box input {
+	display: inline-block;
+	width: auto;
+}
+
 #search-box > span {
 	font-size: 1.45em;
 }
