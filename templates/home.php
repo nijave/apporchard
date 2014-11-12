@@ -13,7 +13,7 @@
 		<img src="assets/img/star_none.png" alt="Empty Star">
 	  </p>
 	  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo.</p>
-	  <p><a class="btn btn-primary" href="#/?page=details" role="button">View details &raquo;</a></p>
+	  <p><a class="btn btn-primary" href="/?page=details" role="button">View details &raquo;</a></p>
 	</div>
 	'; ?>
 	
