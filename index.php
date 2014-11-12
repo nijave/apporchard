@@ -10,11 +10,11 @@
 		require("templates/navigation.php"); //navigation of the page
 		
 		$page = "home"; //default page is home
-		if(file_exists("templates/" . $_GET['page'])
+		if(isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php"))
 			$page = $_GET['page'];
 		require("templates/" . $page . ".php");
 		
-		require("template/footer.php"); //footer of the page
+		require("templates/footer.php"); //footer of the page
 		?>
 		
 	</div> <!-- /container -->
