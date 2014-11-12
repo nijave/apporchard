@@ -9,7 +9,7 @@
 		<?php
 		require("templates/navigation.php"); //navigation of the page
 	
-		require("templates/" . $page . ".php"); //page is set in templates/navigation.php
+		require("templates/" . $page . ".php"); //page is set in templates/navigation.php 
 		
 		require("templates/footer.php"); //footer of the page
 		?>
