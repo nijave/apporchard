@@ -37,6 +37,32 @@
 	width: 220px; /*needed to center, otherwise it automatically fills width*/
 }
 
+.details{
+	display: block;
+}
+#detailsContent{
+	display: inline-block;
+
+}
+#detailsLeftCol{
+	float: left;
+	min-width: 150px;
+	min-height: 180px;
+}
+#detailsRightCol{
+	float: left;
+	min-height: 100px;
+	padding-top: 80px;
+	padding-left: 20px;
+}
+
+#detailsCenter{
+	float: left;
+	padding-left: 20px;
+	min-margin: 200px;
+	min-height: 120px;
+}
+
 /* Main marketing message and sign up button 
 .jumbotron {
   text-align: center;
