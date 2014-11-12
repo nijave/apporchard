@@ -8,11 +8,8 @@
 	
 		<?php
 		require("templates/navigation.php"); //navigation of the page
-		
-		$page = "home"; //default page is home
-		if(isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php"))
-			$page = $_GET['page'];
-		require("templates/" . $page . ".php");
+	
+		require("templates/" . $page . ".php"); //page is set in templates/navigation.php
 		
 		require("templates/footer.php"); //footer of the page
 		?>
