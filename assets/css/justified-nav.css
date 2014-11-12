@@ -32,6 +32,11 @@
 	color: #fc0f03;
 }
 
+#login-form {
+	margin: 0 auto; /*center*/
+	width: 220px; /*needed to center, otherwise it automatically fills width*/
+}
+
 /* Main marketing message and sign up button 
 .jumbotron {
   text-align: center;
