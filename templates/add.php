@@ -22,7 +22,7 @@
 			<label>Application description
 			<textarea class="form-control" name="description"></textarea></label>
 			<br>
-			<input type="submit" class="btn btn-default" value="Submit">
+			<input type="submit" class="btn btn-default" name="add_application" value="Submit">
 		</form>
 	</div>
 </div>
