@@ -19,6 +19,9 @@
 			<label>Link to developer app page
 			<input type="text" class="form-control" name="developer_link" placeholder="http://example.com/"></label>
 			<br>
+			<label>Keywords (comma separated)
+			<input type="text" class="form-control" name="keywords" placeholder="keyword1, keyword2, etc"></label>
+			<br>
 			<label>Application description
 			<textarea class="form-control" name="description"></textarea></label>
 			<br>
