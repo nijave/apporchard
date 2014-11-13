@@ -37,6 +37,16 @@
 	width: 220px; /*needed to center, otherwise it automatically fills width*/
 }
 
+#add-form {
+	min-width: 240px;
+	max-width: 30%;
+	margin: 0 auto;
+}
+
+#add-form input[type=text] {
+	width: 220px;
+}
+
 .details{
 	display: block;
 }

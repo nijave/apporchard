@@ -1,8 +1,8 @@
 <div class="row">
-	<div id="login-form">
-		<h2>Login</h2>
+	<div id="add-form">
+		<h2>Add Application</h2>
 		<form action="#" method="get">
-			<label>Title: 
+			<label>Title
 			<input type="text" class="form-control" name="title" placeholder="Application Title" autofocus></label>
 			<br>
 			<label>Developer (separate multiple developers with a comma)
@@ -11,7 +11,7 @@
 			<label>Price
 			<input type="text" class="form-control" name="price" placeholder="Price"></label>
 			<br>
-			<label>Compatible Platforms
+			<label>Compatible Platforms <br>
 			<input type="checkbox" name="compatible" value="Apple"> Apple <br>
 			<input type="checkbox" name="compatible" value="Android"> Android <br>
 			<input type="checkbox" name="compatible" value="Windows"> Windows</label>
