@@ -45,11 +45,12 @@
 
 #add-form label {
 	width: 100%;
+	margin: 12px;
 }
 
 #add-form input[type=text] {
 	min-width: 220px;
-	width: auto;
+	width: 100%;
 }
 
 .details{
