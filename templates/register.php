@@ -11,7 +11,7 @@
 			<label>Confirm Password:
 			<input type="password" class="form-control" name="confirmPassword" placeholder="Password"></label>
 			<br>
-			<input type="submit" class="btn btn-default" value="Login">
+			<input type="submit" class="btn btn-default" name="register" value="Register">
 		</form>
 	</div>
 </div>
