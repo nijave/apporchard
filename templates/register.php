@@ -1,7 +1,7 @@
 <div class="row">
 	<div id="login-form">
 		<h2>Register</h2>
-		<form action="#" method="post">
+		<form action="/" method="post">
 			<label>Email Address: 
 			<input type="email" class="form-control" name="username" placeholder="Email address" autofocus></label>
 			<br>
@@ -11,7 +11,7 @@
 			<label>Confirm Password:
 			<input type="password" class="form-control" name="confirmPassword" placeholder="Password"></label>
 			<br>
-			<input type="submit" class="btn btn-default" name="register" value="Register">
+			<input type="submit" class="btn btn-default" name="action" value="Register">
 		</form>
 	</div>
 </div>

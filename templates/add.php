@@ -1,7 +1,7 @@
 <div class="row">
 	<div id="add-form">
 		<h2>Add Application</h2>
-		<form action="#" method="post">
+		<form action="/" method="post">
 			<label>Title
 			<input type="text" class="form-control" name="title" placeholder="Application Title" autofocus></label>
 			<br>
@@ -22,7 +22,7 @@
 			<label>Application description
 			<textarea class="form-control" name="description"></textarea></label>
 			<br>
-			<input type="submit" class="btn btn-default" name="add_application" value="Submit">
+			<input type="submit" class="btn btn-default" name="action" value="Add Application">
 		</form>
 	</div>
 </div>
