@@ -45,7 +45,7 @@
 
 #add-form label {
 	width: 100%;
-	margin: 12px;
+	margin: 12px 0;
 }
 
 #add-form input[type=text] {
