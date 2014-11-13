@@ -14,7 +14,7 @@
 			/*
 				Debugging code -- needs to be removed after implementing
 			*/
-			echo "Action: " . $_REQUEST['action'] . "<br>";
+			echo "<br>Action: " . $_REQUEST['action'] . "<br>";
 			echo "<pre>" . print_r($_REQUEST, true) . "</pre>";
 		} else {
 			require("templates/" . $page . ".php"); //page is set in templates/navigation.php
