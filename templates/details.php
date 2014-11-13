@@ -10,12 +10,12 @@
 				<img src="assets/img/star_full.png" alt="Star">
 				<img src="assets/img/star_half.png" alt="Half Star">
 				<img src="assets/img/star_none.png" alt="Empty Star">
-				(Num reveiws)
+				(Num reviews)
 			  </p>
 			  <p>Platforms: mac, pc, linux</p>
 		</div>
-		<div id="rightCol">
-			<p>$5.00</p>
+		<div id="detailsRightCol">
+			<p>Price: $5.00</p>
 			<p><a class="btn btn-primary" href="#" role="button">Go to Store &raquo;</a></p>
 		  </div>
 	</div>
