@@ -43,8 +43,13 @@
 	margin: 0 auto;
 }
 
+#add-form label {
+	width: 100%;
+}
+
 #add-form input[type=text] {
-	width: 220px;
+	min-width: 220px;
+	width: auto;
 }
 
 .details{
