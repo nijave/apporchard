@@ -11,11 +11,10 @@
 	
 		if(isset($_REQUEST['action'])) {
 			//handle data submitted by a form
-			/*
-				Debugging code -- needs to be removed after implementing
-			*/
-			echo "<br>Action: " . $_REQUEST['action'] . "<br>";
-			echo "<pre>" . print_r($_REQUEST, true) . "</pre>";
+			
+			// Debugging code -- needs to be removed after implementing
+			echo "<br>Action: " . $_REQUEST['action'] . "<br>"; //debugging code
+			echo "<pre>" . print_r($_REQUEST, true) . "</pre>"; //debugging code
 		} else {
 			require("templates/" . $page . ".php"); //page is set in templates/navigation.php
 		}
