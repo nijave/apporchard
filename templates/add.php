@@ -1,7 +1,7 @@
 <div class="row">
 	<div id="add-form">
 		<h2>Add Application</h2>
-		<form action="#" method="get">
+		<form action="#" method="post">
 			<label>Title
 			<input type="text" class="form-control" name="title" placeholder="Application Title" autofocus></label>
 			<br>
