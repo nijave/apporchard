@@ -9,7 +9,7 @@
 			<input type="text" class="form-control" name="developer" placeholder="Developer name"></label>
 			<br>
 			<label>Price
-			<span style="position: relative; left: 12px;">$</span><input type="text" class="form-control" name="price" placeholder="1.99" style="padding-left: 12px;"></label>
+			<span style="position: relative; top: 27px; left: -32px;">$</span><input type="text" class="form-control" name="price" placeholder="1.99" style="padding-left: 12px;"></label>
 			<br>
 			<label>Compatible Platforms <br>
 			<input type="checkbox" name="compatible" value="Apple"> Apple <br>
