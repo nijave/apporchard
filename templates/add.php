@@ -11,10 +11,10 @@
 			<label>Price
 			<span style="position: relative; top: 27px; left: -34px;">$</span><input type="text" class="form-control" name="price" placeholder="1.99" style="padding-left: 16px;"></label>
 			<br>
-			<label>Compatible Platforms <br>
+			<label>Compatible Platforms</label><br>
 			<input type="checkbox" name="compatibleApple" value="true"> Apple <br>
 			<input type="checkbox" name="compatibleAndroid" value="true"> Android <br>
-			<input type="checkbox" name="compatibleWindows" value="true"> Windows</label>
+			<input type="checkbox" name="compatibleWindows" value="true"> Windows
 			<br>
 			<label>Link to developer app page
 			<input type="text" class="form-control" name="developer_link" placeholder="http://example.com/"></label>
