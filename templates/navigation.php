@@ -4,7 +4,7 @@ if(isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php"))
 	$page = $_GET['page'];
 ?>
 <div class="masthead">
-	<div>
+	<div class="clearfix">
 		<h1>AppOrchard</h1>
 		<div id="search-box">
 			<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>
@@ -13,7 +13,6 @@ if(isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php"))
 				<input type="submit" class="btn btn-default" name="action" value="Search">
 			</form>
 		</div>
-		<div style="clear:both;"></div>
 	</div>
 	<ul class="nav nav-justified">
 	  <li <?php if($page === "home") echo 'class="active"'; ?>><a href="/?page=home">Home</a></li>
