@@ -9,7 +9,16 @@
 		<?php
 		require("templates/navigation.php"); //navigation of the page
 	
-		require("templates/" . $page . ".php"); //page is set in templates/navigation.php
+		if(isset($_REQUEST['action'])) {
+			//handle data submitted by a form
+			/*
+				Debugging code -- needs to be removed after implementing
+			*/
+			echo "Action: " . $_REQUEST['action'] . "<br>";
+			echo "<pre>" . print_r($_REQUEST, true) . "</pre>";
+		} else {
+			require("templates/" . $page . ".php"); //page is set in templates/navigation.php
+		}
 		
 		require("templates/footer.php"); //footer of the page
 		?>
