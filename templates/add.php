@@ -1,0 +1,28 @@
+<div class="row">
+	<div id="login-form">
+		<h2>Login</h2>
+		<form action="#" method="get">
+			<label>Title: 
+			<input type="text" class="form-control" name="title" placeholder="Application Title" autofocus></label>
+			<br>
+			<label>Developer (separate multiple developers with a comma)
+			<input type="text" class="form-control" name="developer" placeholder="Developer name"></label>
+			<br>
+			<label>Price
+			<input type="text" class="form-control" name="price" placeholder="Price"></label>
+			<br>
+			<label>Compatible Platforms
+			<input type="checkbox" name="compatible" value="Apple"> Apple <br>
+			<input type="checkbox" name="compatible" value="Android"> Android <br>
+			<input type="checkbox" name="compatible" value="Windows"> Windows</label>
+			<br>
+			<label>Link to developer app page
+			<input type="text" class="form-control" name="developer_link" placeholder="http://example.com/"></label>
+			<br>
+			<label>Application description
+			<textarea class="form-control" name="description"></textarea></label>
+			<br>
+			<input type="submit" class="btn btn-default" value="Submit">
+		</form>
+	</div>
+</div>
