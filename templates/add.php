@@ -5,7 +5,7 @@
 			<label>Title
 			<input type="text" class="form-control" name="title" placeholder="Application Title" autofocus></label>
 			<br>
-			<label>Developer (separate multiple developers with a comma)
+			<label>Developer
 			<input type="text" class="form-control" name="developer" placeholder="Developer name"></label>
 			<br>
 			<label>Price
