@@ -26,7 +26,7 @@ class Application {
      */
 	public function __construct($id = null) {
 	    if($id === null) {
-    		foreach($COMPATIBLE_PLATFORMS as $platform)
+    		foreach(self::$COMPATIBLE_PLATFORMS as $platform)
                 $compatible_status["$platform"] = false;
             $this->keywords = array();
             $this->id = -1; //ids must be positive
@@ -75,7 +75,7 @@ class Application {
      * $value boolean support for platform
      */
     private function changeCompatible($platform, $value) {
-        if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
+        if(!in_array($platform, self::$COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
         }
         else {
@@ -88,7 +88,7 @@ class Application {
      * $platform string representing platform
      */
     public function setCompatible($platform) {
-        changeCompatible($platform, true);
+        $this->changeCompatible($platform, true);
     }
     
     /**
@@ -104,8 +104,8 @@ class Application {
      * $platform string representing platform name
      * $link string URL for store
      */
-    public function setStoreLink(String $platform, String $link) {
-        if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
+    public function setStoreLink($platform, $link) {
+        if(!in_array($platform, self::$COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
         }
         else {
@@ -120,9 +120,16 @@ class Application {
     /**
      * Sets keywords
      * $keywords array[string] of keywords
+     * $isArray boolean true if array, false if comma separated list
      */
-    public function setKeywords($keywords) {
-        $this->keywords = $keywords;
+    public function setKeywords($keywords, $isArray = false) {
+        if($isArray)
+            $this->keywords = $keywords;
+        else
+            $this->keywords = explode(',', $keywords); //changes list of comma separated keywords to an array
+        
+        for($i = 0; $i < sizeof($this->keywords); $i++)
+            $this->keywords[$i] = trim($this->keywords[$i]); //removes spaces around keywords
     }
     
     /**
@@ -139,7 +146,7 @@ class Application {
      * $state string (see MODERATION_STATES for available values)
      */
     public function setModerationState($state) {
-        if(!in_array($state, $MODERATION_STATES)) {
+        if(!in_array($state, self::$MODERATION_STATES)) {
             throw new Exception("Invalid moderation state", 1);        
         }
         else {
@@ -168,11 +175,14 @@ class Application {
     }
     
     public function getCompatible($platform) {
-        if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
+        if(!in_array($platform, self::$COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
         }
         else {
-            return $this->compatible_status["$platform"];
+            if(isset($this->compatible_status["$platform"]))
+                return true;
+            else
+                return false;
         }
     }
     
@@ -194,7 +204,7 @@ class Application {
      * Returns the link for a particular platform store
      */
     public function getStoreLink($platform) {
-        if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
+        if(!in_array($platform, self::$COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
         }
         else {
