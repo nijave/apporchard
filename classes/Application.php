@@ -23,19 +23,17 @@ class Application {
 	/**
      * Create a new application that doesn't exist in the database 
      */
-	public function __construct() {
-		foreach($COMPATIBLE_PLATFORMS as $platform)
-            $compatible_status["$platform"] = false;
-        $this->keywords = array();
-        $this->id = -1; //ids must be positive
+	public function __construct(Integer $id = null) {
+	    if($id === null) {
+    		foreach($COMPATIBLE_PLATFORMS as $platform)
+                $compatible_status["$platform"] = false;
+            $this->keywords = array();
+            $this->id = -1; //ids must be positive
+        }
+        else {
+            //TODO: create Application object from information in the database
+        }
 	}
-    
-    /**
-     * Create an application object using an existing id (from the database)
-     */
-    public function __construct(Integer $id) {
-        //TODO: create Application object from information in the database
-    }
     
     public function setTitle(String $title) {
         $this->title = $title;
