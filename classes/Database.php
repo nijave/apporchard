@@ -71,8 +71,3 @@ class Database extends medoo {
         return $app->getID();
     }
 }
-
-/*
- * DEBUGGING CODE
- */
-echo Database::applicationGet(1);
