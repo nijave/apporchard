@@ -22,8 +22,9 @@ class Application {
 	
 	/**
      * Create a new application that doesn't exist in the database 
+     * $id integer ID of existing application to load into object
      */
-	public function __construct(Integer $id = null) {
+	public function __construct($id = null) {
 	    if($id === null) {
     		foreach($COMPATIBLE_PLATFORMS as $platform)
                 $compatible_status["$platform"] = false;
@@ -35,23 +36,45 @@ class Application {
         }
 	}
     
-    public function setTitle(String $title) {
+    /**
+     * Sets title
+     * $title string
+     */
+    public function setTitle($title) {
         $this->title = $title;
     }    
     
-	public function setDeveloper(String $developer) {
+    /**
+     * Sets developer
+     * $developer string
+     */
+	public function setDeveloper($developer) {
 		$this->developer = $developer;
 	}
     
-    public function setPrice(double $price) {
+    /**
+     * Sets price
+     * $price double
+     */
+    public function setPrice($price) {
         $this->price = $price;
     }
     
-    public function setCategory(String $category) {
+    /**
+     * Sets category
+     * $category string
+     */
+    public function setCategory($category) {
         $this->category = $category;
     }
     
-    private function changeCompatible(String $platform, boolean $value) {
+    /**
+     * Sets an app to compatible or incompatible with a given platform
+     * Performs checking to ensure platform is valid
+     * $platform string representing platform
+     * $value boolean support for platform
+     */
+    private function changeCompatible($platform, $value) {
         if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
         }
@@ -60,14 +83,27 @@ class Application {
         }
     }
     
-    public function setCompatible(String $platform) {
+    /**
+     * Sets an application compatible with given platform
+     * $platform string representing platform
+     */
+    public function setCompatible($platform) {
         changeCompatible($platform, true);
     }
     
-    public function unsetCompatible(String $platform) {
+    /**
+     * Unsets an application being compatible for a given platform
+     * $platform string representing platform
+     */
+    public function unsetCompatible($platform) {
         changeCompatible($platform, false);
     }
     
+    /**
+     * Sets a store link for a given store
+     * $platform string representing platform name
+     * $link string URL for store
+     */
     public function setStoreLink(String $platform, String $link) {
         if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
@@ -77,15 +113,28 @@ class Application {
         }
     }
     
+    /**
+     * Sets keywords
+     * $keywords array[string] of keywords
+     */
     public function setKeywords($keywords) {
         $this->keywords = $keywords;
     }
     
-    public function setDescription(String $desc) {
+    /**
+     * Sets description of the application
+     * $desc string description
+     */
+    public function setDescription($desc) {
         $this->description = $desc;
     }
     
-    public function setModerationState(String $state) {
+    /**
+     * Sets the moderation state of the application
+     * i.e. whether is is displayed or needs moderator approval first
+     * $state string (see MODERATION_STATES for available values)
+     */
+    public function setModerationState($state) {
         if(!in_array($state, $MODERATION_STATES)) {
             throw new Exception("Invalid moderation state", 1);        
         }
@@ -114,7 +163,7 @@ class Application {
         return $this->category;
     }
     
-    public function getCompatible(String $platform) {
+    public function getCompatible($platform) {
         if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
         }
@@ -140,7 +189,7 @@ class Application {
     /**
      * Returns the link for a particular platform store
      */
-    public function getStoreLink(String $platform) {
+    public function getStoreLink($platform) {
         if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
         }
