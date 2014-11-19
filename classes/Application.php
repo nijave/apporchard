@@ -12,6 +12,7 @@ class Application {
 	private $title; //string
 	private $developer; //string
 	private $price; //double
+	private $category; //category of the application
 	private $compatible_status; //boolean array, compatible with Apple
 	private $link_store; //string array, store links
 	private $link_developer; //link to developer website
@@ -46,6 +47,10 @@ class Application {
     
     public function setPrice(double $price) {
         $this->price = $price;
+    }
+    
+    public function setCategory(String $category) {
+        $this->category = $category;
     }
     
     private function changeCompatible(String $platform, boolean $value) {
@@ -101,6 +106,10 @@ class Application {
     
     public function getPrice() {
         return $this->price;
+    }
+    
+    public function getCategory() {
+        return $this->category;
     }
     
     public function getCompatible(String $platform) {
@@ -167,7 +176,7 @@ class Application {
             //$this->id = id from database;
         }
         else {
-            //TODO: pdate existing entry
+            //TODO: date existing entry
         }
     }
 }
