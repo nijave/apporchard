@@ -4,31 +4,37 @@
 */
 
 class Application {
+
+    private static $MODERATION_STATES = array("ACTIVE", "PENDING", "DELETED"); //possible moderation states/visibility of an application    
+    private static $COMPATIBLE_PLATFORMS = array("Apple", "Android", "Windows"); //possible platforms that are supported
     
-    const MODERATION_ACTIVE = "ACTIVE";
-    const MODERATION_PENDING = "PENDING";
-    const MODERATION_DELETED = "DELETED";
-    
+    private $id; //application unique identifier integer
 	private $title; //string
 	private $developer; //string
 	private $price; //double
-	private $compatible_apple; //boolean, compatible with Apple
-	private $compatible_android; //boolean, compatible with Android
-	private $compatible_windows; //boolean, compatible with Windows
-	private $link_apple; //string, link to Apple app
-	private $link_android; //string, link to Android app
-	private $link_windows; //string, link to Windows app
+	private $compatible_status; //boolean array, compatible with Apple
+	private $link_store; //string array, store links
 	private $link_developer; //link to developer website
 	private $keywords; //array[string] of keywords
 	private $description; //string, description of app
 	private $moderation_state; //string (pending, active, deleted), current moderation state of app
 	
+	/*
+     * Create a new application that doesn't exist in the database 
+     */
 	public function __construct() {
-		$this->compatible_apple = false;
-        $this->compatible_android = false;
-        $this->compatible_windows = false;
+		foreach($COMPATIBLE_PLATFORMS as $platform)
+            $compatible_status["$platform"] = false;
         $this->keywords = array();
+        $this->id = -1; //ids must be positive
 	}
+    
+    /*
+     * Create an application object using an existing id (from the database)
+     */
+    public function __construct(Integer $id) {
+        //create Application object from information in the database
+    }
 	
     public function setTitle(String $title) {
         $this->title = $title;
@@ -43,19 +49,11 @@ class Application {
     }
     
     private function changeCompatible(String $platform, boolean $value) {
-        switch($platform) {
-            case "Apple":
-                $this->compatible_apple = true;
-                break;
-            case "Android":
-                $this->compatible_android = true;
-                break;
-            case "Windows":
-                $this->compatible_windows = true;
-                break;
-            default:
-                throw new Exception("Invalid platform provided", 1);
-                break;
+        if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
+            throw new Exception("Invalid platform provided", 1);
+        }
+        else {
+            $this->compatible_status["$platform"] = $value;
         }
     }
     
@@ -67,16 +65,13 @@ class Application {
         changeCompatible($platform, false);
     }
     
-    public function setAppleLink(String $link) {
-        $this->link_apple = $link;
-    }
-    
-    public function setAndroidLink(String $link) {
-        $this->link_android = $link;
-    }
-    
-    public function setWindowsLink(String $link) {
-        $this->link_windows = $link;
+    public function setStoreLink(String $platform, String $link) {
+        if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
+            throw new Exception("Invalid platform provided", 1);
+        }
+        else {
+            $this->link_store["$platform"] = $link;
+        }
     }
     
     public function setKeywords($keywords) {
@@ -88,7 +83,12 @@ class Application {
     }
     
     public function setModerationState(String $state) {
-        $this->moderation_state = $state;
+        if(!in_array($state, $MODERATION_STATES)) {
+            throw new Exception("Invalid moderation state", 1);        
+        }
+        else {
+           $this->moderation_state = $state; 
+        } 
     }
     
     public function getTitle() {
@@ -103,30 +103,46 @@ class Application {
         return $this->price;
     }
     
-    private function getCompatible(String $platform) {
-        switch($platform) {
-            case "Apple":
-                return $this->compatible_apple;
-            case "Android":
-                return $this->compatible_android;
-            case "Windows":
-                return $this->compatible_windows;
-            default:
-                throw new Exception("Invalid platform provided", 1);
-                break;
+    public function getCompatible(String $platform) {
+        if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
+            throw new Exception("Invalid platform provided", 1);
+        }
+        else {
+            return $this->compatible_status["$platform"];
         }
     }
     
-    public function getAppleLink() {
-        return $this->link_apple;
+    /*
+     * Returns an array of platforms (strings) that an
+     * application is compatible with
+     */ 
+    public function getCompatiblePlatforms() {
+        $platforms = array();
+        foreach($this->compatible_status as $platform => $value) {
+            if($value === true) {
+                $platforms[] = $platform;
+            }
+        }
+        return $platforms;
     }
     
-    public function getAndroidLink() {
-        return $this->link_android;
+    /*
+     * Returns the link for a particular platform store
+     */ 
+    public function getStoreLink(String $platform) {
+        if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
+            throw new Exception("Invalid platform provided", 1);
+        }
+        else {
+            return $this->link_store["$platform"];
+        }
     }
     
-    public function getWindowsLink() {
-        return $this->link_windows;
+    /*
+     * Returns all store links
+     */ 
+    public function getStoreLinks() {
+        return $this->link_store;
     }
     
     public function getKeywords() {
@@ -139,5 +155,19 @@ class Application {
     
     public function getModerationState() {
         return $this->moderation_state;
+    }
+    
+    /*
+     * Saves the application to the database 
+     * or updates it if it already exists
+     */
+    public function save() {
+        if($this->id === -1) {
+            //create new application entry
+            //$this->id = id from database;
+        }
+        else {
+            //update existing entry
+        }
     }
 }
