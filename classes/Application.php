@@ -174,11 +174,10 @@ class Application {
         $this->validate(); //ensure all fields are properly set
         
         if($this->id === -1) {
-            //TODO: create new application entry
-            //$this->id = id from database;
+            $this->id = Database::applicationSet($this);
         }
         else {
-            //TODO: date existing entry
+            Database::applicationSet($this);
         }
         
         return $this->id;
