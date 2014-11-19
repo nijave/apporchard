@@ -23,22 +23,21 @@ class Database extends medoo {
 	protected $database_name = getenv('OPENSHIFT_GEAR_NAME');
 */
     private function __construct() {
-        $instance = new medoo([
-            'database_type' => 'mysql',
-            'server' => getenv('OPENSHIFT_MYSQL_DB_HOST'),
-            'username' => getenv('OPENSHIFT_MYSQL_DB_USERNAME'),
-            'password' => getenv('OPENSHIFT_MYSQL_DB_PASSWORD'),
-            'port' => getenv('OPENSHIFT_MYSQL_DB_PORT'),
-            'database_name' => getenv('OPENSHIFT_GEAR_NAME'),
-            'charset' => 'utf8'
-        ]);
+        
     }
 
     private static function setInstance() {
         if($instance === null) {
-            $instance = new $this();
+            $instance = new medoo([
+                'database_type' => 'mysql',
+                'server' => getenv('OPENSHIFT_MYSQL_DB_HOST'),
+                'username' => getenv('OPENSHIFT_MYSQL_DB_USERNAME'),
+                'password' => getenv('OPENSHIFT_MYSQL_DB_PASSWORD'),
+                'port' => getenv('OPENSHIFT_MYSQL_DB_PORT'),
+                'database_name' => getenv('OPENSHIFT_GEAR_NAME'),
+                'charset' => 'utf8'
+            ]);
         }
-        return $instance;
     }
     
     public function applicationGet(Integer $id) {
@@ -49,6 +48,8 @@ class Database extends medoo {
     
     public function applicationSet(Application $app) {
         setInstance();
+        $exists = $instance->select("applications", ["id"], ["id"=>$app->getID()]);
+        
         //TODO: updates an application in the database
     }
 }
