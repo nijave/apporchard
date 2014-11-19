@@ -113,6 +113,10 @@ class Application {
         }
     }
     
+    public function setDeveloperLink($link) {
+        $this->link_developer = $link;
+    }
+    
     /**
      * Sets keywords
      * $keywords array[string] of keywords
@@ -194,7 +198,10 @@ class Application {
             throw new Exception("Invalid platform provided", 1);
         }
         else {
-            return $this->link_store["$platform"];
+            if(isset($this->link_store["$platform"]))
+                return $this->link_store["$platform"];
+            else
+                return ""; //return nothing if this isn't set
         }
     }
     
@@ -203,6 +210,10 @@ class Application {
      */ 
     public function getStoreLinks() {
         return $this->link_store;
+    }
+    
+    public function getDeveloperLink() {
+        return $this->link_developer;
     }
     
     public function getKeywords() {
