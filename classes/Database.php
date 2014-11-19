@@ -36,14 +36,14 @@ class Database extends medoo {
         }
     }
     
-    public function applicationGet(Integer $id) {
-        setInstance();
+    public static function applicationGet($id) {
+        self::setInstance();
         //TODO: gets an application based on the id
         return $id; //for DEBUGGING
     }
     
-    public function applicationSet(Application $app) {
-        setInstance();
+    public static function applicationSet(Application $app) {
+        self::setInstance();
         $exists = $instance->select("applications", ["id"], ["id"=>$app->getID()]);
         
         //TODO: updates an application in the database
