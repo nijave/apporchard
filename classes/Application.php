@@ -171,6 +171,25 @@ class Application {
      * or updates it if it already exists
      */
     public function save() {
+        if(strlen($this->title) < 3)
+            throw new Exception("Title must be at least 3 characters");
+        if(strlen($this->developer) < 3)
+            throw new Exception("Developer must be at least 3 characters");
+        if($this->price < 0)
+            throw new Exception("Price must be a positive number");
+        if(strlen($this->category) < 4)
+            throw new Exception("Category must be at least 4 characters");
+        if(sizeof($this->compatible_status) === 0)
+            throw new Exception("Must be compatible with at least one platform");
+        if(strlen($this->link_developer) > 0 && substr($this->link_developer, 0, 4) !== "http")
+            throw new Exception("Developer link must be a valid URL");
+        if(sizeof($this->keywords) < 3)
+            throw new Exception("Must provide at least 3 keywords");
+        if(strlen($this->description) < 10)
+            throw new Exception("Description must be at least 10 characters");
+        if(!in_array($this->moderation_state, Application::MODERATION_STATES)) //set moderation state if not set
+            $this->moderation_state = "PENDING";
+  
         if($this->id === -1) {
             //TODO: create new application entry
             //$this->id = id from database;
