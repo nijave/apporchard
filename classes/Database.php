@@ -5,6 +5,7 @@
 */
 
 require_once('../libraries/medoo/medoo.php');
+require_once('Application.php');
 
 class Database extends medoo {
 
@@ -33,17 +34,26 @@ class Database extends medoo {
         ]);
     }
 
-    public static function getInstance() {
+    private static function setInstance() {
         if($instance === null) {
-            $instance = new $this;
+            $instance = new $this();
         }
         return $instance;
+    }
+    
+    public function applicationGet(Integer $id) {
+        setInstance();
+        //TODO: gets an application based on the id
+        return $id; //for DEBUGGING
+    }
+    
+    public function applicationSet(Application $app) {
+        setInstance();
+        //TODO: updates an application in the database
     }
 }
 
 /*
  * DEBUGGING CODE
  */
-$db = Database::getInstance();
-var_dump($db);
-echo "Database class";
+echo Database::applicationGet(1);
