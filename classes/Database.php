@@ -22,10 +22,6 @@ class Database extends medoo {
 	protected $charset = 'utf8';
 	protected $database_name = getenv('OPENSHIFT_GEAR_NAME');
 */
-    private function __construct() {
-        
-    }
-
     private static function setInstance() {
         if($instance === null) {
             $instance = new medoo([
