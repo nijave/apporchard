@@ -41,5 +41,9 @@ class Database extends medoo {
     }
 }
 
+/*
+ * DEBUGGING CODE
+ */
 $db = Database::getInstance();
 var_dump($db);
+echo "Database class";
