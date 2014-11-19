@@ -1,5 +1,5 @@
 <?
-/*
+/**
 	Class representation of each application
 */
 
@@ -19,7 +19,7 @@ class Application {
 	private $description; //string, description of app
 	private $moderation_state; //string (pending, active, deleted), current moderation state of app
 	
-	/*
+	/**
      * Create a new application that doesn't exist in the database 
      */
 	public function __construct() {
@@ -29,11 +29,11 @@ class Application {
         $this->id = -1; //ids must be positive
 	}
     
-    /*
+    /**
      * Create an application object using an existing id (from the database)
      */
     public function __construct(Integer $id) {
-        //create Application object from information in the database
+        //TODO: create Application object from information in the database
     }
 	
     public function setTitle(String $title) {
@@ -112,7 +112,7 @@ class Application {
         }
     }
     
-    /*
+    /**
      * Returns an array of platforms (strings) that an
      * application is compatible with
      */ 
@@ -126,9 +126,9 @@ class Application {
         return $platforms;
     }
     
-    /*
+    /**
      * Returns the link for a particular platform store
-     */ 
+     */
     public function getStoreLink(String $platform) {
         if(!in_array($platform, $COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
@@ -138,7 +138,7 @@ class Application {
         }
     }
     
-    /*
+    /**
      * Returns all store links
      */ 
     public function getStoreLinks() {
@@ -157,17 +157,17 @@ class Application {
         return $this->moderation_state;
     }
     
-    /*
+    /**
      * Saves the application to the database 
      * or updates it if it already exists
      */
     public function save() {
         if($this->id === -1) {
-            //create new application entry
+            //TODO: create new application entry
             //$this->id = id from database;
         }
         else {
-            //update existing entry
+            //TODO: pdate existing entry
         }
     }
 }
