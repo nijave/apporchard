@@ -7,7 +7,7 @@
 require_once('../libraries/medoo/medoo.php');
 require_once('Application.php');
 
-class Database extends medoo {
+class Database {
 
     private static $instance = null;
 
