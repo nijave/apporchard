@@ -171,6 +171,23 @@ class Application {
      * or updates it if it already exists
      */
     public function save() {
+        $this->validate(); //ensure all fields are properly set
+        
+        if($this->id === -1) {
+            //TODO: create new application entry
+            //$this->id = id from database;
+        }
+        else {
+            //TODO: date existing entry
+        }
+        
+        return $this->id;
+    }
+    
+    /**
+     * Ensures all fields of the application contain valid values
+     */
+    private function validate() {
         if(strlen($this->title) < 3)
             throw new Exception("Title must be at least 3 characters");
         if(strlen($this->developer) < 3)
@@ -187,15 +204,7 @@ class Application {
             throw new Exception("Must provide at least 3 keywords");
         if(strlen($this->description) < 10)
             throw new Exception("Description must be at least 10 characters");
-        if(!in_array($this->moderation_state, Application::MODERATION_STATES)) //set moderation state if not set
-            $this->moderation_state = "PENDING";
-  
-        if($this->id === -1) {
-            //TODO: create new application entry
-            //$this->id = id from database;
-        }
-        else {
-            //TODO: date existing entry
-        }
+        if(!isset($this->moderation_state))
+            throw new Exception("Moderation state required");
     }
 }
