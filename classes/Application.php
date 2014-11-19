@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 	Class representation of each application
 */
@@ -36,7 +36,7 @@ class Application {
     public function __construct(Integer $id) {
         //TODO: create Application object from information in the database
     }
-	
+    
     public function setTitle(String $title) {
         $this->title = $title;
     }    
@@ -94,6 +94,10 @@ class Application {
         else {
            $this->moderation_state = $state; 
         } 
+    }
+    
+    public function getID() {
+        return $this->id;
     }
     
     public function getTitle() {
