@@ -66,9 +66,9 @@
 				$object->save();
 			}
 			catch(Exception $e) {
-				echo "<p class=\"bg-danger form-status\">The following error was encountered while trying to submit your application: ";
+				echo "<p class=\"bg-danger form-status\">The following error was encountered while trying to submit your application: <br><i>";
 				echo $e->getMessage();
-				echo "Please fix the error and try submitting your application again.</p>";
+				echo "</i><br>Please fix the error and try submitting your application again.</p>";
 				$applicationSuccess = false;
 			}
 			if($applicationSuccess)
