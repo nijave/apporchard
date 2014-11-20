@@ -4,7 +4,7 @@
 	relevant variables and adjusts behavior--if necessary
 */
 
-require_once('../libraries/medoo/medoo.php');
+require_once('libraries/medoo/medoo.php');
 
 class Database {
 
