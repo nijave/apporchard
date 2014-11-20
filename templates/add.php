@@ -18,9 +18,9 @@
             <input type="checkbox" name="compatibleApple" value="true"> Apple <br>
             <input type="url" class="form-control" name="linkApple" placeholder="https://itunes.apple.com/us/app/">
             <input type="checkbox" name="compatibleAndroid" value="true"> Android <br>
-            <input type="url" class="form-control" name="linkApple" placeholder="https://play.google.com/store/apps/details">
+            <input type="url" class="form-control" name="linkAndroid" placeholder="https://play.google.com/store/apps/details">
             <input type="checkbox" name="compatibleWindows" value="true"> Windows
-            <input type="url" class="form-control" name="linkApple" placeholder="http://www.windowsphone.com/en-us/store/app">
+            <input type="url" class="form-control" name="linkWindows" placeholder="http://www.windowsphone.com/en-us/store/app">
             <br>
             <label>Link to developer app page
             <input type="url" class="form-control" name="developer_link" placeholder="http://example.com/"></label>
