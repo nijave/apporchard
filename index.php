@@ -1,3 +1,12 @@
+<?php
+$page = "home"; //default page is home
+if(isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php"))
+    $page = $_GET['page'];
+
+require_once('classes/Application.php');
+require_once('classes/Database.php');
+require_once('classes/User.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<?php
@@ -11,10 +20,18 @@
 	
 		if(isset($_REQUEST['action'])) {
 			//handle data submitted by a form
-			
+			$form = str_replace(" ", "_", $_REQUEST['action']);
+            if(file_exists("form_actions/" . $form . ".php")) {
+                require_once('form_actions/' . $form . ".php");
+            }
+            else {
+                echo "<p>Invalid form action specified</p>";
+            }
 			// Debugging code -- needs to be removed after implementing
+			/*
 			echo "<br>Action: " . $_REQUEST['action'] . "<br>"; //debugging code
 			echo "<pre>" . print_r($_REQUEST, true) . "</pre>"; //debugging code
+             */
 		} else {
 			require("templates/" . $page . ".php"); //page is set in templates/navigation.php
 		}
