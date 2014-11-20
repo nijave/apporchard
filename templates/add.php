@@ -11,6 +11,9 @@
             <label>Price
             <span style="position: relative; top: 27px; left: -34px;">$</span><input type="text" class="form-control" name="price" placeholder="1.99" style="padding-left: 16px;"></label>
             <br>
+            <label>Category
+            <input type="text" class="form-control" name="category" placeholder="Uncategorized"></label>
+            <br>
             <label>Compatible Platforms</label><br>
             <input type="checkbox" name="compatibleApple" value="true"> Apple <br>
             <input type="url" class="form-control" name="linkApple" placeholder="https://itunes.apple.com/us/app/">
