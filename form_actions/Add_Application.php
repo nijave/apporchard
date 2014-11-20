@@ -66,13 +66,13 @@
 				$object->save();
 			}
 			catch(Exception $e) {
-				echo "<p class=\"bg-danger\">The following error was encountered while trying to submit your application: ";
+				echo "<p class=\"bg-danger form-status\">The following error was encountered while trying to submit your application: ";
 				echo $e->getMessage();
 				echo "Please fix the error and try submitting your application again.</p>";
 				$applicationSuccess = false;
 			}
 			if($applicationSuccess)
-				echo "<p class=\"bg-success\">Your application <strong>{$object->getTitle()}</strong> has been successfully submitted! Note, your application will not appear until it's been approved by a moderator.</p>";
+				echo "<p class=\"bg-success form-status\">Your application <strong>{$object->getTitle()}</strong> has been successfully submitted! Note, your application will not appear until it's been approved by a moderator.</p>";
 		}
 		else {
 			echo '<p>An invalid application request has been submitted. Please go back to <a href="/?page=add">add application</a> and try again.</p>';

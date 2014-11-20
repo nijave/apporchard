@@ -53,6 +53,10 @@
 	width: 100%;
 }
 
+.form-status { /* Styling for text boxes generate by Form_View pages */
+	padding: 12px;
+}
+
 .details{
 	display: block;
 }
