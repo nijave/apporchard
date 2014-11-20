@@ -1,8 +1,3 @@
-<?php
-$page = "home"; //default page is home
-if(isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php"))
-	$page = $_GET['page'];
-?>
 <div class="masthead">
 	<div class="clearfix">
 		<h1>AppOrchard</h1>
