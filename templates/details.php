@@ -1,6 +1,6 @@
 <div class="details">
 	<div id="detailsContent">
-		<div id="detailsLeftCol"> <img src="http://placehold.it/150x150" alt="Sample App"></div>
+		<div id="detailsLeftCol"> <img src="https://placehold.it/150x150" alt="Sample App"></div>
 		<div id="detailsCenter">
 			  <h2>Sample App</h2>
 			  <p>Developer: Developer</p>

@@ -12,7 +12,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
 	<!-- Google fonts CSS -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
 	
     <!-- Custom styles for this template -->
     <link href="assets/css/justified-nav.css" rel="stylesheet">

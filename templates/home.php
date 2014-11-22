@@ -3,7 +3,7 @@
 	<?php for($i = 0; $i < 8; $i++)
 	echo '
 	<div class="col-xs-2">
-	  <img src="http://placehold.it/150x150" alt="Sample App">
+	  <img src="//placehold.it/150x150" alt="Sample App">
 	  <h2>Sample App</h2>
 	  <p>
 		<img src="assets/img/star_full.png" alt="Star">
