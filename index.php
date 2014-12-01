@@ -6,7 +6,7 @@ if (isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php")) 
 
 require_once('classes/Application.php');
 require_once('classes/Database.php');
-//require_once('classes/User.php');
+require_once('classes/User.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
