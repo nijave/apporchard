@@ -29,9 +29,9 @@ class Application {
                 $this->compatible_status["$platform"] = false;
             }
             $this->keywords = array();
-            $this->id = -1; //ids must be positive
+            $this->id = -1; //ids must be positive, if valid
         } else {
-            //TODO: create Application object from information in the database
+            $this = Database::applicationGet($id);
         }
     }
     
