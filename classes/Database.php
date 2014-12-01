@@ -102,7 +102,11 @@ class Database {
                     . " UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
                 . ") AS search_results GROUP BY id ORDER BY SUM(weight) DESC;";
-        $results = self::$instance->query($query)->fetchAll();
+        $raw_results = self::$instance->query($query)->fetch(PDO::FETCH_ASSOC);
+        $results = array();
+        foreach($raw_results as $result) { //cleanup MySQL results and change into an array of ints
+            $results[] = $result["id"];
+        }
         return $results;
     }
 }
