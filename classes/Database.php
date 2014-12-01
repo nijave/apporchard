@@ -93,15 +93,14 @@ class Database {
         $keyword_list = implode(',', $keywords); //create a comma separated list of keywords
         $title_selects = array();
         foreach($keywords as $word) {
-            $title_selects[] = "SELECT id, '5' as weight FROM applications WHERE title LIKE '$word'";
+            $title_selects[] = "SELECT id, '5' as weight FROM applications WHERE title LIKE $word";
         }
         $query =  "SELECT id FROM("
                     . "SELECT id, '2' as weight FROM keywords WHERE word IN ($keyword_list)"
                     . " UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
                 . ") AS search_results GROUP BY id ORDER BY SUM(weight) DESC;";
-        var_dump($query); //DEBUGGING
-        //$results = self::$instance->query($query)->fetchAll();
-        //return $results;
+        $results = self::$instance->query($query)->fetchAll();
+        return $results;
     }
 }
