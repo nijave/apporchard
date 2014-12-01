@@ -87,7 +87,7 @@ class Database {
      * @return array of applications IDs ordered by hits
      */
     public static function applicationSearch($keywords) {
-        for($i = 0; $i < len($keywords); $i++) { //remove whitespace and escape keywords, surround in single quotes
+        for($i = 0; $i < count($keywords); $i++) { //remove whitespace and escape keywords, surround in single quotes
             $keywords[$i] = "'" . (mysql_escape_string($keywords[$i])) . "'";
         }
         $keyword_list = implode(',', $keywords); //create a comma separated list of keywords
