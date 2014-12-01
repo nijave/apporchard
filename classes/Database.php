@@ -41,7 +41,7 @@ class Database {
             'link_android' => $app->getStoreLink("Android"),
             'link_windows' => $app->getStoreLink("Windows"),
             'developer_link' => $app->getDeveloperLink(),
-            'keyword' => implode(',', $app->getKeywords()), //separate keywords with a comma
+            //'keyword' => implode(',', $app->getKeywords()), //separate keywords with a comma
             'description' => $app->getDescription(),
             'moderation_state' => $app->getModerationState()
         );
@@ -63,10 +63,39 @@ class Database {
         
         $exists = self::$instance->select("applications", ["id"], ["id"=>$app->getID()]); //determine if application already exists in database
         
-        if(sizeof($exists) === 0) //check to see if application already exists in database
-            return self::$instance->insert("applications", self::makeSQLArray($app)); //create new application if one doesn't exist
-        else
-            self::$instance->update("applications", self::makeSQLArray($app), ["id" => $app->getID()]); //update application if it already exists
+        if (sizeof($exists) === 0) { //check to see if application already exists in database
+            return self::$instance->insert("applications", self::makeSQLArray($app));
+        } //create new application if one doesn't exist
+        else {
+            self::$instance->update("applications", self::makeSQLArray($app), ["id" => $app->getID()]);
+        } //update application if it already exists
+        
+        self::$instance->delete("keywords", ["id" => $app->getID()]); //remove all existing keywords
+        $keyword_array = array();
+        foreach($app->getKeywords() as $word) { //create an array of the keywords to be inserted
+            $keyword_array[] = array("id" => $app-getID(), "word" => $word);
+        }
+        self::$instance->insert("keywords", $keyword_array); //insert keywords into keyword table
         return $app->getID();
+    }
+    
+    /**
+     * Returns a list of application IDs ordered by
+     * the number of hits returned from the search
+     * @param type $keywords array
+     * @return array of applications IDs ordered by hits
+     */
+    public static function applicationSearch($keywords) {
+        for($i = 0; $i < len($keywords); $i++) { //remove whitespace and escape keywords, surround in single quotes
+            $keywords[$i] = "'" . (mysql_escape_string($keywords[$i])) . "'";
+        }
+        $keyword_list = implode(',', $keywords); //create a comma separated list of keywords
+        $query =  "SELECT id FROM("
+                    . "SELECT id, '2' as weight FROM keywords WHERE word IN ($keyword_list)"
+                    . "UNION"
+                    . "SELECT id, '5' as weight FROM applications WHERE title IN ($keyword_list)"
+                . ") GROUP BY id ORDER BY SUM(weight) DESC;";
+        $results = self::$instance->query($query)->fetchAll();
+        return $results;
     }
 }
