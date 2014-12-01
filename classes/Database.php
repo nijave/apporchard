@@ -64,10 +64,11 @@ class Database {
         $exists = self::$instance->select("applications", ["id"], ["id"=>$app->getID()]); //determine if application already exists in database
         
         if (sizeof($exists) === 0) { //check to see if application already exists in database
-            return self::$instance->insert("applications", self::makeSQLArray($app));
+            $id = self::$instance->insert("applications", self::makeSQLArray($app));
         } //create new application if one doesn't exist
         else {
             self::$instance->update("applications", self::makeSQLArray($app), ["id" => $app->getID()]);
+            $id = $app->getID();
         } //update application if it already exists
         
         self::$instance->delete("keywords", ["id" => $app->getID()]); //remove all existing keywords
@@ -76,7 +77,7 @@ class Database {
             $keyword_array[] = array("id" => $app-getID(), "word" => $word);
         }
         self::$instance->insert("keywords", $keyword_array); //insert keywords into keyword table
-        return $app->getID();
+        return $id;
     }
     
     /**
