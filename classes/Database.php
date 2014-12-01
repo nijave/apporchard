@@ -74,7 +74,7 @@ class Database {
         self::$instance->delete("keywords", ["id" => $app->getID()]); //remove all existing keywords
         $keyword_array = array();
         foreach($app->getKeywords() as $word) { //create an array of the keywords to be inserted
-            $keyword_array[] = array("id" => $app-getID(), "word" => $word);
+            $keyword_array[] = array("id" => $app->getID(), "word" => $word);
         }
         self::$instance->insert("keywords", $keyword_array); //insert keywords into keyword table
         return $id;
