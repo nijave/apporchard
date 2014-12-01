@@ -36,7 +36,7 @@ class Application {
             $this->title = $obj->title;
             $this->developer = $obj->developer;
             $this->price = $obj->price;
-            $this->category = $obj->cataegory;
+            $this->category = $obj->category;
             $this->compatible_status = $obj->compatible_status;
             $this->link_store = $obj->link_store;
             $this->link_developer = $obj->link_developer;
