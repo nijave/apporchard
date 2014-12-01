@@ -31,7 +31,18 @@ class Application {
             $this->keywords = array();
             $this->id = -1; //ids must be positive, if valid
         } else {
-            $this = Database::applicationGet($id);
+            $obj = Database::applicationGet($id);
+            $this->id = $obj->id;
+            $this->title = $obj->title;
+            $this->developer = $obj->developer;
+            $this->price = $obj->price;
+            $this->category = $obj->cataegory;
+            $this->compatible_status = $obj->compatible_status;
+            $this->link_store = $obj->link_store;
+            $this->link_developer = $obj->link_developer;
+            $this->keywords = $obj->keywords;
+            $this->description = $obj->description;
+            $this->moderation_state = $obj->moderation_state;
         }
     }
     
