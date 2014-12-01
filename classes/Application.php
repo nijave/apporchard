@@ -36,6 +36,16 @@ class Application {
     }
 
     /**
+     * Sets the ID of an application
+     *  ** this is needed for creating an 
+     *     Application object from the database
+     * @param int $id
+     */
+    public function setID($id) {
+        $this->id = $id;
+    }
+    
+    /**
      * Sets title
      * @param string $title
      */
