@@ -47,10 +47,62 @@ class Database {
         return $app_array;
     }
     
+    /**
+     * Returns an application given an ID
+     * @param int $id of application to get
+     * @return Application
+     * @throws Exception when application corresponding to ID isn't found
+     */
     public static function applicationGet($id) {
+        //creates database connection if one doesn't already exist
         self::setInstance();
-        //TODO: gets an application based on the id
-        return $id; //for DEBUGGING
+        
+        //try to find applications given the id
+        $application = self::$instance->select("applications", "*", ["id" => $id]);
+        
+        //check to see if any applications are found
+        if(count($application) < 1) {
+            //throws an Exception if no applications were found (invalid id)
+            throw new Exception("Application ID not found");
+        }
+        else {
+            //create an application object from the database information
+            
+            //use the first (and only) result
+            $application = $application[0];
+            
+            $obj = new Application();
+            $obj->setID($application["id"]);
+            $obj->setTitle($application["title"]);
+            $obj->setDeveloper($application["developer"]);
+            $obj->setPrice($application["price"]);
+            $obj->setCategory($application["category"]);
+            
+            //set links and store compatibility
+            foreach($application as $field => $value) {
+                $substring = substr($field, 0, 4);
+                if ($substring === "link") {
+                    $obj->setStoreLink(\substr($field, 4), $value);
+                }
+                if ($substring === "comp") {
+                    if($value == "1") {
+                        $obj->setCompatible(\substr($field, 10));
+                    }
+                }
+            }
+            
+            $obj->setDeveloperLink($application["developer_link"]);
+            $obj->setDescription($application["description"]);
+            $obj->setModerationState($application["moderation_state"]);
+            
+            try {
+                $obj->validate();
+            } catch (Exception $ex) {
+                throw new Exception("Application object could not be created from database: " . $ex->getMessage());
+            }
+        }
+        
+        return $obj;
     }
     
     /**
