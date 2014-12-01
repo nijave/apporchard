@@ -82,11 +82,11 @@ class Database {
             foreach($application as $field => $value) {
                 $substring = substr($field, 0, 4);
                 if ($substring === "link") {
-                    $obj->setStoreLink(\substr($field, 4), $value);
+                    $obj->setStoreLink(\ucfirst(substr($field, 5)), $value);
                 }
                 if ($substring === "comp") {
                     if($value == "1") {
-                        $obj->setCompatible(\substr($field, 10));
+                        $obj->setCompatible(\ucfirst(substr($field, 7)));
                     }
                 }
             }
@@ -94,12 +94,6 @@ class Database {
             $obj->setDeveloperLink($application["developer_link"]);
             $obj->setDescription($application["description"]);
             $obj->setModerationState($application["moderation_state"]);
-            
-            try {
-                $obj->validate();
-            } catch (Exception $ex) {
-                throw new Exception("Application object could not be created from database: " . $ex->getMessage());
-            }
         }
         
         return $obj;
