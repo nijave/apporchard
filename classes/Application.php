@@ -34,6 +34,14 @@ class Application {
             //TODO: create Application object from information in the database
         }
     }
+    
+    /**
+     * Dumps all the information about the application as a string
+     * @return string of application contents
+     */
+    public function __toString() {
+        return print_r($this, true);
+    }
 
     /**
      * Sets the ID of an application
