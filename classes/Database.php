@@ -87,6 +87,8 @@ class Database {
      * @return array of applications IDs ordered by hits
      */
     public static function applicationSearch($keywords) {
+        self::setInstance(); //creates database connection if one doesn't already exist
+         
         for($i = 0; $i < count($keywords); $i++) { //remove whitespace and escape keywords, surround in single quotes
             $keywords[$i] = "'" . (mysql_escape_string($keywords[$i])) . "'";
         }
