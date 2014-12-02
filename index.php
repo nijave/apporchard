@@ -1,10 +1,14 @@
 <?php
 $page = "home"; //default page is home
+$category = '';
 
 //Check to see if page is set and check to see if php file exists
 //for the particular page being requested
 if (isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php")) {
     $page = $_GET['page'];
+}
+else if (isset($_GET['category'])) {
+    $category = $_GET['category'];
 }
 
 require_once('classes/Application.php');

@@ -11,10 +11,9 @@
 	</div>
 	<ul class="nav nav-justified">
 	  <li <?php if($page === "home") echo 'class="active"'; ?>><a href="/?page=home">Home</a></li>
-	  <li <?php if($page === "popular") echo 'class="active"'; ?>><a href="#">Popular</a></li>
-	  <li <?php if($page === "games") echo 'class="active"'; ?>><a href="#">Games</a></li>
-	  <li <?php if($page === "books") echo 'class="active"'; ?>><a href="#">Books</a></li>
-	  <li <?php if($page === "music") echo 'class="active"'; ?>><a href="#">Music</a></li>
-	  <li <?php if($page === "media") echo 'class="active"'; ?>><a href="#">Media</a></li>
+	  <li <?php if($category === "productivity") echo 'class="active"'; ?>><a href="/?category=productivity">Productivity</a></li>
+	  <li <?php if($category === "games") echo 'class="active"'; ?>><a href="/?category=games">Games</a></li>
+	  <li <?php if($category === "music") echo 'class="active"'; ?>><a href="/?category=music">Music</a></li>
+	  <li <?php if($category === "media") echo 'class="active"'; ?>><a href="/?category=media">Media</a></li>
 	</ul>
 </div>
