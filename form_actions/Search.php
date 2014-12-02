@@ -18,9 +18,6 @@
                 private $object; //object created by class
 
                 public function __construct(&$request) {
-                    //Call parent constructor (does nothing currently)
-                    parent::__construct($request);
-
                     //Set required parameters
                     $this->requiredParams = [
                         "search"];
