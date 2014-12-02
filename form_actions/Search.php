@@ -1,5 +1,6 @@
 <div class="row">
     <div id="search-filters" class="col-xs-4 col-sm-4 col-lg-2">
+        <h2>Filter Results</h2>
         <ul>
             <li> Filter 1 </li>
             <li> Filter 2 </li>
@@ -75,7 +76,6 @@
                     echo "<li>"
                     . "<img src=\"{$app->getImageURL()}\" alt=\"{$app->getTitle()}\">"
                     . "<h3><a href=\"/?page=details&id={$app->getID()}\">{$app->getTitle()}</a></h3>"
-                    . "<br>"
                     . "<p>{$app->getDescription()}</p>"
                     . "</li>";
                 }
