@@ -1,5 +1,8 @@
 <?php
 $page = "home"; //default page is home
+
+//Check to see if page is set and check to see if php file exists
+//for the particular page being requested
 if (isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php")) {
     $page = $_GET['page'];
 }
