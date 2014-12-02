@@ -8,10 +8,10 @@
 		$app = new Application();
 	}
 	$platforms = $app->getCompatiblePlatforms(); //Array of this apps platforms
-	$platformStr;	//string 
+	$platformStr = "";	//string 
 	//concatentates the platforms form the array into one string.
 	for($i = 0; $i < sizeof($platforms); $i++){
-		$platformStr = $platformStr . ", " . $platforms[i];
+		$platformStr = $platformStr . ", " . $platforms[$i];
 	}
 ?>
 	<div id="detailsContent">
@@ -39,7 +39,7 @@
 		<?php 
 			echo 
 			"<p>Price: \${$app->getPrice()}</p>
-			<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink()[0]}\" role=\"button\">Go to Store &raquo;</a></p>";
+			<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($platforms[0])}\" role=\"button\">Go to Store &raquo;</a></p>";
 		?>
 		</div>
 	</div>
