@@ -89,10 +89,12 @@
 
 #search-results-list li {
     clear: both;
+    padding: 6px;
 }
 
 #search-results-list li img {
     float: left;
+    margin-right: 6px;
 }
 
 /* Main marketing message and sign up button 

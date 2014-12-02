@@ -74,7 +74,7 @@
                 foreach($applications as $app) {
                     echo "<li>"
                     . "<img src=\"{$app->getImageURL()}\" alt=\"{$app->getTitle()}\">"
-                    . "<h3><a href=\"/?page=details&id={$app->getID()}\">{$app->getTitle()}</a><h3>"
+                    . "<h3><a href=\"/?page=details&id={$app->getID()}\">{$app->getTitle()}</a></h3>"
                     . "<br>"
                     . "<p>{$app->getDescription()}</p>"
                     . "</li>";
