@@ -103,6 +103,67 @@ class Database {
     }
     
     /**
+     * Gets all the application categories from the database
+     * @return string array of application categories
+     */
+    public static function applicationGetCategories() {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        $query = "SELECT DISTINCT category FROM applications";
+        
+        //Submit the query and store results
+        $cats = self::$instance->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Create an array to hold categories
+        $application_categories = array();
+        
+        //Generate clean array from SQL results
+        foreach($cats as $cat) {
+            $application_categories[] = $cat["category"];
+        }
+        
+        return $application_categories;
+    }
+    
+    /**
+     * Gets all the developers from the database with submitted apps
+     * @return string array of developers
+     */
+    public static function applicationGetDevelopers() {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        $query = "SELECT DISTINCT developer FROM applications";
+        
+        //Submit the query and store results
+        $devs = self::$instance->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Create an array to hold developers
+        $application_developers = array();
+        
+        //Generate clean array from SQL results
+        foreach($devs as $dev) {
+            $application_developers[] = $dev["developer"];
+        }
+        return $application_developers;
+    }
+    
+    /**
+     * 
+     * @param string $category
+     * @return type
+     */
+    public static function applicationGetByCategory($category) {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        $apps = self::$instance->select("applications", ["id"], ["category" => $category]);
+        
+        return $apps;
+    }
+    
+    /**
      * Inserts a new application or updates an existing one if one already exists
      * @return int ID of the application modified or inserted
      */
