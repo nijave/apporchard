@@ -83,6 +83,18 @@
 	min-height: 120px;
 }
 
+#search-results-list {
+    list-style: none;
+}
+
+#search-results-list li {
+    clear: both;
+}
+
+#search-results-list li img {
+    float: left;
+}
+
 /* Main marketing message and sign up button 
 .jumbotron {
   text-align: center;

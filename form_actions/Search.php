@@ -1,12 +1,12 @@
 <div class="row">
-    <div id="search-filters" class="col-xs-6 col-lg-4">
+    <div id="search-filters" class="col-xs-4 col-sm-4 col-lg-2">
         <ul>
             <li> Filter 1 </li>
             <li> Filter 2 </li>
             <li> Filter 3 </li>
         </ul>
     </div>
-    <div id="search-results" class="col-xs-12 col-sm-6 col-lg-8">
+    <div id="search-results" class="col-xs-12 col-sm-8 col-lg-10">
             <h2>Search Results</h2>
             <?php
             //check submitted parameters and make sure they all exist
@@ -70,15 +70,15 @@
                 }
 
                 //Go through applications and generate HTML
-                echo "<dl>";
+                echo "<ul id=\"search-results-list\">";
                 foreach($applications as $app) {
-                    echo "<dt><a href=\"/?page=details&id={$app->getID()}\">{$app->getTitle()}</a></dt>\n";
-                    echo "<dd>"
-                        . "<img src=\"{$app->getImageURL()}\" alt=\"{$app->getTitle()}\">"
-                        . "{$app->getDescription()}"
-                        . "</dd>";
+                    echo "<li>"
+                    . "<img src=\"{$app->getImageURL()}\" alt=\"{$app->getTitle()}\">"
+                    . "<a href=\"/?page=details&id={$app->getID()}\">{$app->getTitle()}</a>\n"
+                    . "{$app->getDescription()}"
+                    . "</li>";
                 }
-                echo "</dl>";
+                echo "</ul>";
             }
             else {
                 //parameters incorrect/not present
