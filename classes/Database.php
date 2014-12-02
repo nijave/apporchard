@@ -160,7 +160,14 @@ class Database {
         
         $apps = self::$instance->select("applications", ["id"], ["category" => $category]);
         
-        return $apps;
+        //Create an array to hold app ids
+        $app_ids = array();
+        
+        //Generate clean array from SQL results
+        foreach($apps as $app) {
+            $app_ids[] = $app["id"];
+        }
+        return $app_ids;
     }
     
     /**
