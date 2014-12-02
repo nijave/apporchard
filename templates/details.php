@@ -39,7 +39,7 @@
 		<?php 
 			echo 
 			"<p>Price: \${$app->getPrice()}</p>
-			<p><a class="btn btn-primary" href=\"{$app->getStoreLink()[0]}\" role=\"button\">Go to Store &raquo;</a></p>";
+			<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink()[0]}\" role=\"button\">Go to Store &raquo;</a></p>";
 		?>
 		</div>
 	</div>
