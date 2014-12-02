@@ -150,7 +150,7 @@ class Database {
     }
     
     /**
-     * 
+     * Gets applications in a certain category
      * @param string $category
      * @return type
      */
@@ -168,6 +168,26 @@ class Database {
             $app_ids[] = $app["id"];
         }
         return $app_ids;
+    }
+    
+    /**
+     * Returns an array of integers for the 20 most recently added applications
+     * @return integer array of application ids
+     */
+    public static function applicationGetNewest() {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        $apps = self::$instance->select("applications", ["id"], ["ORDER" => "id DESC", "LIMIT" => 20]);
+        
+        //Create an array to hold app ids
+        $newest_ids = array();
+        
+        //Generate clean array from SQL results
+        foreach($apps as $app) {
+            $newest_ids[] = $app["id"];
+        }
+        return $newest_ids;
     }
     
     /**
