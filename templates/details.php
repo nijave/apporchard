@@ -1,27 +1,54 @@
 <div class="details">
+<?php 
+	if (isset($_GET['id'])) {
+		$appId = $_GET['id'];
+		$app = new Application($appId);
+	}
+	else{
+		$app = new Application();
+	}
+	$platforms = $app->getPlatforms(); //Array of this apps platforms
+	$platformStr;	//string 
+	//concatentates the platforms form the array into one string.
+	for($i = 0; $i < length($platforms); $i++){
+		$platformStr = $platformStr . ", " . $platforms[i];
+	}
+?>
 	<div id="detailsContent">
-		<div id="detailsLeftCol"> <img src="https://placehold.it/150x150" alt="Sample App"></div>
-		<div id="detailsCenter">
-			  <h2>Sample App</h2>
-			  <p>Developer: Developer</p>
+		<?php
+		// figure out echoing of data
+		echo 
+		"<div id=\"detailsLeftCol\"> 
+		<img src=\"{$app->getImageURL()}\" alt=\" {$app->getTitle()}\">
+		</div>
+		<div id=\"detailsCenter\">
+			  <h2>\"{$app->getTitle()}\"</h2>
+			  <p>Developer: {$app->getDeveloper()}</p>
 			  <p>
-				<img src="assets/img/star_full.png" alt="Star">
-				<img src="assets/img/star_full.png" alt="Star">
-				<img src="assets/img/star_full.png" alt="Star">
-				<img src="assets/img/star_half.png" alt="Half Star">
-				<img src="assets/img/star_none.png" alt="Empty Star">
+				<img src=\"assets/img/star_full.png\" alt=\"Star\">
+				<img src=\"assets/img/star_full.png\" alt=\"Star\">
+				<img src=\"assets/img/star_full.png\" alt=\"Star\">
+				<img src=\"assets/img/star_half.png\" alt=\"Half Star\">
+				<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">
 				(Num reviews)
 			  </p>
-			  <p>Platforms: mac, pc, linux</p>
-		</div>
+			  <p>Platforms: {$platformStr}</p>
+		</div>";
+		?>
 		<div id="detailsRightCol">
-			<p>Price: $5.00</p>
-			<p><a class="btn btn-primary" href="#" role="button">Go to Store &raquo;</a></p>
-		  </div>
+		<?php 
+			echo 
+			"<p>Price: \${$app->getPrice()}</p>
+			<p><a class="btn btn-primary" href=\"{$app->getStoreLink()[0]}\" role=\"button\">Go to Store &raquo;</a></p>";
+		?>
+		</div>
 	</div>
 	<div id="detailsLowerContent">
-	  <h3>App Description</h3>
-	  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo.</p>
+	<?php 
+	  echo 
+	  "<h3>App Description</h3>
+	  <p>{$app->getDescription()}</p>";
+	  ?>
 	  <div id="reviews">
 		<h3>Customer Reviews</h3>
 		<p>By Name on November 12, 2014</p>
