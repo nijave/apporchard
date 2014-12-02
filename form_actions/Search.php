@@ -44,7 +44,7 @@
                  */
                 public function processData() {
                     //Search string is split at spaces
-                    $keywords = explode(' ', $this->requestData);
+                    $keywords = explode(' ', urldecode($this->requestData["search"]));
 
                     //Database is searched for keywords and resulting
                     //IDs are stored in object
