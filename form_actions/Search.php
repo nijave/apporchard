@@ -64,7 +64,7 @@
                 $applications = array();
 
                 //Create an Application object from each ID
-                foreach($object as $app_id) {
+                foreach($app_ids as $app_id) {
                     //Add new Application object to array
                     $applications[] = new Application($app_id);
                 }
