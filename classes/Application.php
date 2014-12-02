@@ -16,6 +16,7 @@ class Application {
     private $link_store; //string array, store links
     private $link_developer; //link to developer website
     private $keywords; //array[string] of keywords
+    private $image_url; //string link to URL of image to display
     private $description; //string, description of app
     private $moderation_state; //string (pending, active, deleted), current moderation state of app
 
@@ -41,6 +42,7 @@ class Application {
             $this->link_store = $obj->link_store;
             $this->link_developer = $obj->link_developer;
             $this->keywords = $obj->keywords;
+            $this->image_url = $obj->image_url;
             $this->description = $obj->description;
             $this->moderation_state = $obj->moderation_state;
         }
@@ -161,6 +163,14 @@ class Application {
     }
 
     /**
+     * Sets an application's image URL
+     * @param string $url of image
+     */
+    public function setImageURL($url) {
+        $this->image_url = $url;
+    }
+    
+    /**
      * Sets description of the application
      * @param string $desc description
      */
@@ -263,6 +273,10 @@ class Application {
         return $this->keywords;
     }
 
+    public function getImageURL() {
+        return $this->image_url;
+    }
+    
     public function getDescription() {
         return $this->description;
     }
@@ -313,6 +327,9 @@ class Application {
         }
         if (sizeof($this->keywords) < 3) {
             throw new Exception("Must provide at least 3 keywords");
+        }
+        if (strlen($this->image_url) < 8 || substr($this->image_url, 0, 4) !== "http") {
+            throw new Exception("Image URL must be provided");
         }
         if (strlen($this->description) < 10) {
             throw new Exception("Description must be at least 10 characters");

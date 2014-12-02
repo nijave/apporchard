@@ -15,7 +15,8 @@
                             "developer", 
                             "price",
                             "category",
-                            "developer_link", 
+                            "developer_link",
+                            "image_link",
                             "keywords", 
                             "description"];
                         $this->requestData = $request;
@@ -41,6 +42,7 @@
                         $this->object->setCategory($this->requestData['category']);
                         $this->object->setDeveloperLink($this->requestData['developer_link']);
                         $this->object->setKeywords($this->requestData['keywords']);
+                        $this->object->setImageURL($this->requestData['image_link']);
                         $this->object->setDescription($this->requestData['description']);
                         $this->object->setModerationState("PENDING");
 

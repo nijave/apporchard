@@ -28,6 +28,9 @@
             <label>Keywords (comma separated)
             <input type="text" class="form-control" name="keywords" placeholder="keyword1, keyword2, etc"></label>
             <br>
+            <label>Link to application image
+            <input type="url" class="form-control" name="image_link" placeholder="http://example.com/image.png"></label>
+            <br>
             <label>Application description
             <textarea class="form-control" name="description"></textarea></label>
             <br>

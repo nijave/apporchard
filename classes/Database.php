@@ -41,6 +41,7 @@ class Database {
             'link_android' => $app->getStoreLink("Android"),
             'link_windows' => $app->getStoreLink("Windows"),
             'developer_link' => $app->getDeveloperLink(),
+            'image_url' => $app->getImageURL(),
             'description' => $app->getDescription(),
             'moderation_state' => $app->getModerationState()
         );
@@ -92,6 +93,8 @@ class Database {
             }
             
             $obj->setDeveloperLink($application["developer_link"]);
+            //APPLICATION KEYWORDS ARE NEVER SET FROM DATABASE
+            $obj->setImageURL($application["image_url"]);
             $obj->setDescription($application["description"]);
             $obj->setModerationState($application["moderation_state"]);
         }
