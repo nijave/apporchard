@@ -27,17 +27,23 @@
 		<img src=\"{$app->getImageURL()}\" alt=\" {$app->getTitle()}\">
 		</div>
 		<div id=\"detailsCenter\">
-			  <h2>{$app->getTitle()}</h2>
-			  <p>Developer: {$app->getDeveloper()}</p>
-			  <p>
+			<h2>{$app->getTitle()}</h2>";
+			if(strlen($app->getDeveloperLink()) > 0){
+				echo "<p>Developer: <a href=\"{$app->getDeveloperLink()}\" target=\"_blank\">{$app->getDeveloper()}</a></p>";
+			}
+			else{
+				echo "<p>Developer: {$app->getDeveloper()}</p>";
+			}  
+			echo 
+			"<p>
 				<img src=\"assets/img/star_full.png\" alt=\"Star\">
 				<img src=\"assets/img/star_full.png\" alt=\"Star\">
 				<img src=\"assets/img/star_full.png\" alt=\"Star\">
 				<img src=\"assets/img/star_half.png\" alt=\"Half Star\">
 				<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">
 				(Num reviews)
-			  </p>
-			  <p>Platforms: {$platformStr}</p>
+			</p>
+			<p>Platforms: {$platformStr}</p>
 		</div>";
 		?>
 		<div id="detailsRightCol">
@@ -59,7 +65,7 @@
 	  <div id="reviews">
 		<h3>Customer Reviews</h3>
 		<p>By Name on November 12, 2014</p>
-		<p>Platform: PC</p>
+		<p>Platform: Apple</p>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	  </div>
 	</div>
