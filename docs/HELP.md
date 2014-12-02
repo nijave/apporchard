@@ -1,4 +1,4 @@
-Welcom to AppOrchard!  
+Welcome to AppOrchard!  
   
 This site lists all the apps you want most for every platform they are currently available in.  
 To register, simply click Register in the top right-hand corner of any page, enter your email address, create a password, then click Register.  
