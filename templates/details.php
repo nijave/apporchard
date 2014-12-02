@@ -10,7 +10,7 @@
 	$platforms = $app->getCompatiblePlatforms(); //Array of this apps platforms
 	$platformStr;	//string 
 	//concatentates the platforms form the array into one string.
-	for($i = 0; $i < length($platforms); $i++){
+	for($i = 0; $i < sizeof($platforms); $i++){
 		$platformStr = $platformStr . ", " . $platforms[i];
 	}
 ?>
