@@ -7,7 +7,7 @@
 	else{
 		$app = new Application();
 	}
-	$platforms = $app->getPlatforms(); //Array of this apps platforms
+	$platforms = $app->getCompatiblePlatforms(); //Array of this apps platforms
 	$platformStr;	//string 
 	//concatentates the platforms form the array into one string.
 	for($i = 0; $i < length($platforms); $i++){
