@@ -11,7 +11,12 @@
 	$platformStr = "";	//string 
 	//concatentates the platforms form the array into one string.
 	for($i = 0; $i < sizeof($platforms); $i++){
-		$platformStr = $platformStr . ", " . $platforms[$i];
+		if($i === 0){
+			$platformStr = $platforms[$i];
+		}
+		else{
+			$platformStr = $platformStr . ", " . $platforms[$i];
+		}
 	}
 ?>
 	<div id="detailsContent">
@@ -22,7 +27,7 @@
 		<img src=\"{$app->getImageURL()}\" alt=\" {$app->getTitle()}\">
 		</div>
 		<div id=\"detailsCenter\">
-			  <h2>\"{$app->getTitle()}\"</h2>
+			  <h2>{$app->getTitle()}</h2>
 			  <p>Developer: {$app->getDeveloper()}</p>
 			  <p>
 				<img src=\"assets/img/star_full.png\" alt=\"Star\">
@@ -38,8 +43,10 @@
 		<div id="detailsRightCol">
 		<?php 
 			echo 
-			"<p>Price: \${$app->getPrice()}</p>
-			<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($platforms[0])}\" role=\"button\">Go to Store &raquo;</a></p>";
+			"<p>Price: \${$app->getPrice()}</p>";
+			foreach($platforms as $pform){
+				echo "<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($pform)}\" role=\"button\">{$pform} &raquo;</a></p>";
+			}
 		?>
 		</div>
 	</div>
