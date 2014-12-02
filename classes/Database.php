@@ -110,7 +110,7 @@ class Database {
         //creates database connection if one doesn't already exist
         self::setInstance();
         
-        $query = "SELECT DISTINCT category FROM applications";
+        $query = "SELECT DISTINCT category FROM applications WHERE moderation_state = 'ACTIVE'";
         
         //Submit the query and store results
         $cats = self::$instance->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -134,7 +134,7 @@ class Database {
         //creates database connection if one doesn't already exist
         self::setInstance();
         
-        $query = "SELECT DISTINCT developer FROM applications";
+        $query = "SELECT DISTINCT developer FROM applications WHERE moderation_state = 'ACTIVE'";
         
         //Submit the query and store results
         $devs = self::$instance->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -158,7 +158,7 @@ class Database {
         //creates database connection if one doesn't already exist
         self::setInstance();
         
-        $apps = self::$instance->select("applications", ["id"], ["category" => $category]);
+        $apps = self::$instance->select("applications", ["id"], ["moderation_state" => "ACTIVE", "category" => $category]);
         
         //Create an array to hold app ids
         $app_ids = array();
@@ -178,7 +178,7 @@ class Database {
         //creates database connection if one doesn't already exist
         self::setInstance();
         
-        $apps = self::$instance->select("applications", ["id"], ["ORDER" => "id DESC", "LIMIT" => 20]);
+        $apps = self::$instance->select("applications", ["id"], ["moderation_state" => "ACTIVE", "ORDER" => "id DESC", "LIMIT" => 20]);
         
         //Create an array to hold app ids
         $newest_ids = array();
