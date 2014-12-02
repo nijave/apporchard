@@ -1,5 +1,7 @@
-AppOrchard  
-Login - click Login in the top right-hand corner, enter email address and password, then click Login.  
-Register - click Register in the top right-hand corner, enter email address and password, then click Register.  
-View App Details - click the view details button beneath each app listing.  
-Searching - in the search box in the top right-hand corner, enter app name, developer, or other app attribute to search for, then click search.  
+Welcome to AppOrchard!  
+  
+This site lists all the apps you want most for every platform they are currently available in.  
+To register, simply click Register in the top right-hand corner of any page, enter your email address, create a password, then click Register.  
+You can login by clicking the login link in the top right-hand corner of every page.  Enter your email address and password, then click the login button.  
+To view app details, click the view details button beneath an app listing.  
+To search for an app, enter the app name into the search box in the top right-hand corner, then hit enter or click Search.  
