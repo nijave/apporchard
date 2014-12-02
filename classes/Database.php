@@ -190,6 +190,27 @@ class Database {
         return $newest_ids;
     }
     
+    
+    /**
+     * Gets pending apps ordered by oldest to newest
+     * @return integer array of applications ids
+     */
+    public static function applicationGetPending() {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        $apps = self::$instance->select("applications", ["id"], ["moderation_state" => "PENDING", "ORDER" => "id ASC"]);
+        
+        //Create an array to hold app ids
+        $pending_ids = array();
+        
+        //Generate clean array from SQL results
+        foreach($apps as $app) {
+            $pending_ids[] = $app["id"];
+        }
+        return $pending_ids;
+    }
+    
     /**
      * Inserts a new application or updates an existing one if one already exists
      * @return int ID of the application modified or inserted
