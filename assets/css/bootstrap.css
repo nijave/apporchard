@@ -133,7 +133,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 select{
- -webkit-appearance:button;
+ -webkit-appearance: select;
 }
 button[disabled],
 html input[disabled] {
