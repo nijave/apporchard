@@ -5,7 +5,7 @@
 		<?php
 		$apps = Database::applicationGetPending();
 		
-		for($i = 0; $i < $apps.size(); $i++) { ?>
+		for($i = 0; $i < $apps.length(); $i++) { ?>
 			<form action="/" method="post">
 				<h3><?php Database::applicationGet($apps[$i]).title; ?></h3>
 				<p>Developer: Developer</p>
