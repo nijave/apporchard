@@ -114,6 +114,8 @@
 #search-results-list li img {
     float: left;
     margin-right: 6px;
+    height: 175px;
+    width: 175px;
 }
 
 /* Main marketing message and sign up button 
