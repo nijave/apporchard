@@ -65,7 +65,7 @@
     height: 60px;
 }
 
-.app-box img {
+.app-box > img {
     height: 175px;
     width: 175px;
 }
