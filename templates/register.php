@@ -16,10 +16,10 @@
 			<br>
 			<label>Account Type:
 			<select>
-				<option value="Standard User">Volvo</option>
-				<option value="Developer">Saab</option>
-				<option value="Moderator">Mercedes</option>
-				<option value="Administrator">Audi</option>
+				<option value="1">Standard User</option>
+				<option value="2">Developer</option>
+				<option value="3">Moderator</option>
+				<option value="4">Administrator</option>
 			</select>
 			</label>
 			<br>
