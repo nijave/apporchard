@@ -57,6 +57,10 @@
 	padding: 12px;
 }
 
+.app-box {
+    padding: 6px;
+}
+
 .app-box .app-desc{
     height: 120px;
 }
