@@ -148,7 +148,7 @@ select {
    font-size: inherit;
    margin: 20px;
    overflow: hidden;
-   padding: 5px 10px;
+ 
    text-overflow: ellipsis;
    white-space: nowrap;
    width: 300px;
