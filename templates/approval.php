@@ -3,11 +3,11 @@
 		<h2>Admin New App Approval</h2>
 		
 		<?php
-		$apps = applicationGetPending();
+		$apps = Database::applicationGetPending();
 		
 		for($i = 0; $i < $apps.size(); $i++) { ?>
 			<form action="/" method="post">
-				<h3><?php applicationGet($apps[$i]).title; ?></h3>
+				<h3><?php Database::applicationGet($apps[$i]).title; ?></h3>
 				<p>Developer: Developer</p>
 				<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 				
