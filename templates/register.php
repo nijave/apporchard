@@ -2,8 +2,11 @@
 	<div id="login-form">
 		<h2>Register</h2>
 		<form action="/" method="post">
+			<label>Name: 
+			<input type="text" class="form-control" name="name" placeholder="Name" autofocus></label>
+			<br>
 			<label>Email Address: 
-			<input type="email" class="form-control" name="username" placeholder="Email address" autofocus></label>
+			<input type="email" class="form-control" name="username" placeholder="Email address"></label>
 			<br>
 			<label>Password:
 			<input type="password" class="form-control" name="password" placeholder="Password"></label>
@@ -11,7 +14,17 @@
 			<label>Confirm Password:
 			<input type="password" class="form-control" name="confirmPassword" placeholder="Password"></label>
 			<br>
+			<label>Account Type:
+			<select>
+				<option value="1">Standard User</option>
+				<option value="2">Developer</option>
+				<option value="3">Moderator</option>
+				<option value="4">Administrator</option>
+			</select>
+			</label>
+			<br>
 			<input type="submit" class="btn btn-default" name="action" value="Register">
+			
 		</form>
 	</div>
 </div>
