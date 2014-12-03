@@ -2,6 +2,9 @@
 	<div id="login-form">
 		<h2>Register</h2>
 		<form action="/" method="post">
+			<label>Name: 
+			<input type="email" class="form-control" name="username" placeholder="Email address" autofocus></label>
+			<br>
 			<label>Email Address: 
 			<input type="email" class="form-control" name="username" placeholder="Email address" autofocus></label>
 			<br>
