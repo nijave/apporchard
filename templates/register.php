@@ -14,7 +14,17 @@
 			<label>Confirm Password:
 			<input type="password" class="form-control" name="confirmPassword" placeholder="Password"></label>
 			<br>
+			<label>Account Type:
+			<select>
+				<option value="Standard User">Volvo</option>
+				<option value="Developer">Saab</option>
+				<option value="Moderator">Mercedes</option>
+				<option value="Administrator">Audi</option>
+			</select>
+			</label>
+			<br>
 			<input type="submit" class="btn btn-default" name="action" value="Register">
+			
 		</form>
 	</div>
 </div>
