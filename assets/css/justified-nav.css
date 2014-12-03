@@ -57,6 +57,14 @@
 	padding: 12px;
 }
 
+.app-box .app-desc{
+    height: 120px;
+}
+
+.app-box h2 {
+    height: 60px;
+}
+
 .details{
 	display: block;
 }
