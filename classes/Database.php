@@ -277,7 +277,7 @@ class Database {
 
         //remove whitespace and escape keywords, surround in single quotes
         for($i = 0; $i < count($keywords); $i++) {
-            $keywords[$i] = "'%" . (htmlspecialchars($keywords[$i], ENT_QUOTES)) . "%'";
+            $keywords[$i] = "'" . (htmlspecialchars($keywords[$i], ENT_QUOTES)) . "'";
         }
         
         //prevent SQL injection and create constraints SQL
