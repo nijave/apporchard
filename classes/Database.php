@@ -158,7 +158,7 @@ class Database {
         //creates database connection if one doesn't already exist
         self::setInstance();
         
-        $apps = self::$instance->select("applications", ["id"], ["moderation_state" => "ACTIVE", "category" => $category]);
+        $apps = self::$instance->select("applications", ["id"], ["AND" =>["moderation_state" => "ACTIVE", "category" => $category]]);
         
         //Create an array to hold app ids
         $app_ids = array();

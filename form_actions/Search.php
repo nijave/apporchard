@@ -1,11 +1,50 @@
+<?php
+$setCats = array();
+$setDevs = array();
+foreach($_GET as $key => $value) {
+    $key = str_replace('_', ' ', urldecode($key));
+    $value = urldecode($value);
+    echo "<!-- $key : $value -->\n";
+    $name = substr($key, 0, 3);
+    if($key === "cat".$value) {
+        $setCats[] = substr($key, 3);
+    }
+    else if ($key === "dev".$value) {
+        $setDevs[] = substr($key, 3);
+    }
+}
+
+//Code for handling dynamically generating filter lists
+$categories = Database::applicationGetCategories();
+$category_filters = "";
+foreach($categories as $cat) {
+    $_set = in_array($cat, $setCats) ? " checked" : "";
+    $category_filters .= "<li><input type='checkbox' name='cat{$cat}' value='{$cat}'{$_set}> {$cat}</li>\n";
+}
+
+$developers = Database::applicationGetDevelopers();
+$developer_filters = "";
+foreach($developers as $dev) {
+    $_set = in_array($dev, $setDevs) ? " checked" : "";
+    $developer_filters .= "<li><input type='checkbox' name='dev{$dev}' value='{$dev}'{$_set}> {$dev}</li>\n";
+}
+?>
+
 <div class="row">
     <div id="search-filters" class="col-xs-4 col-sm-4 col-lg-2">
         <h2>Filter</h2>
-        <ul>
-            <li> Filter 1 </li>
-            <li> Filter 2 </li>
-            <li> Filter 3 </li>
-        </ul>
+        <form action="/" method="get">
+        <h3>Category</h3>
+            <ul>
+                <?php echo $category_filters; ?>
+            </ul>
+            <h3>Developer</h3>
+            <ul>
+                <?php echo $developer_filters; ?>
+            </ul>
+            <?php echo "<input type='hidden' name='search' value='{$_GET['search']}'>"; ?>
+            <input type="submit" name="action" value="Search">
+        </form>
     </div>
     <div id="search-results" class="col-xs-12 col-sm-8 col-lg-10">
             <h2>Search Results</h2>
@@ -21,7 +60,8 @@
                 public function __construct(&$request) {
                     //Set required parameters
                     $this->requiredParams = [
-                        "search"];
+                        "search"
+                        ];
 
                     //Set requestData variable with information from request
                     $this->requestData = $request;

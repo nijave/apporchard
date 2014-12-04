@@ -5,17 +5,17 @@
 		<?php
 		$apps = Database::applicationGetPending();
 		
-		for($i = 0; $i < sizeof($apps); $i++) { ?>
+		for($i = 0; $i < count($apps); $i++): ?>
 			<form action="/" method="post">
-				<h3><?php Database::applicationGet($apps[$i]).title; ?></h3>
-				<p>Developer: Developer</p>
-				<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+				<h3><?php echo Database::applicationGet($apps[$i])->getTitle(); ?></h3>
+				<p><?php echo Database::applicationGet($apps[$i])->getDeveloper(); ?></p>
+				<p><?php echo Database::applicationGet($apps[$i])->getDescription(); ?></p>
 				
 				<input type="submit" class="btn btn-default" name="action" value="Accept">
 				<input type="submit" class="btn btn-default" name="action" value="Decline">
 			</form>
 		<?php 
-		}
+		endfor;
 		?>
 	</div>
 </div>

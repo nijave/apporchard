@@ -10,10 +10,10 @@
 		</div>
 	</div>
 	<ul class="nav nav-justified">
-	  <li <?php if($page === "home") echo 'class="active"'; ?>><a href="/?page=home">Home</a></li>
+	  <li <?php if($page === "home" && $category === '') echo 'class="active"'; ?>><a href="/?page=home">Home</a></li>
 	  <li <?php if($category === "productivity") echo 'class="active"'; ?>><a href="/?category=productivity">Productivity</a></li>
 	  <li <?php if($category === "games") echo 'class="active"'; ?>><a href="/?category=games">Games</a></li>
 	  <li <?php if($category === "music") echo 'class="active"'; ?>><a href="/?category=music">Music</a></li>
-	  <li <?php if($category === "media") echo 'class="active"'; ?>><a href="/?category=media">Media</a></li>
+	  <li <?php if($category === "social") echo 'class="active"'; ?>><a href="/?category=social">Social</a></li>
 	</ul>
 </div>
