@@ -5,12 +5,12 @@
 		<?php
 			if ($user->isSigned()) {
 				if($user->GroupID == 1){
-				echo
-				'<span>Signed in | <a href="/?page=logout">Logout</a></span>';
+					echo
+					'<span>Signed in | <a href="/?page=logout">Logout</a></span>';
 				}
-				else if($user->GroupID == 2{
-				echo
-				'<span>Signed in | <a href="/?page=add">Add new App</a> | <a href="/?page=logout">Logout</a></span>';
+				else if($user->GroupID == 2){
+					echo
+					'<span>Signed in | <a href="/?page=add">Add new App</a> | <a href="/?page=logout">Logout</a></span>';
 				}
 			}
 			else {
