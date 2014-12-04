@@ -47,6 +47,7 @@
                                 echo "<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">";
                             }
                         }
+                        echo "<br> Ratings: " . Database::ratingGetCount($app->getID());
 			echo "</p>
 			<p>Platforms: {$platformStr}</p>
 		</div>";
