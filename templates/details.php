@@ -68,12 +68,12 @@
 	  <div id="Rate-form">
 		<h3><br>Rate this App!</h3>
 		<form action="/" method="post">
-			<input type="radio" name="rating" value="5">5/5<br>
-			<input type="radio" name="rating" value="5">4/5<br>
-			<input type="radio" name="rating" value="5">3/5<br>
-			<input type="radio" name="rating" value="5">2/5<br>
-			<input type="radio" name="rating" value="5">1/5<br>
-			<input type="submit" class="btn btn-default" name="action" value="Rate">
+                    <label><input type="radio" name="rating" value="1">1</label>
+                    <label><input type="radio" name="rating" value="2">2</label>
+                    <label><input type="radio" name="rating" value="3">3</label>
+                    <label><input type="radio" name="rating" value="4">4</label>
+                    <label><input type="radio" name="rating" value="5">5</label>
+                    <input type="submit" class="btn btn-default" name="action" value="Rate">
 		</form>
 	</div>
 	  
