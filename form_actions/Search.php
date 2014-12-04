@@ -141,7 +141,22 @@ foreach($platforms as $p) {
                 foreach($applications as $app) {
                     echo "<li>"
                     . "<img src=\"{$app->getImageURL()}\" alt=\"{$app->getTitle()}\">"
-                    . "<h3><a href=\"/?page=details&id={$app->getID()}\">{$app->getTitle()}</a></h3>"
+                    . "<h3><a href=\"/?page=details&id={$app->getID()}\">{$app->getTitle()}</a></h3>";
+                    echo "<p>";
+                    $rating = Database::ratingGet($app->getID());
+                    for($i = 0; $i < 5; $i++) {
+                        if($i <= $rating - .5) {
+                            echo "<img src=\"assets/img/star_full.png\" alt=\"Star\">";
+                        }
+                        else if($i + .5 === $rating) {
+                            echo "<img src=\"assets/img/star_half.png\" alt=\"Half Star\">";
+                        }
+                        else {
+                            echo "<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">";
+                        }
+                    }
+                    echo "<br> Ratings: " . Database::ratingGetCount($app->getID());
+                    echo "</p>"
                     . "<p>{$app->getDescription()}</p>"
                     . "</li>";
                 }
