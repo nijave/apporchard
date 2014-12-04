@@ -4,7 +4,7 @@
 		<?php
 			if ($user->isSigned()) {
 				if($user->GroupID == 1){
-				echo "You do not have access to this page";
+					echo "You do not have access to this page";
 				}
 				else{
 				echo'
@@ -44,9 +44,11 @@
 						<input type="submit" class="btn btn-default" name="action" value="Add Application">
 					</form>';
 				}
+			}
 			else{
 				echo 'You must be logged in to view this page';
 			}
+
 		?>
     </div>
 </div>
