@@ -5,7 +5,7 @@
 		<?php
 			if ($user->isSigned()) {
 				echo
-				'<span>Signed in as: ' . $user->Username . ' <a href="/?page=logout">Logout</a></span>';
+				'<span>Signed in | <a href="/?page=logout">Logout</a></span>';
 			}
 			else {
 			echo
