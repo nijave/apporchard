@@ -7,7 +7,7 @@
 			 $password = $_POST['Password'];
 			 $auto = $_POST['auto'];  //To remember user with a cookie for autologin
 
-			 //$user = new ptejada\uFlex\User(); This is already defined at the top of index
+			 $user = new AO_User();
 
 			 //Login with credentials
 			 $user->login($username,$password,$auto);
