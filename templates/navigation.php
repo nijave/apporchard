@@ -3,8 +3,8 @@
 		<h1>AppOrchard</h1>
 		<div id="search-box">
 		<?php
-		$uid = getVar("id");
-		$data = $user->manageUser($uid);
+
+		$data = $user->manageUser();
 			if ($user->isSigned()) {
 				if($data->groupID >= 1){
 				echo
