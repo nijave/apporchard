@@ -16,14 +16,14 @@ $categories = Database::applicationGetCategories();
 $category_filters = "";
 foreach($categories as $cat) {
     $_set = in_array($cat, $setCats) ? " checked" : "";
-    $category_filters .= "<li><input type='checkbox' name='cat{$cat}' value='{$cat}'{$_set}></li>\n";
+    $category_filters .= "<li><input type='checkbox' name='cat{$cat}' value='{$cat}'{$_set}> {$cat}</li>\n";
 }
 
 $developers = Database::applicationGetDevelopers();
 $developer_filters = "";
 foreach($developers as $dev) {
     $_set = in_array($dev, $setDevs) ? " checked" : "";
-    $category_filters .= "<li><input type='checkbox' name='dev{$dev}' value='{$dev}'{$_set}></li>\n";
+    $developer_filters .= "<li><input type='checkbox' name='dev{$dev}' value='{$dev}'{$_set}> {$dev}</li>\n";
 }
 ?>
 
