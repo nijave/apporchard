@@ -265,15 +265,17 @@ class Database {
         
         //prevent SQL injection and create constraints SQL
         $constraints_query = " ";
-        foreach($constraints as $field => $array) {
-            //ensure there's at least one constraint
-            if(count($array) > 0) {
-                $constraints_query .= " AND $field IN(";
-                foreach($array as $key => $value) {
-                    //escape and quote value
-                    $array[$key] = "'".htmlspecialchars($value, ENT_QUOTES)."'";
+        if(count($constraints)> 0) {
+            foreach($constraints as $field => $array) {
+                //ensure there's at least one constraint
+                if(count($array) > 0) {
+                    $constraints_query .= " AND $field IN(";
+                    foreach($array as $key => $value) {
+                        //escape and quote value
+                        $array[$key] = "'".htmlspecialchars($value, ENT_QUOTES)."'";
+                    }
+                    $constraints_query .= implode(',', $array).")";
                 }
-                $constraints_query .= implode(',', $array).")";
             }
         }
         
@@ -303,7 +305,7 @@ class Database {
         $query .= " UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
                 . ") AS search_results GROUP BY id ORDER BY SUM(weight) DESC;";
-        print_r($query);
+
         //get array of results
         $raw_results = self::$instance->query($query)->fetchAll(PDO::FETCH_ASSOC);
         
