@@ -51,7 +51,9 @@
 			echo 
 			"<p>Price: \${$app->getPrice()}</p>";
 			foreach($platforms as $pform){
-				echo "<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($pform)}\" target=\"_blank\" role=\"button\">{$pform} &raquo;</a></p>";
+				if($app->getCompatible($pform)){
+					echo "<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($pform)}\" target=\"_blank\" role=\"button\">{$pform} &raquo;</a></p>";
+				}
 			}
 		?>
 		</div>
