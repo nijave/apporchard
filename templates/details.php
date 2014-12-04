@@ -41,7 +41,6 @@
 				<img src=\"assets/img/star_full.png\" alt=\"Star\">
 				<img src=\"assets/img/star_half.png\" alt=\"Half Star\">
 				<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">
-				(Num reviews)
 			</p>
 			<p>Platforms: {$platformStr}</p>
 		</div>";
@@ -65,6 +64,7 @@
 	  "<h3>App Description</h3>
 	  <p>{$app->getDescription()}</p>";
 	  ?>
+	  <h2><br>Comments</h2>
 	  <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
