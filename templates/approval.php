@@ -7,7 +7,6 @@
 				echo "<h2>You do not have acces to this page</h2>";
 				}
 				else{
-				echo'
 					<?php
 					$apps = Database::applicationGetPending();
 		
@@ -22,7 +21,7 @@
 						</form>
 					<?php 
 					endfor;
-					?>';				
+					?>				
 				}
 			}
 			else{
