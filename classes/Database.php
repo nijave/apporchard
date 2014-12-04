@@ -297,7 +297,7 @@ class Database {
                         . "SELECT id, '2' as weight FROM keywords WHERE"
                         . " word IN ($keyword_list)"
                         . " JOIN applications ON (keywords.id = applications.id) AS keyword_results)"
-                    . " WHERE";
+                    . " WHERE moderation_status = 'ACTIVE'";
         $query .= $constraints_query;
         $query .= ") UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
