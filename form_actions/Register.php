@@ -12,10 +12,10 @@
 
             public function __construct(&$request) {
                 $this->requiredParams = [
-                    "username",
+                    "Username",
                     "email",
-                    "password",
-                    "confirmPassword",
+                    "Password",
+                    "Password2",
                     "groupID"];
                 $this->requestData = $request;
             }
