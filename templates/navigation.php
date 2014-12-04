@@ -8,7 +8,7 @@
 				echo
 				'<span>Signed in | <a href="/?page=logout">Logout</a></span>';
 				}
-				if($user->GroupID == 2{
+				else if($user->GroupID == 2{
 				echo
 				'<span>Signed in | <a href="/?page=add">Add new App</a> | <a href="/?page=logout">Logout</a></span>';
 				}
