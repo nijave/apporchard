@@ -385,8 +385,8 @@ class Database {
         
         //Get average
         $avg = self::$instance->avg("ratings", "rating", ["app_id" => $id]);
-        
-        return round($avg, 1); //returns doubles in format #.#
+
+        return floor($avg * 2) / 2; //returns doubles in format #.#
     }
 
     /**

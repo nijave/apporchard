@@ -35,14 +35,14 @@
 				echo "<p>Developer: {$app->getDeveloper()}</p>";
 			}  
 			echo 
-			"<!-- This feature doens\'t exist yet
+			"
 			<p>
 				<img src=\"assets/img/star_full.png\" alt=\"Star\">
 				<img src=\"assets/img/star_full.png\" alt=\"Star\">
 				<img src=\"assets/img/star_full.png\" alt=\"Star\">
 				<img src=\"assets/img/star_half.png\" alt=\"Half Star\">
 				<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">
-			</p>-->
+			</p>
 			<p>Platforms: {$platformStr}</p>
 		</div>";
 		?>
