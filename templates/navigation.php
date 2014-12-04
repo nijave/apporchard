@@ -12,6 +12,10 @@
 					echo
 					'<span>Signed in | <a href="/?page=add">Add new App</a> | <a href="/?page=logout">Logout</a></span>';
 				}
+				else{
+					echo
+					'<span>Signed in | <a href="/?page=approval">Approve pending Apps</a> | <a href="/?page=add">Add new App</a> | <a href="/?page=logout">Logout</a></span>';
+				}
 			}
 			else {
 			echo
