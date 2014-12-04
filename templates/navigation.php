@@ -2,7 +2,9 @@
 	<div class="clearfix">
 		<h1>AppOrchard</h1>
 		<div id="search-box">
-			<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>
+		<?php
+			echo "<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>";
+		?>
 			<form action="/" method="get">
 				<input type="search" class="form-control" name="search">
 				<input type="submit" class="btn btn-default" name="action" value="Search">
