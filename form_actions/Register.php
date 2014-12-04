@@ -2,7 +2,6 @@
     <div id="register">
         <h2>Thank you for registering!</h2>
         <?php
-        require_once('libraries/ptejada/uFlex/Collection.php');
         print_r($_REQUEST);
         require_once('classes/Form_Action.php');
 
@@ -35,14 +34,14 @@
 
             public function processData() {
 
-                $input = ptejada\uFlex\Collection($this->requestData);
+                //$input = ptejada\uFlex\Collection($this->requestData);
 
                 $registered = $this->user->register(array(
-                    'Username' => $input->Username,
-                    'Password' => $input->Passsword,
-                    'Password2' => $input->Passsword2,
-                    'email' => $input->email,
-                    'groupID' => $input->groupID,
+                    'Username' => $this->requestData->Username,
+                    'Password' => $this->requestData->Passsword,
+                    'Password2' => $this->requestData->Passsword2,
+                    'email' => $this->requestData->email,
+                    'groupID' => $this->requestData->groupID,
                         ), false);
 
                 if ($registered) {
