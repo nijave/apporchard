@@ -295,7 +295,7 @@ class Database {
         $query =  "SELECT id FROM("
                     . "SELECT id, weight FROM("
                         . "SELECT id, '2' as weight FROM keywords WHERE"
-                        . " AND word IN ($keyword_list)"
+                        . " word IN ($keyword_list)"
                         . " JOIN applications ON (keywords.id = applications.id) AS keyword_results)"
                     . " WHERE";
         $query .= $constraints_query;
