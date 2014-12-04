@@ -281,10 +281,11 @@ class Database {
         //-- this way the query will match titles if it's only part of the title
         $title_selects = array();
         foreach($keywords as $word) {
-            $title_selects[] = "SELECT id, '5' as weight FROM applications WHERE"
+            $title_selects[] = "SELECT id, '5' as weight FROM applications WHERE("
                     . " moderation_state = 'ACTIVE'"
                     . " AND title LIKE $word"
-                    . $constraints_query;
+                    . $constraints_query
+                    . ")";
         }
         
         //create a comma separated list of keywords
@@ -292,11 +293,11 @@ class Database {
         
         //generate query for search using parts from above
         $query =  "SELECT id FROM("
-                    . "SELECT id, '2' as weight FROM keywords WHERE"
+                    . "SELECT id, '2' as weight FROM keywords WHERE("
                     . " moderation_state = 'ACTIVE'"
                     . " AND word IN ($keyword_list)";
         $query .= $constraints_query;
-        $query .= " UNION ALL "
+        $query .= ") UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
                 . ") AS search_results GROUP BY id ORDER BY SUM(weight) DESC;";
         print_r($query);
