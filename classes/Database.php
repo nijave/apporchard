@@ -294,9 +294,10 @@ class Database {
         //generate query for search using parts from above
         $query =  "SELECT id FROM("
                     . "SELECT id, weight FROM("
-                        . "SELECT id, '2' as weight FROM keywords WHERE"
-                        . " word IN ($keyword_list)"
-                        . " JOIN applications ON (keywords.id = applications.id)) AS keyword_results"
+                        . "SELECT *, '2' as weight FROM keywords"
+                        . " JOIN applications ON (keywords.id = applications.id)"
+                        . " WHERE word IN ($keyword_list)"
+                        . " ) AS keyword_results"
                     . " WHERE moderation_status = 'ACTIVE'";
         $query .= $constraints_query;
         $query .= " UNION ALL "
