@@ -37,11 +37,11 @@
                 //$input = ptejada\uFlex\Collection($this->requestData);
 
                 $registered = $this->user->register(array(
-                    'Username' => $this->requestData->Username,
-                    'Password' => $this->requestData->Passsword,
-                    'Password2' => $this->requestData->Passsword2,
-                    'email' => $this->requestData->email,
-                    'groupID' => $this->requestData->groupID,
+                    'Username' => $this->requestData["Username"],
+                    'Password' => $this->requestData["Passsword"],
+                    'Password2' => $this->requestData["Passsword2"],
+                    'email' => $this->requestData["email"],
+                    'groupID' => $this->requestData["groupID"],
                         ), false);
 
                 if ($registered) {
