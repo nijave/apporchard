@@ -5,12 +5,13 @@
         print_r($_REQUEST);
         require_once('classes/Form_Action.php');
 
-        class Register extends Form_Action {
+        class Register {
 
             private $requiredParams;
             private $requestData;
+            private $user;
 
-            public function __construct(&$request) {
+            public function __construct(&$request, $user) {
                 $this->requiredParams = [
                     "Username",
                     "email",
@@ -18,6 +19,7 @@
                     "Password2",
                     "groupID"];
                 $this->requestData = $request;
+                $this->user = $user;
             }
 
             public function checkParams() {
@@ -33,7 +35,7 @@
 
                 $input = ptejada\uFlex\Collection($_POST);
 
-                $registered = $user->register(array(
+                $registered = $this->user->register(array(
                     'Username' => $input->Username,
                     'Password' => $input->passsword,
                     'Password2' => $input->confirmPasssword,
@@ -45,13 +47,13 @@
                     echo "<h2>Thank you for registering!</2>";
                 } else {
                     //Display Errors
-                    foreach ($user->log->getErrors() as $err) {
+                    foreach ($this->user->log->getErrors() as $err) {
                         echo "<b>Error:</b> {$err} <br/ >";
                     }
                 }
             }
         }
-        $register = new Register($_POST);
+        $register = new Register($_POST, $user);
         if($register->checkParams()) {
             $register->processData();
         }
