@@ -12,8 +12,8 @@
 
             public function __construct(&$request) {
                 $this->requiredParams = [
-                    "name",
                     "username",
+                    "email",
                     "password",
                     "confirmPassword",
                     "groupID"];
