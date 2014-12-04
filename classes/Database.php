@@ -93,7 +93,7 @@ class Database {
             }
             
             $obj->setDeveloperLink($application["developer_link"]);
-            //APPLICATION KEYWORDS ARE NEVER SET FROM DATABASE
+            $obj->setKeywords(self::applicationGetKeywords($id), true);
             $obj->setImageURL($application["image_url"]);
             $obj->setDescription($application["description"]);
             $obj->setModerationState($application["moderation_state"]);
@@ -209,6 +209,23 @@ class Database {
             $pending_ids[] = $app["id"];
         }
         return $pending_ids;
+    }
+    
+    private static function applicationGetKeywords($id) {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        $kw = self::$instance->select("keywords", ["words"], ["id" => $id]);
+        
+        //Create an array to hold app ids
+        $keywords = array();
+        
+        //Generate clean array from SQL results
+        foreach($kw as $word) {
+            $keywords[] = $kw["word"];
+        }
+        
+        return $keywords;
     }
     
     /**
