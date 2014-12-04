@@ -305,7 +305,7 @@ class Database {
         $query .= " UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
                 . ") AS search_results GROUP BY id ORDER BY SUM(weight) DESC;";
-var_dump($query);
+
         //get array of results
         $raw_results = self::$instance->query($query)->fetchAll(PDO::FETCH_ASSOC);
         

@@ -21,7 +21,6 @@ $increment = 0;
 foreach($categories as $cat) {
     $_set = in_array($cat, $setCats) ? " checked" : "";
     $category_filters .= "<li><input type='checkbox' name='cat{$increment}' value='{$cat}'{$_set}> {$cat}</li>\n";
-    $categoryConstraints[] = $cat;
     $increment++;
 }
 
@@ -32,7 +31,6 @@ $increment = 0;
 foreach($developers as $dev) {
     $_set = in_array($dev, $setDevs) ? " checked" : "";
     $developer_filters .= "<li><input type='checkbox' name='dev{$increment}' value='{$dev}'{$_set}> {$dev}</li>\n";
-    $developerConstraints[] = $dev;
     $increment++;
 }
 ?>
@@ -104,7 +102,7 @@ foreach($developers as $dev) {
                 }
             }
 
-            $formAction = new Search($_REQUEST, ["Category" => $categoryConstraints, "Developer" => $developerConstraints]);
+            $formAction = new Search($_REQUEST, ["Category" => $setCats, "Developer" => $setDevs]);
 
             if($formAction->checkParams()) {
                 //Get list of Application IDs returned from search
