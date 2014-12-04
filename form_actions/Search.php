@@ -15,15 +15,15 @@ foreach($_GET as $key => $value) {
 $categories = Database::applicationGetCategories();
 $category_filters = "";
 foreach($categories as $cat) {
-    $_set = in_array($cat, $setCats);
-    $category_filters .= "<li><input type='checkbox' name='cat{$cat}' value='{$cat}'". $_set ? " checked" : "" ."></li>\n";
+    $_set = in_array($cat, $setCats) ? " checked" : "";
+    $category_filters .= "<li><input type='checkbox' name='cat{$cat}' value='{$cat}'{$_set}></li>\n";
 }
 
 $developers = Database::applicationGetDevelopers();
 $developer_filters = "";
 foreach($developers as $dev) {
-    $_set = in_array($dev, $setDevs);
-    $category_filters .= "<li><input type='checkbox' name='dev{$dev}' value='{$dev}'". $_set ? " checked" : "" ."></li>\n";
+    $_set = in_array($dev, $setDevs) ? " checked" : "";
+    $category_filters .= "<li><input type='checkbox' name='dev{$dev}' value='{$dev}'{$_set}></li>\n";
 }
 ?>
 
