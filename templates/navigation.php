@@ -4,7 +4,7 @@
 		<div id="search-box">
 		<?php
 			if($user->isSigned())
-			echo "<span>Logged in as " . $user->Username ." | <a href="/?page=logout">Logout</a>";
+			echo "<span>Logged in as | <a href="/?page=logout">Logout</a>";
 			}
 			else{
 			echo "<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>";
