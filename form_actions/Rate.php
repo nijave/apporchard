@@ -50,7 +50,7 @@
     <script type="text/javascript">
         setTimeout(function () {
             window.location.href = "/?page=details&id=<?php echo $_POST['id']; ?>";
-        }, 4000);
+        }, 2500);
     </script>
     </div>
 </div>
