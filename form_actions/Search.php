@@ -87,7 +87,7 @@ foreach($platforms as $p) {
                     //Set requestData variable with information from request
                     $this->requestData = $request;
 					foreach($filters["Platform"] as $plat) {
-						$filters["compat_" . strtolower($plat)] = 1;
+						$filters["compat_" . strtolower($plat)] = ["1"];
 					}
 					unset($filters["Platform"]);
                     $this->filters = $filters;
