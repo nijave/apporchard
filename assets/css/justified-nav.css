@@ -100,6 +100,12 @@
 	min-height: 120px;
 }
 
+#search-filters ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 #search-results-list {
     list-style: none;
     margin: 0;
