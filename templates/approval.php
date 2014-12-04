@@ -7,10 +7,10 @@
 				echo "<h2>You do not have acces to this page</h2>";
 				}
 				else{
-					<?php
 					$apps = Database::applicationGetPending();
 		
-					for($i = 0; $i < count($apps); $i++): ?>
+					for($i = 0; $i < count($apps); $i++):
+					echo'
 						<form action="/" method="post">
 							<h3><?php echo Database::applicationGet($apps[$i])->getTitle(); ?></h3>
 							<p><?php echo Database::applicationGet($apps[$i])->getDeveloper(); ?></p>
@@ -18,10 +18,8 @@
 				
 							<input type="submit" class="btn btn-default" name="action" value="Accept">
 							<input type="submit" class="btn btn-default" name="action" value="Decline">
-						</form>
-					<?php 
-					endfor;
-					?>				
+						</form>';
+					endfor;			
 				}
 			}
 			else{
