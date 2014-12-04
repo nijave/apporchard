@@ -293,9 +293,11 @@ class Database {
         
         //generate query for search using parts from above
         $query =  "SELECT id FROM("
-                    . "SELECT id, '2' as weight FROM keywords WHERE("
-                    . " moderation_state = 'ACTIVE'"
-                    . " AND word IN ($keyword_list)";
+                    . "SELECT id, weight FROM("
+                        . "SELECT id, '2' as weight FROM keywords WHERE"
+                        . " AND word IN ($keyword_list)"
+                        . " JOIN applications ON (keywords.id = applications.id) AS keyword_results)"
+                    . " WHERE";
         $query .= $constraints_query;
         $query .= ") UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
