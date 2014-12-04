@@ -360,7 +360,7 @@ class Database {
         //Search for existing rating
         $_rating = self::$instance->select("ratings", ["user_id"], ["AND" => ["user_id" => $id, "app_id" => $id]]);
         
-        if(count($_rating) > 0) {
+        if(count($_rating) === 0) {
             return false; //rating already exists
         }
         
