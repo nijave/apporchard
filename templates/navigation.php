@@ -4,7 +4,6 @@
 		<div id="search-box">
 		<?php
 			echo "<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>";
-		?>
 			<form action="/" method="get">
 				<input type="search" class="form-control" name="search">
 				<input type="submit" class="btn btn-default" name="action" value="Search">
