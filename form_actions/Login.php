@@ -31,7 +31,7 @@
 
 				$username = $_POST['Username'];
 				$password = $_POST['Password'];
-				$auto = $_POST['auto'];  //To remember user with a cookie for autologin
+				//$auto = $_POST['auto'];  //To remember user with a cookie for autologin
 
 				$user = new ptejada\uFlex\User();
 
