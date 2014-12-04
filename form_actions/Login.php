@@ -1,26 +1,56 @@
 <div class="row">
-	<div id="login">
-		<h2>Success.</h2>
-		<?php
+    <div id="login">
+        <?php
+        require_once('classes/Form_Action.php');
 
-			 $username = $_POST['Username'];
-			 $password = $_POST['Password'];
-			 $auto = $_POST['auto'];  //To remember user with a cookie for autologin
+        class Login extends Form_Action {
+            private $requestData;
+            private $requiredParams;
+            
+            public function __construct(&$request) {
+                $this->requiredParams = [
+                    "Username",
+                    "Password"];
+                $this->requestData = $request;
+                unset($this->requestData["action"]);
+            }
 
-			 $user = new AO_User();
+            public function checkParams() {
+                $paramsPresent = true;
+                foreach ($this->requiredParams as $param) {
+                    if (!isset($_REQUEST[$param]))
+                        $paramsPresent = false;
+                }
+                return $paramsPresent;
+            }
 
-			 //Login with credentials
-			 $user->login($username,$password,$auto);
+            public function processData() {
 
-			 //not required, just an example usage of the built-in error reporting system
-			 if($user->signed){
-				echo "User Successfully Logged in";
-			 }else{
+				$username = $_POST['Username'];
+				$password = $_POST['Password'];
+				//$auto = $_POST['auto'];  //To remember user with a cookie for autologin
+
+				$user = new AO_User();
+
+				//Login with credentials
+				$user->login($username,$password,$auto);
+
+				//not required, just an example usage of the built-in error reporting system
+				if($user->signed){
+					echo "User Successfully Logged in";
+				}else{
 				//Display Errors
 				foreach($user->log->getErrors() as $err){
-				   echo "<b>Error:</b> {$err} <br/ >";
+				  echo "<b>Error:</b> {$err} <br/ >";
 				}
-			 }
-		?>
-	</div>
+				}
+
+            }
+        }
+        $register = new Login($_POST);
+        if($register->checkParams()) {
+            $register->processData();
+        }
+        ?>
+    </div>
 </div>
