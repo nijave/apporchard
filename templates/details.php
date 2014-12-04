@@ -50,8 +50,9 @@
 		<?php 
 			echo 
 			"<p>Price: \${$app->getPrice()}</p>";
+			$emptyStr = "";
 			foreach($platforms as $pform){
-				if(null !== $app->getStoreLink($pform)){
+				if($emptyStr !== $app->getStoreLink($pform)){
 					echo "<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($pform)}\" target=\"_blank\" role=\"button\">{$pform} &raquo;</a></p>";
 				}
 			}
