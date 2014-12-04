@@ -4,7 +4,7 @@
 		<?php
 			if ($user->isSigned()) {
 				if($user->GroupID == 1 || $user->GroupID == 2){
-				echo "You do not have access to this page";
+                                    echo "You do not have access to this page";
 				}
 				else{
 					$apps = Database::applicationGetPending();
