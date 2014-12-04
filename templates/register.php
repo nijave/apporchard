@@ -3,7 +3,7 @@
 		<h2>Register</h2>
 		<form action="/" method="post">
 			<label>Username: 
-			<input type="text" class="form-control" name="Username" placeholder="UserName" autofocus></label>
+			<input type="text" class="form-control" name="Username" placeholder="Username" autofocus></label>
 			<br>
 			<label>Email Address: 
 			<input type="email" class="form-control" name="email" placeholder="Email address"></label>
