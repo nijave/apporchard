@@ -87,6 +87,12 @@
 	min-width: 150px;
 	min-height: 180px;
 }
+
+#detailsLeftCol > img {
+	height: 175px;
+	width: 175px;
+}
+
 #detailsRightCol{
 	float: left;
 	min-height: 100px;
