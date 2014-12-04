@@ -86,6 +86,10 @@ foreach($platforms as $p) {
 
                     //Set requestData variable with information from request
                     $this->requestData = $request;
+					foreach($filters["Platform"] as $plat) {
+						$filters["compat_" . strtolower($plat)] = 1;
+					}
+					unset($filters["Platform"]);
                     $this->filters = $filters;
                 }
 
@@ -117,7 +121,7 @@ foreach($platforms as $p) {
                 }
             }
 
-            $formAction = new Search($_REQUEST, ["Category" => $setCats, "Developer" => $setDevs]);
+            $formAction = new Search($_REQUEST, ["Platform" => $setPlats, "Category" => $setCats, "Developer" => $setDevs]);
 
             if($formAction->checkParams()) {
                 //Get list of Application IDs returned from search
