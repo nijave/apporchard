@@ -44,6 +44,12 @@
 
                 if ($registered) {
                     echo "<h2>Thank you for registering!</2>";
+                    echo '
+                    <script type="text/javascript">
+                        setTimeout(function () {
+                            window.location.href = "/";
+                        }, 2000);
+                    </script>';
                 } else {
                     //Display Errors
                     foreach ($this->user->log->getErrors() as $err) {
