@@ -10,13 +10,15 @@
 					$apps = Database::applicationGetPending();
 		
 					for($i = 0; $i < count($apps); $i++):
+                                                $a = new Application($apps[$i]);
 						echo'<form action="/" method="post"><h3>'; 
-						echo Database::applicationGet($apps[$i])->getTitle(); 
+						echo $a->getTitle(); 
 						echo '</h3><p>'; 
-						echo Database::applicationGet($apps[$i])->getDeveloper(); 
+						echo $a->getDeveloper(); 
 						echo '</p><p>';
-						echo Database::applicationGet($apps[$i])->getDescription(); 
+						echo $a->getDescription(); 
 						echo '</p>
+                                                        <input type="hidden" name="id" value="'.$a->getID().'">
 							<input type="submit" class="btn btn-default" name="action" value="Accept">
 							<input type="submit" class="btn btn-default" name="action" value="Decline">
 						</form>';
