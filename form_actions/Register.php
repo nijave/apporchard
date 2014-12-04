@@ -40,7 +40,7 @@
                     'Username' => $this->requestData["Username"],
                     'Password' => $this->requestData["Password"],
                     'Password2' => $this->requestData["Password2"],
-                    'email' => $this->requestData["email"],
+                    'email' => $this->requestData["Email"],
                     'groupID' => $this->requestData["groupID"],
                         ), false);
 
