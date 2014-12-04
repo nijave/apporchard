@@ -299,7 +299,7 @@ class Database {
                         . " JOIN applications ON (keywords.id = applications.id)) AS keyword_results"
                     . " WHERE moderation_status = 'ACTIVE'";
         $query .= $constraints_query;
-        $query .= ") UNION ALL "
+        $query .= " UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
                 . ") AS search_results GROUP BY id ORDER BY SUM(weight) DESC;";
         print_r($query);
