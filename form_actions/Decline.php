@@ -18,7 +18,7 @@
         ?>
 		<script type="text/javascript">
 			setTimeout(function () {
-				window.location.href = "/?=approval";
+				window.location.href = "/?page=approval";
 			}, 1250);
 		</script>
     </div>
