@@ -1,6 +1,7 @@
 <?php
 $setCats = array();
 $setDevs = array();
+$setPlats = array();
 
 foreach($_GET as $key => $value) {
     $value = urldecode($value);
@@ -11,12 +12,14 @@ foreach($_GET as $key => $value) {
     else if ($name === "dev") {
         $setDevs[] = $value;
     }
+	else if ($name === "pla") {
+		$setPlats[] = $value;
+	}
 }
 
 //Code for handling dynamically generating filter lists
 $categories = Database::applicationGetCategories();
 $category_filters = "";
-$categoryConstraints = array(); //for use in SQL query
 $increment = 0;
 foreach($categories as $cat) {
     $_set = in_array($cat, $setCats) ? " checked" : "";
@@ -26,11 +29,19 @@ foreach($categories as $cat) {
 
 $developers = Database::applicationGetDevelopers();
 $developer_filters = "";
-$developerConstraints = array(); //for use in SQL query
 $increment = 0;
 foreach($developers as $dev) {
     $_set = in_array($dev, $setDevs) ? " checked" : "";
     $developer_filters .= "<li><input type='checkbox' name='dev{$increment}' value='{$dev}'{$_set}> {$dev}</li>\n";
+    $increment++;
+}
+
+$platforms = Application::$COMPATIBLE_PLATFORMS;
+$platform_filters = "";
+$increment = 0;
+foreach($platforms as $p) {
+    $_set = in_array($p, $setPlats) ? " checked" : "";
+    $platform_filters .= "<li><input type='checkbox' name='pla{$increment}' value='{$p}'{$_set}> {$p}</li>\n";
     $increment++;
 }
 ?>
@@ -39,7 +50,11 @@ foreach($developers as $dev) {
     <div id="search-filters" class="col-xs-4 col-sm-4 col-lg-2">
         <h2>Filter</h2>
         <form action="/" method="get">
-        <h3>Category</h3>
+			<h3>Platform</h3>
+            <ul>
+                <?php echo $platform_filters; ?>
+            </ul>
+			<h3>Category</h3>
             <ul>
                 <?php echo $category_filters; ?>
             </ul>
