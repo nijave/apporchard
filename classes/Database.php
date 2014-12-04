@@ -334,27 +334,72 @@ class Database {
         
         return $results;
     }
-	
+    
+    /**
+     * Add a user rating for a particular application
+     * @param string $email of user
+     * @param int $id of application
+     * @param int $rating to add
+     * @return boolean whether rating was added
+     */
     public static function ratingAdd($email, $id, $rating) {
         //creates database connection if one doesn't already exist
         self::setInstance();
         
-        $user_id = self::$instance->select("Users", ["ID"], ["Email" => $email])[0];
-        print_r($user_id);
+        //Get user id from email address
+        $user_id = self::$instance->select("Users", ["ID"], ["Email" => $email]);
+        
+        //Check to see if user for email address exists
+        if(isset($user_id[0]["ID"])) {
+            $user_id = $user_id[0]["ID"];
+        }
+        else {
+            return false; //invalid email address
+        }
+        
+        //Search for existing rating
+        $_rating = self::$instance->select("ratings", ["user_id"], ["AND" => ["user_id" => $id, "app_id" => $id]]);
+        
+        if(count($_rating) > 0) {
+            return false; //rating already exists
+        }
+        
+        //Add rating to database
+        $insert = self::$instance->insert("ratings", [
+            "user_id" => $user_id,
+            "app_id" => $id,
+            "rating" => $rating
+        ]);
+
         return true; //true is added, false if already rated
     }
 
+    /**
+     * Returns the average rating for an application
+     * @param int $id of application
+     * @return double average rating
+     */
     public static function ratingGet($id) {
         //creates database connection if one doesn't already exist
         self::setInstance();
         
-        return 1.0; //returns doubles in format #.#
+        //Get average
+        $avg = self::$instance->avg("ratings", "rating", ["app_id" => $id]);
+        
+        return round($avg, 1); //returns doubles in format #.#
     }
 
+    /**
+     * Returns the number of ratings for a particular application
+     * @param int $id of application
+     * @return int number of ratings
+     */
     public static function ratingGetCount($id) {
         //creates database connection if one doesn't already exist
         self::setInstance();
         
-        return 0;
+        $count = self::$instance->count("ratings", ["app_id" => $id]);
+        
+        return $count;
     }
 }
