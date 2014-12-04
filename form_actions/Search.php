@@ -1,32 +1,35 @@
 <?php
 $setCats = array();
 $setDevs = array();
+
 foreach($_GET as $key => $value) {
-    $key = str_replace('_', ' ', urldecode($key));
     $value = urldecode($value);
-    echo "<!-- $key : $value -->\n";
     $name = substr($key, 0, 3);
-    if($key === "cat".$value) {
-        $setCats[] = substr($key, 3);
+    if($name === "cat") {
+        $setCats[] = $value;
     }
-    else if ($key === "dev".$value) {
-        $setDevs[] = substr($key, 3);
+    else if ($name === "dev") {
+        $setDevs[] = $value;
     }
 }
 
 //Code for handling dynamically generating filter lists
 $categories = Database::applicationGetCategories();
 $category_filters = "";
+$increment = 0;
 foreach($categories as $cat) {
     $_set = in_array($cat, $setCats) ? " checked" : "";
-    $category_filters .= "<li><input type='checkbox' name='cat{$cat}' value='{$cat}'{$_set}> {$cat}</li>\n";
+    $category_filters .= "<li><input type='checkbox' name='cat{$increment}' value='{$cat}'{$_set}> {$cat}</li>\n";
+    $increment++;
 }
 
 $developers = Database::applicationGetDevelopers();
 $developer_filters = "";
+$increment = 0;
 foreach($developers as $dev) {
     $_set = in_array($dev, $setDevs) ? " checked" : "";
-    $developer_filters .= "<li><input type='checkbox' name='dev{$dev}' value='{$dev}'{$_set}> {$dev}</li>\n";
+    $developer_filters .= "<li><input type='checkbox' name='dev{$increment}' value='{$dev}'{$_set}> {$dev}</li>\n";
+    $increment++;
 }
 ?>
 

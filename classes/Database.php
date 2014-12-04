@@ -254,7 +254,7 @@ class Database {
      * @param type $keywords array
      * @return array of applications IDs ordered by hits
      */
-    public static function applicationSearch($keywords) {
+    public static function applicationSearch($keywords, $constraints = null) {
         //creates database connection if one doesn't already exist
         self::setInstance();
          
@@ -263,11 +263,27 @@ class Database {
             $keywords[$i] = "'" . (mysql_escape_string($keywords[$i])) . "'";
         }
         
+        //prevent SQL injection and create constraints SQL
+        $constraints_query = "";
+        foreach($constraints as $field => $array) {
+            //ensure there's at least one constraint
+            if(count($array) > 0) {
+                $constraints_query .= " AND $field IN(";
+                foreach($array as $key => $value) {
+                    //escape and quote value
+                    $array[$key] = "'".mysql_real_escape_string($value)."'";
+                }
+                $constraints_query .= implode(',', $array).")";
+            }
+        }
+        print_r($constraints_query);
         //create an array of LIKE SELECT statements for each word 
         //-- this way the query will match titles if it's only part of the title
         $title_selects = array();
         foreach($keywords as $word) {
-            $title_selects[] = "SELECT id, '5' as weight FROM applications WHERE title LIKE $word";
+            $title_selects[] = "SELECT id, '5' as weight FROM applications WHERE"
+                    . " moderation_state = 'ACTIVE'"
+                    . " AND title LIKE $word";
         }
         
         //create a comma separated list of keywords
@@ -275,8 +291,11 @@ class Database {
         
         //generate query for search using parts from above
         $query =  "SELECT id FROM("
-                    . "SELECT id, '2' as weight FROM keywords WHERE word IN ($keyword_list)"
-                    . " UNION ALL "
+                    . "SELECT id, '2' as weight FROM keywords WHERE"
+                    . " moderation_state = 'ACTIVE'"
+                    . "AND word IN ($keyword_list)";
+        
+        $query .= " UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
                 . ") AS search_results GROUP BY id ORDER BY SUM(weight) DESC;";
         
