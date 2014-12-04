@@ -6,7 +6,7 @@
 
 		$data = $user->manageUser();
 			if ($user->isSigned()) {
-				if($data->groupID >= 1){
+				if($data->GroupID >= 1){
 				echo
 				'<span>Signed in | <a href="/?page=add">Add new App</a> | <a href="/?page=logout">Logout</a></span>';
 				}
