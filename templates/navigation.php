@@ -3,10 +3,12 @@
 		<h1>AppOrchard</h1>
 		<div id="search-box">
 		<?php
-
-		$data = $user->manageUser();
 			if ($user->isSigned()) {
-				if($user->GroupID == 2){
+				if($user->GroupID == 1){
+				echo
+				'<span>Signed in | <a href="/?page=logout">Logout</a></span>';
+				}
+				if($user->GroupID == 2{
 				echo
 				'<span>Signed in | <a href="/?page=add">Add new App</a> | <a href="/?page=logout">Logout</a></span>';
 				}
