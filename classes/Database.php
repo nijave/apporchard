@@ -335,15 +335,26 @@ class Database {
         return $results;
     }
 	
-	public static function ratingAdd($email, $id, $rating) {
-		return true; //true is added, false if already rated
-	}
-	
-	public static function ratingGet($id) {
-		return 1.0; //returns doubles in format #.#
-	}
+    public static function ratingAdd($email, $id, $rating) {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
         
-        public static function ratingGetCount($id) {
-            return 0;
-        }
+        $user_id = self::$instance->select("Users", ["ID"], ["Email" => $email])[0];
+        print_r($user_id);
+        return true; //true is added, false if already rated
+    }
+
+    public static function ratingGet($id) {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        return 1.0; //returns doubles in format #.#
+    }
+
+    public static function ratingGetCount($id) {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        return 0;
+    }
 }
