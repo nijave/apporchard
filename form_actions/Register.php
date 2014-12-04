@@ -38,8 +38,8 @@
 
                 $registered = $this->user->register(array(
                     'Username' => $this->requestData["Username"],
-                    'Password' => $this->requestData["Passsword"],
-                    'Password2' => $this->requestData["Passsword2"],
+                    'Password' => $this->requestData["Password"],
+                    'Password2' => $this->requestData["Password2"],
                     'email' => $this->requestData["email"],
                     'groupID' => $this->requestData["groupID"],
                         ), false);
