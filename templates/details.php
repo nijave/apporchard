@@ -65,7 +65,7 @@
 	  "<h3>App Description</h3>
 	  <p>{$app->getDescription()}</p>";
 	  ?>
-	  <div id="rate-form">
+	  <div id="Rate-form">
 		<h3><br>Rate this App!</h3>
 		<form action="/" method="post">
 			<input type="radio" name="rating" value="5">5/5<br>
