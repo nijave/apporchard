@@ -1,0 +1,57 @@
+<div class="row">
+	<div id="add-form">
+		<h2>Register</h2>
+		<?php
+		//print_r($_REQUEST);
+		require_once('classes/Form_Action.php');
+		class Register extends Form_Action{
+			private $requiredParams;
+			private $requestData;
+			
+			public function __construct(&$request){
+				$this->requiredParams =[
+					"name",
+					"username",
+					"password",
+					"confirmPassword",
+					"groupID"];
+				$this->requestData = $request;
+			}
+
+			public function checkParams() {
+                        $paramsPresent = true;
+                        foreach($this->requiredParams as $param) {
+                            if(!isset($_REQUEST[$param]))
+                                $paramsPresent = false;
+                        }
+                        return $paramsPresent;
+            }
+			
+			public function processData(){
+
+					
+			}			
+		}
+		
+		$input = ptejada\uFlex\Collection($_POST);
+
+		$registered = $user->register(array(
+			'Username'  => $input->Username,
+			'Password'  => $input->passsword,
+			'Password2' => $input->passsword2,
+			'email'     => $input->email,
+			'groupID'   => $input->groupID,
+		),false);
+
+		if($registered){
+			echo "<h2>Thank you for registering!</2>";
+		}else{
+			//Display Errors
+			foreach($user->log->getErrors() as $err){
+				echo "<b>Error:</b> {$err} <br/ >";
+			}
+		}
+		
+		?>
+	</div>
+</div>
