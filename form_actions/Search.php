@@ -13,17 +13,17 @@ foreach($_GET as $key => $value) {
 
 //Code for handling dynamically generating filter lists
 $categories = Database::applicationGetCategories();
-$category_filters = array();
+$category_filters = "";
 foreach($categories as $cat) {
     $_set = in_array($cat, $setCats);
-    $category_filters[] = "<li><input type='checkbox' name='cat{$cat}' value='{$cat}'". $_set ? " checked" : "" ."></li>";
+    $category_filters .= "<li><input type='checkbox' name='cat{$cat}' value='{$cat}'". $_set ? " checked" : "" ."></li>\n";
 }
 
 $developers = Database::applicationGetDevelopers();
-$developer_filters = array();
+$developer_filters = "";
 foreach($developers as $dev) {
     $_set = in_array($dev, $setDevs);
-    $category_filters[] = "<li><input type='checkbox' name='dev{$dev}' value='{$dev}'". $_set ? " checked" : "" ."></li>";
+    $category_filters .= "<li><input type='checkbox' name='dev{$dev}' value='{$dev}'". $_set ? " checked" : "" ."></li>\n";
 }
 ?>
 
