@@ -12,9 +12,9 @@
 					for($i = 0; $i < count($apps); $i++):
                                                 $a = new Application($apps[$i]);
 						echo'<form action="/" method="post"><h3>'; 
-						echo $a->getTitle(); 
+						echo '<a href="/?page=details&id='.$app->getID().'">'.$a->getTitle().'</a>'; 
 						echo '</h3><p>'; 
-						echo $a->getDeveloper(); 
+						echo $a->getDeveloper();
 						echo '</p><p>';
 						echo $a->getDescription(); 
 						echo '</p>
