@@ -39,6 +39,8 @@ foreach($developers as $dev) {
             <ul>
                 <?php echo $developer_filters; ?>
             </ul>
+            <?php echo "<input type='hidden' name='search' value='{$_GET['search']}'>"; ?>
+            <input type="submit" name="action" value="Search">
         </form>
     </div>
     <div id="search-results" class="col-xs-12 col-sm-8 col-lg-10">
