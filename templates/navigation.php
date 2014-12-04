@@ -5,11 +5,11 @@
 		<?php
 			if ($user->isSigned()) {
 				echo
-				"<span><a href="/?page=home">Logout> | </span>";
+				'<span><a href="/?page=home">Logout> | </span>';
 			}
 			else {
 			echo
-			"<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>";
+			'<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>';
 			}
 		?>
 			<form action="/" method="get">
