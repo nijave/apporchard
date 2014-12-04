@@ -1,8 +1,6 @@
 <div class="row">
     <div id="register">
-        <h2>Thank you for registering!</h2>
         <?php
-        print_r($_REQUEST);
         require_once('classes/Form_Action.php');
 
         class Register {
