@@ -10,7 +10,7 @@
             } else {
                 $a->setModerationState("ACTIVE");
                 $a->save();
-				echo 'Applicaition successfully approved';
+				echo 'Application successfully approved';
             }
         } else {
             echo 'You must be logged in to view this page';
@@ -19,7 +19,7 @@
 		<script type="text/javascript">
 			setTimeout(function () {
 				window.location.href = "/?page=approval";
-			}, 1250);
+			}, 1400);
 		</script>
     </div>
 </div>

@@ -19,7 +19,7 @@
 		<script type="text/javascript">
 			setTimeout(function () {
 				window.location.href = "/?page=approval";
-			}, 1250);
+			}, 1400);
 		</script>
     </div>
 </div>
