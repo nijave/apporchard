@@ -12,7 +12,7 @@ class Application {
     private $developer; //string
     private $price; //double
     private $category; //category of the application
-    private $compatible_status; //boolean array, compatible with Apple
+    private $compatible_status; //integer (0 for false, 1 for true) array, compatible with Apple
     private $link_store; //string array, store links
     private $link_developer; //link to developer website
     private $keywords; //array[string] of keywords
@@ -27,7 +27,7 @@ class Application {
     public function __construct($id = null) {
         if ($id === null) {
             foreach (self::$COMPATIBLE_PLATFORMS as $platform) {
-                $this->compatible_status["$platform"] = false;
+                $this->compatible_status["$platform"] = 0;
             }
             $this->keywords = array();
             $this->id = -1; //ids must be positive, if valid
@@ -216,11 +216,7 @@ class Application {
         if (!in_array($platform, self::$COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
         } else {
-            if (isset($this->compatible_status["$platform"])) {
-                return true;
-            } else {
-                return false;
-            }
+			return $this->compatible_status["$platform"];
         }
     }
 
