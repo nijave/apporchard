@@ -367,7 +367,7 @@ class Database {
         //Add rating to database
         $insert = self::$instance->insert("ratings", [
             "user_id" => $user_id,
-            "app_id" => $app_id,
+            "app_id" => $id,
             "rating" => $rating
         ]);
 
