@@ -5,4 +5,9 @@
 			$user->logout();
 		?>
 	</div>
+        <script type="text/javascript">
+            setTimeout(function () {
+                window.location.href = "/";
+            }, 2000);
+        </script>
 </div>
