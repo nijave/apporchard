@@ -6,15 +6,15 @@
 			if ($user->isSigned()) {
 				if($user->GroupID == 1){
 					echo
-					'<span>Signed in" <a href="/?page=logout">Logout</a></span>';
+					'<span><a href="/?page=logout">Logout</a></span>';
 				}
 				else if($user->GroupID == 2){
 					echo
-					'<span>Signed in: <a href="/?page=add">Add new App</a> | <a href="/?page=logout">Logout</a></span>';
+					'<span><a href="/?page=add">Add new App</a> | <a href="/?page=logout">Logout</a></span>';
 				}
 				else{
 					echo
-					'<span>Signed in: <a href="/?page=approval">Approve Apps</a> | <a href="/?page=add">Add App</a> | <a href="/?page=logout">Logout</a></span>';
+					'<span><a href="/?page=approval">Approve Apps</a> | <a href="/?page=add">Add App</a> | <a href="/?page=logout">Logout</a></span>';
 				}
 			}
 			else {
