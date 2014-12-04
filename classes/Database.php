@@ -267,7 +267,7 @@ class Database {
         $constraints_query = "";
         foreach($constraints as $field => $array) {
             //ensure there's at least one constraint
-            if(length($array) > 0) {
+            if(count($array) > 0) {
                 $constraints_query .= " AND $field IN(";
                 foreach($array as $key => $value) {
                     //escape and quote value
