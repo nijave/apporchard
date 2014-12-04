@@ -18,16 +18,17 @@
             public function checkParams() {
                 $paramsPresent = true;
                 foreach ($this->requiredParams as $param) {
-                    if (!isset($_REQUEST[$param]))
-                        $paramsPresent = false;
-                }
+                    if (!isset($param)) {
+                $paramsPresent = false;
+            }
+        }
                 return $paramsPresent;
             }
 
             public function processData() {
 
-				$username = $_POST['Username'];
-				$password = $_POST['Password'];
+				$username = $this->requestData['Username'];
+				$password = $this->requestData['Password'];
 				//$auto = $_POST['auto'];  //To remember user with a cookie for autologin
 
 				$user = new AO_User();
