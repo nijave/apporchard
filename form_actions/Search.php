@@ -2,7 +2,7 @@
 $setCats = array();
 $setDevs = array();
 foreach($_GET as $key => $value) {
-    $key = urldecode($key);
+    $key = str_replace('_', ' ', urldecode($key));
     $value = urldecode($value);
     echo "<!-- $key : $value -->\n";
     $name = substr($key, 0, 3);
