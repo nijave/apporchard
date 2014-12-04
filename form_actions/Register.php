@@ -2,6 +2,7 @@
     <div id="register">
         <h2>Thank you for registering!</h2>
         <?php
+        $_n = ptejada\uFlex\Collection([]);
         print_r($_REQUEST);
         require_once('classes/Form_Action.php');
 
@@ -38,8 +39,8 @@
 
                 $registered = $this->user->register(array(
                     'Username' => $input->Username,
-                    'Password' => $input->passsword,
-                    'Password2' => $input->confirmPasssword,
+                    'Password' => $input->Passsword,
+                    'Password2' => $input->Passsword2,
                     'email' => $input->email,
                     'groupID' => $input->groupID,
                         ), false);
