@@ -260,7 +260,7 @@ class Database {
 
         //remove whitespace and escape keywords, surround in single quotes
         for($i = 0; $i < count($keywords); $i++) {
-            $keywords[$i] = "'" . (htmlspecialchars($keywords[$i], ENT_QUOTES)) . "'";
+            $keywords[$i] = "'%" . (htmlspecialchars($keywords[$i], ENT_QUOTES)) . "%'";
         }
         
         //prevent SQL injection and create constraints SQL
@@ -285,7 +285,7 @@ class Database {
         foreach($keywords as $word) {
             $title_selects[] = "SELECT id, '7' as weight FROM applications WHERE("
                     . " moderation_state = 'ACTIVE'"
-                    . " AND title LIKE '%$word%'"
+                    . " AND title LIKE $word"
                     . $constraints_query
                     . ")";
         }
