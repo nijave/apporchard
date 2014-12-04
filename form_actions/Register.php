@@ -2,7 +2,7 @@
     <div id="register">
         <h2>Thank you for registering!</h2>
         <?php
-        $_n = ptejada\uFlex\Collection([]);
+        require_once('libraries/ptejada/uFlex/Collection.php');
         print_r($_REQUEST);
         require_once('classes/Form_Action.php');
 
