@@ -1,5 +1,5 @@
 <div class="row">
-	<div id="add-form">
+	<div id="register">
 		<h2>Thank you for registering!</h2>
 		<?php
 		//print_r($_REQUEST);
@@ -50,9 +50,6 @@
 					
 			}			
 		}
-		
-		
-		
 		?>
 	</div>
 </div>
