@@ -3,16 +3,18 @@
         <?php
         require_once('classes/Form_Action.php');
 
-        class Rate extends Form_Action {
+        class Rate {
 
             private $requestData;
             private $requiredParams;
+            private $user;
 
-            public function __construct(&$request) {
+            public function __construct(&$request, &$user) {
                 $this->requiredParams = [
                     "id",
                     "rating"];
                 $this->requestData = $request;
+                $this->user = $user;
             }
 
             public function checkParams() {
@@ -28,12 +30,12 @@
             public function processData() {
                 $rating = $this->requestData["rating"];
                 $id = $this->requestData["id"];
-                $email = $user->Email;
+                $email = $this->user->Email;
                 return Database::ratingAdd($email, $id, $rating);
             }
         }
         if($user->isSigned()) {
-            $rate = new Rate($_POST);
+            $rate = new Rate($_POST, $user);
             if ($rate->checkParams()) {
                 $status = $rate->processData();
                 if($status) {
@@ -48,7 +50,7 @@
     <script type="text/javascript">
         setTimeout(function () {
             window.location.href = "/?page=details&id=<?php echo $_POST['id']; ?>";
-        }, 2000);
+        }, 4000);
     </script>
     </div>
 </div>
