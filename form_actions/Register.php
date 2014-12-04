@@ -19,6 +19,7 @@
                     "Password2",
                     "groupID"];
                 $this->requestData = $request;
+                unset($this->requestData["action"]);
                 $this->user = $user;
             }
 
@@ -33,7 +34,7 @@
 
             public function processData() {
 
-                $input = ptejada\uFlex\Collection($_POST);
+                $input = ptejada\uFlex\Collection($this->requestData);
 
                 $registered = $this->user->register(array(
                     'Username' => $input->Username,
