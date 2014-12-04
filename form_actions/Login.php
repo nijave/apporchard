@@ -39,7 +39,7 @@
 
                 //not required, just an example usage of the built-in error reporting system
                 if ($user->isSigned()) {
-                    echo "User Successfully Logged in";
+                    echo "<h2>Successfully Logged in!</h2>";
                 } else {
                     //Display Errors
                     foreach ($user->log->getErrors() as $err) {
