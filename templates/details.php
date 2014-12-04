@@ -67,7 +67,7 @@
 	  ?>
 	  <div id="Rate-form">
 		<h3><br>Rate this App!</h3>
-		<form action="/" method="post">
+		<form action="/" method="post" class="inline-form">
                     <label><input type="radio" name="rating" value="1">1</label>
                     <label><input type="radio" name="rating" value="2">2</label>
                     <label><input type="radio" name="rating" value="3">3</label>
