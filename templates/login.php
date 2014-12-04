@@ -8,6 +8,9 @@
 			<label>Password:
 			<input type="password" class="form-control" name="Password" placeholder="Password"></label>
 			<br>
+                        <label>Remember me?:</label>
+                        <input type="checkbox" name="auto">
+                        <br>
 			<input type="submit" class="btn btn-default" name="action" value="Login">
 		</form>
 	</div>
