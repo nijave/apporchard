@@ -86,10 +86,13 @@ foreach($platforms as $p) {
 
                     //Set requestData variable with information from request
                     $this->requestData = $request;
-					foreach($filters["Platform"] as $plat) {
-						$filters["compat_" . strtolower($plat)] = ["1"];
-					}
-					unset($filters["Platform"]);
+                    if($this->requestData["search"] === '') {
+                        $this->requestData["search"] = '%'; //wildcard search when nothing is entered
+                    }
+                    foreach($filters["Platform"] as $plat) {
+                            $filters["compat_" . strtolower($plat)] = ["1"];
+                    }
+                    unset($filters["Platform"]);
                     $this->filters = $filters;
                 }
 
