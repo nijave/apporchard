@@ -222,7 +222,7 @@ class Database {
         
         //Generate clean array from SQL results
         foreach($kw as $word) {
-            $keywords[] = $kw["word"];
+            $keywords[] = $word["word"];
         }
         
         return $keywords;
