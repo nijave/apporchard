@@ -3,11 +3,11 @@
 		<h1>AppOrchard</h1>
 		<div id="search-box">
 		<?php
-			echo
 			if ($user->isSigned()) {
 			
 			}
 			else {
+			echo
 			"<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>";
 			}
 		?>
