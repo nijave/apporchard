@@ -65,6 +65,9 @@
 	  "<h3>App Description</h3>
 	  <p>{$app->getDescription()}</p>";
 	  ?>
+	  <?php 
+	  	echo "<span class=\"disqus-comment-count\" data-disqus-identifier=\"{$app->getId()}_identifier\">Comments</span>";
+	  ?>
 	  <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
