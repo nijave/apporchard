@@ -283,7 +283,7 @@ class Database {
         //-- this way the query will match titles if it's only part of the title
         $title_selects = array();
         foreach($keywords as $word) {
-            $title_selects[] = "SELECT id, '5' as weight FROM applications WHERE("
+            $title_selects[] = "SELECT id, '7' as weight FROM applications WHERE("
                     . " moderation_state = 'ACTIVE'"
                     . " AND title LIKE $word"
                     . $constraints_query
