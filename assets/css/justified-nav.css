@@ -101,13 +101,17 @@
 }
 
 #detailsCenter{
-	float: left;
-	padding-right: 70px;
-	min-height: 120px;
+    float: left;
+    padding-right: 70px;
+    min-height: 120px;
 }
 
-#rate-form {
-    
+#rate-form input[type=submit]{
+    margin: 0 0 18px 10px;    
+}
+
+#rate-form label {
+    width: 18px;
 }
 
 #search-filters ul {
