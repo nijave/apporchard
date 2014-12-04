@@ -11,7 +11,7 @@
     foreach($app_ids as $id) {
         $app = new Application($id);
         if(strlen($app->getDescription()) > 141) {
-            $desc = substr($app->getDescription(), 0, 138) . "&hellip;";
+            $desc = substr($app->getDescription(), 0, 130) . "&hellip;";
         }
         else {
             $desc = $app->getDescription();
