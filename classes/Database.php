@@ -260,7 +260,7 @@ class Database {
          
         //remove whitespace and escape keywords, surround in single quotes
         for($i = 0; $i < count($keywords); $i++) {
-            $keywords[$i] = "'" . (mysqli::escape_string($keywords[$i])) . "'";
+            $keywords[$i] = "'" . (htmlspecialchars($keywords[$i], ENT_QUOTES)) . "'";
         }
         
         //prevent SQL injection and create constraints SQL
@@ -271,7 +271,7 @@ class Database {
                 $constraints_query .= " AND $field IN(";
                 foreach($array as $key => $value) {
                     //escape and quote value
-                    $array[$key] = "'".mysqli::escape_string($value)."'";
+                    $array[$key] = "'".htmlspecialchars($value, ENT_QUOTES)."'";
                 }
                 $constraints_query .= implode(',', $array).")";
             }
