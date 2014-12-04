@@ -33,7 +33,7 @@
 				$user = new AO_User();
 
 				//Login with credentials
-				$user->login($username,$password,$auto);
+				$user->login($username,$password);
 
 				//not required, just an example usage of the built-in error reporting system
 				if($user->signed){
