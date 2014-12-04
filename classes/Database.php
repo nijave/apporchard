@@ -215,7 +215,7 @@ class Database {
         //creates database connection if one doesn't already exist
         self::setInstance();
         
-        $kw = self::$instance->select("keywords", ["words"], ["id" => $id]);
+        $kw = self::$instance->select("keywords", ["word"], ["id" => $id]);
         
         //Create an array to hold app ids
         $keywords = array();
