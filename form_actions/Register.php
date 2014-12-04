@@ -29,28 +29,29 @@
 			
 			public function processData(){
 
+			$input = ptejada\uFlex\Collection($_POST);
+
+			$registered = $user->register(array(
+				'Username'  => $input->Username,
+				'Password'  => $input->passsword,
+				'Password2' => $input->confirmPasssword,
+				'email'     => $input->email,
+				'groupID'   => $input->groupID,
+			),false);
+
+			if($registered){
+				echo "<h2>Thank you for registering!</2>";
+			}else{
+				//Display Errors
+				foreach($user->log->getErrors() as $err){
+					echo "<b>Error:</b> {$err} <br/ >";
+				}
+			}
 					
 			}			
 		}
 		
-		$input = libraries\ptejada\uFlex\Collection($_POST);
-
-		$registered = $user->register(array(
-			'Username'  => $input->Username,
-			'Password'  => $input->passsword,
-			'Password2' => $input->passsword2,
-			'email'     => $input->email,
-			'groupID'   => $input->groupID,
-		),false);
-
-		if($registered){
-			echo "<h2>Thank you for registering!</2>";
-		}else{
-			//Display Errors
-			foreach($user->log->getErrors() as $err){
-				echo "<b>Error:</b> {$err} <br/ >";
-			}
-		}
+		
 		
 		?>
 	</div>
