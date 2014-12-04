@@ -334,4 +334,12 @@ class Database {
         
         return $results;
     }
+	
+	public static function ratingAdd($email, $id, $rating) {
+		return true; //true is added, false if already rated
+	}
+	
+	public static function ratingGet($id) {
+		return 1.0; //returns doubles in format #.#
+	}
 }
