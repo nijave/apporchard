@@ -1,55 +1,60 @@
 <div class="row">
-	<div id="register">
-		<h2>Thank you for registering!</h2>
-		<?php
-		//print_r($_REQUEST);
-		require_once('classes/Form_Action.php');
-		class Register extends Form_Action{
-			private $requiredParams;
-			private $requestData;
-			
-			public function __construct(&$request){
-				$this->requiredParams =[
-					"name",
-					"username",
-					"password",
-					"confirmPassword",
-					"groupID"];
-				$this->requestData = $request;
-			}
+    <div id="register">
+        <h2>Thank you for registering!</h2>
+        <?php
+        //print_r($_REQUEST);
+        require_once('classes/Form_Action.php');
 
-			public function checkParams() {
-                        $paramsPresent = true;
-                        foreach($this->requiredParams as $param) {
-                            if(!isset($_REQUEST[$param]))
-                                $paramsPresent = false;
-                        }
-                        return $paramsPresent;
+        class Register extends Form_Action {
+
+            private $requiredParams;
+            private $requestData;
+
+            public function __construct(&$request) {
+                $this->requiredParams = [
+                    "name",
+                    "username",
+                    "password",
+                    "confirmPassword",
+                    "groupID"];
+                $this->requestData = $request;
             }
-			
-			public function processData(){
 
-			$input = ptejada\uFlex\Collection($_POST);
+            public function checkParams() {
+                $paramsPresent = true;
+                foreach ($this->requiredParams as $param) {
+                    if (!isset($_REQUEST[$param]))
+                        $paramsPresent = false;
+                }
+                return $paramsPresent;
+            }
 
-			$registered = $user->register(array(
-				'Username'  => $input->Username,
-				'Password'  => $input->passsword,
-				'Password2' => $input->confirmPasssword,
-				'email'     => $input->email,
-				'groupID'   => $input->groupID,
-			),false);
+            public function processData() {
 
-			if($registered){
-				echo "<h2>Thank you for registering!</2>";
-			}else{
-				//Display Errors
-				foreach($user->log->getErrors() as $err){
-					echo "<b>Error:</b> {$err} <br/ >";
-				}
-			}
-					
-			}			
-		}
-		?>
-	</div>
+                $input = ptejada\uFlex\Collection($_POST);
+
+                $registered = $user->register(array(
+                    'Username' => $input->Username,
+                    'Password' => $input->passsword,
+                    'Password2' => $input->confirmPasssword,
+                    'email' => $input->email,
+                    'groupID' => $input->groupID,
+                        ), false);
+
+                if ($registered) {
+                    echo "<h2>Thank you for registering!</2>";
+                } else {
+                    //Display Errors
+                    foreach ($user->log->getErrors() as $err) {
+                        echo "<b>Error:</b> {$err} <br/ >";
+                    }
+                }
+            }
+        }
+        $register = new Register($_POST);
+        if($register->checkParams()) {
+            $register->processData();
+        }
+        ?>
+    </div>
 </div>
