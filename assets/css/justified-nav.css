@@ -131,7 +131,7 @@
     padding: 6px;
 }
 
-#search-results-list li img {
+#search-results-list li > img {
     float: left;
     margin-right: 6px;
     height: 175px;
