@@ -257,7 +257,7 @@ class Database {
     public static function applicationSearch($keywords, $constraints = null) {
         //creates database connection if one doesn't already exist
         self::setInstance();
-         
+         prinr_r($constraints)
         //remove whitespace and escape keywords, surround in single quotes
         for($i = 0; $i < count($keywords); $i++) {
             $keywords[$i] = "'" . (htmlspecialchars($keywords[$i], ENT_QUOTES)) . "'";
@@ -265,7 +265,7 @@ class Database {
         
         //prevent SQL injection and create constraints SQL
         $constraints_query = " ";
-        if(count($constraints)> 0) {
+        if(count($constraints) > 0) {
             foreach($constraints as $field => $array) {
                 //ensure there's at least one constraint
                 if(count($array) > 0) {
