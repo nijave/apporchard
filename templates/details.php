@@ -79,6 +79,7 @@
                     <label><input type="radio" name="rating" value="3">3</label>
                     <label><input type="radio" name="rating" value="4">4</label>
                     <label><input type="radio" name="rating" value="5">5</label>
+                    <input type="hidden" name="id" value="<?php echo $app->getID(); ?>">
                     <input type="submit" class="btn btn-default" name="action" value="Rate">
 		</form>
 	</div>
