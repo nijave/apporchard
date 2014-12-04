@@ -3,10 +3,10 @@
 		<h2>Login</h2>
 		<form action="/" method="post">
 			<label>Email Address: 
-			<input type="email" class="form-control" name="username" placeholder="Email address" autofocus></label>
+			<input type="text" class="form-control" name="Username" placeholder="Email address" autofocus></label>
 			<br>
 			<label>Password:
-			<input type="password" class="form-control" name="password" placeholder="Password"></label>
+			<input type="password" class="form-control" name="Password" placeholder="Password"></label>
 			<br>
 			<input type="submit" class="btn btn-default" name="action" value="Login">
 		</form>

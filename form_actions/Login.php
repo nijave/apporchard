@@ -3,9 +3,10 @@
 		<h2>Success.</h2>
 		<?php
 
-			$username = $_POST['Username'];
+			 $username = $_POST['Username'];
 			 $password = $_POST['Password'];
-			 $auto = $_POST['auto'];  //To remember user with a cookie for autologin
+			 //$auto = $_POST['auto'];  //To remember user with a cookie for autologin
+                         $auto = false;
 
 			 //$user = new ptejada\uFlex\User(); This is already defined at the top of index
 
