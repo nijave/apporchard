@@ -10,10 +10,16 @@
             } else {
                 $a->setModerationState("DELETED");
                 $a->save();
+				echo 'Application successfully denied';
             }
         } else {
             echo 'You must be logged in to view this page';
         }
         ?>
+		<script type="text/javascript">
+			setTimeout(function () {
+				window.location.href = "/?=approval";
+			}, 1250);
+		</script>
     </div>
 </div>
