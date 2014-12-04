@@ -65,6 +65,18 @@
 	  "<h3>App Description</h3>
 	  <p>{$app->getDescription()}</p>";
 	  ?>
+	  <div id="login-form">
+		<h2><br>Rate this App!</h2>
+		<form action="/" method="post">
+			<input type="radio" name="rating" value="5">5/5<br>
+			<input type="radio" name="rating" value="5">4/5<br>
+			<input type="radio" name="rating" value="5">3/5<br>
+			<input type="radio" name="rating" value="5">2/5<br>
+			<input type="radio" name="rating" value="5">1/5<br>
+			<input type="submit" class="btn btn-default" name="action" value="Rate">
+		</form>
+	</div>
+	  
 	  <h2><br>Comments</h2>
 	  <div id="disqus_thread"></div>
     <script type="text/javascript">
