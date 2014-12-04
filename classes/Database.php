@@ -257,7 +257,7 @@ class Database {
     public static function applicationSearch($keywords, $constraints = null) {
         //creates database connection if one doesn't already exist
         self::setInstance();
-         print_r($constraints);
+
         //remove whitespace and escape keywords, surround in single quotes
         for($i = 0; $i < count($keywords); $i++) {
             $keywords[$i] = "'" . (htmlspecialchars($keywords[$i], ENT_QUOTES)) . "'";
@@ -305,7 +305,7 @@ class Database {
         $query .= " UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
                 . ") AS search_results GROUP BY id ORDER BY SUM(weight) DESC;";
-
+var_dump($query);
         //get array of results
         $raw_results = self::$instance->query($query)->fetchAll(PDO::FETCH_ASSOC);
         
