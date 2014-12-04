@@ -4,6 +4,7 @@ $setDevs = array();
 foreach($_GET as $key => $value) {
     $key = urldecode($key);
     $value = urldecode($value);
+    echo "<!-- $key : $value -->\n";
     $name = substr($key, 0, 3);
     if($key === "cat".$value) {
         $setCats[] = substr($key, 3);
