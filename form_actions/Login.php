@@ -12,7 +12,7 @@
             public function __construct(&$request, $user) {
                 $this->requiredParams = [
                     "Username",
-                    "Password",
+                    "Password"];
                 $this->requestData = $request;
                 unset($this->requestData["action"]);
                 $this->user = $user;
