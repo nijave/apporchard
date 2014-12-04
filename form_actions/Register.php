@@ -33,7 +33,7 @@
 			}			
 		}
 		
-		$input = ptejada\uFlex\Collection($_POST);
+		$input = libraries\ptejada\uFlex\Collection($_POST);
 
 		$registered = $user->register(array(
 			'Username'  => $input->Username,
