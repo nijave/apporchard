@@ -22,6 +22,7 @@
 			'<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>';
 			}
 		?>
+			<br>
 			<form action="/" method="get">
 				<input type="search" class="form-control" name="search">
 				<input type="submit" class="btn btn-default" name="action" value="Search">
