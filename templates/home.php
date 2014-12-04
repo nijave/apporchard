@@ -20,7 +20,6 @@
         <div class="col-xs-2 app-box">
           <img src="'.$app->getImageURL().'" alt="'.$app->getTitle().'">
           <h2>'.$app->getTitle().'</h2>
-		  <!-- This feature doens\'t exist yet
           <p>';
                 $rating = Database::ratingGet($app->getID());
                 for($i = 0; $i < 5; $i++) {
@@ -35,7 +34,6 @@
                     }
                 }
           echo '</p>
-		  -->
           <p class="app-desc">'.$desc.'</p>
           <p><a class="btn btn-primary" href="/?page=details&id='.$app->getID().'" role="button">View details &raquo;</a></p>
         </div>
