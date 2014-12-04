@@ -2,8 +2,8 @@
 	<div id="login-form">
 		<h2>Login</h2>
 		<form action="/" method="post">
-			<label>Email Address: 
-			<input type="text" class="form-control" name="Username" placeholder="Email address" autofocus></label>
+			<label>Username: 
+			<input type="text" class="form-control" name="Username" placeholder="Username" autofocus></label>
 			<br>
 			<label>Password:
 			<input type="password" class="form-control" name="Password" placeholder="Password"></label>
