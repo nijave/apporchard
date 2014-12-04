@@ -34,15 +34,20 @@
 			else{
 				echo "<p>Developer: {$app->getDeveloper()}</p>";
 			}  
-			echo 
-			"
-			<p>
-				<img src=\"assets/img/star_full.png\" alt=\"Star\">
-				<img src=\"assets/img/star_full.png\" alt=\"Star\">
-				<img src=\"assets/img/star_full.png\" alt=\"Star\">
-				<img src=\"assets/img/star_half.png\" alt=\"Half Star\">
-				<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">
-			</p>
+			echo "<p>";
+                        $rating = Database::ratingGet($app->getID());
+                        for($i = 0; $i < 5; $i++) {
+                            if($i <= $rating - .5) {
+                                echo "<img src=\"assets/img/star_full.png\" alt=\"Star\">";
+                            }
+                            else if($i + .5 === $rating) {
+                                echo "<img src=\"assets/img/star_half.png\" alt=\"Half Star\">";
+                            }
+                            else {
+                                echo "<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">";
+                            }
+                        }
+			echo "</p>
 			<p>Platforms: {$platformStr}</p>
 		</div>";
 		?>
