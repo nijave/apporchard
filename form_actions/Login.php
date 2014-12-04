@@ -19,9 +19,9 @@
                 $paramsPresent = true;
                 foreach ($this->requiredParams as $param) {
                     if (!isset($param)) {
-                $paramsPresent = false;
-            }
-        }
+                        $paramsPresent = false;
+                    }
+                }
                 return $paramsPresent;
             }
 
