@@ -265,7 +265,7 @@ class Database {
         
         //prevent SQL injection and create constraints SQL
         $constraints_query = " ";
-        if(count($constraints) > 0) {
+        if($constraints !== null) {
             foreach($constraints as $field => $array) {
                 //ensure there's at least one constraint
                 if(count($array) > 0) {
