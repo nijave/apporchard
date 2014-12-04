@@ -16,6 +16,7 @@ foreach($_GET as $key => $value) {
 //Code for handling dynamically generating filter lists
 $categories = Database::applicationGetCategories();
 $category_filters = "";
+$categoryConstraints = array(); //for use in SQL query
 $increment = 0;
 foreach($categories as $cat) {
     $_set = in_array($cat, $setCats) ? " checked" : "";
@@ -25,6 +26,7 @@ foreach($categories as $cat) {
 
 $developers = Database::applicationGetDevelopers();
 $developer_filters = "";
+$developerConstraints = array(); //for use in SQL query
 $increment = 0;
 foreach($developers as $dev) {
     $_set = in_array($dev, $setDevs) ? " checked" : "";
@@ -55,12 +57,13 @@ foreach($developers as $dev) {
             //check submitted parameters and make sure they all exist
             require_once('classes/Form_Action.php');
 
-            class Search extends Form_Action {
+            class Search {
                 private $requiredParams; //parameters required to complete the request
                 private $requestData; //request payload/data
                 private $object; //object created by class
+                private $filters;
 
-                public function __construct(&$request) {
+                public function __construct(&$request, $filters) {
                     //Set required parameters
                     $this->requiredParams = [
                         "search"
@@ -68,6 +71,7 @@ foreach($developers as $dev) {
 
                     //Set requestData variable with information from request
                     $this->requestData = $request;
+                    $this->filters = $filters;
                 }
 
                 /**
@@ -89,16 +93,16 @@ foreach($developers as $dev) {
                 public function processData() {
                     //Search string is split at spaces
                     $keywords = explode(' ', urldecode($this->requestData["search"]));
-
+                                        
                     //Database is searched for keywords and resulting
                     //IDs are stored in object
-                    $this->object = Database::applicationSearch($keywords);
+                    $this->object = Database::applicationSearch($keywords, $this->filters);
 
                     return $this->object;
                 }
             }
 
-            $formAction = new Search($_REQUEST);
+            $formAction = new Search($_REQUEST, ["Category" => $setCats, "Developer" => $setDevs]);
 
             if($formAction->checkParams()) {
                 //Get list of Application IDs returned from search

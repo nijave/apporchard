@@ -257,7 +257,7 @@ class Database {
     public static function applicationSearch($keywords, $constraints = null) {
         //creates database connection if one doesn't already exist
         self::setInstance();
-         
+
         //remove whitespace and escape keywords, surround in single quotes
         for($i = 0; $i < count($keywords); $i++) {
             $keywords[$i] = "'" . (htmlspecialchars($keywords[$i], ENT_QUOTES)) . "'";
@@ -265,15 +265,17 @@ class Database {
         
         //prevent SQL injection and create constraints SQL
         $constraints_query = " ";
-        foreach($constraints as $field => $array) {
-            //ensure there's at least one constraint
-            if(count($array) > 0) {
-                $constraints_query .= " AND $field IN(";
-                foreach($array as $key => $value) {
-                    //escape and quote value
-                    $array[$key] = "'".htmlspecialchars($value, ENT_QUOTES)."'";
+        if($constraints !== null) {
+            foreach($constraints as $field => $array) {
+                //ensure there's at least one constraint
+                if(count($array) > 0) {
+                    $constraints_query .= " AND $field IN(";
+                    foreach($array as $key => $value) {
+                        //escape and quote value
+                        $array[$key] = "'".htmlspecialchars($value, ENT_QUOTES)."'";
+                    }
+                    $constraints_query .= implode(',', $array).")";
                 }
-                $constraints_query .= implode(',', $array).")";
             }
         }
         
@@ -281,7 +283,7 @@ class Database {
         //-- this way the query will match titles if it's only part of the title
         $title_selects = array();
         foreach($keywords as $word) {
-            $title_selects[] = "SELECT id, '5' as weight FROM applications WHERE("
+            $title_selects[] = "SELECT id, '7' as weight FROM applications WHERE("
                     . " moderation_state = 'ACTIVE'"
                     . " AND title LIKE $word"
                     . $constraints_query
@@ -293,14 +295,17 @@ class Database {
         
         //generate query for search using parts from above
         $query =  "SELECT id FROM("
-                    . "SELECT id, '2' as weight FROM keywords WHERE("
-                    . " moderation_state = 'ACTIVE'"
-                    . " AND word IN ($keyword_list)";
+                    . "SELECT id, weight FROM("
+                        . "SELECT applications.*, keywords.word, '2' as weight FROM keywords"
+                        . " JOIN applications ON (keywords.id = applications.id)"
+                        . " WHERE word IN ($keyword_list)"
+                        . " ) AS keyword_results"
+                    . " WHERE moderation_state = 'ACTIVE'";
         $query .= $constraints_query;
-        $query .= ") UNION ALL "
+        $query .= " UNION ALL "
                     . implode(" UNION ALL ", $title_selects)
                 . ") AS search_results GROUP BY id ORDER BY SUM(weight) DESC;";
-        print_r($query);
+
         //get array of results
         $raw_results = self::$instance->query($query)->fetchAll(PDO::FETCH_ASSOC);
         

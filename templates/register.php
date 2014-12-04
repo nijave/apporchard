@@ -9,10 +9,10 @@
 			<input type="email" class="form-control" name="email" placeholder="Email address"></label>
 			<br>
 			<label>Password:
-			<input type="password" class="form-control" name="password" placeholder="Password"></label>
+			<input type="password" class="form-control" name="Password" placeholder="Password"></label>
 			<br>
 			<label>Confirm Password:
-			<input type="password" class="form-control" name="confirmPassword" placeholder="Password"></label>
+			<input type="password" class="form-control" name="Password2" placeholder="Password"></label>
 			<br>
 			<label>Account Type:
 			<select name="groupID">
