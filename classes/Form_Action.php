@@ -10,7 +10,7 @@ abstract class Form_Action {
     
     /**
      * Construct object
-     * $request pass-by-reference $_REQUEST array
+     * @param $request pass-by-reference $_REQUEST array
      */
     abstract public function __construct(&$request);
     

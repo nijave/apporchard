@@ -6,56 +6,58 @@
 		require_once('classes/Form_Action.php');
 		class Add_Application extends Form_Action {
 		    private $requiredParams; //parameters required to complete the request
-            private $requestData; //request payload/data
-            private $object; //object created by class
+                    private $requestData; //request payload/data
+                    private $object; //object created by class
     
-            public function __construct(&$request) {
-                $this->requiredParams = [
-                    "title", 
-                    "developer", 
-                    "price",
-                    "category",
-                    "developer_link", 
-                    "keywords", 
-                    "description"];
-                $this->requestData = $request;
-            }
-            
-            /**
-             * This only checks that they exist/are set
-             */
-            public function checkParams() {
-                $paramsPresent = true;
-                foreach($this->requiredParams as $param) {
-                    if(!isset($_REQUEST[$param]))
-                        $paramsPresent = false;
+                    public function __construct(&$request) {
+                        $this->requiredParams = [
+                            "title", 
+                            "developer", 
+                            "price",
+                            "category",
+                            "developer_link",
+                            "image_link",
+                            "keywords", 
+                            "description"];
+                        $this->requestData = $request;
+                    }
+
+                    /**
+                     * This only checks that they exist/are set
+                     */
+                    public function checkParams() {
+                        $paramsPresent = true;
+                        foreach($this->requiredParams as $param) {
+                            if(!isset($_REQUEST[$param]))
+                                $paramsPresent = false;
+                        }
+                        return $paramsPresent;
+                    }
+
+                    public function processData() {
+                        $this->object = new Application();
+                        $this->object->setTitle($this->requestData['title']);
+                        $this->object->setDeveloper($this->requestData['developer']);
+                        $this->object->setPrice($this->requestData['price']);
+                        $this->object->setCategory($this->requestData['category']);
+                        $this->object->setDeveloperLink($this->requestData['developer_link']);
+                        $this->object->setKeywords($this->requestData['keywords']);
+                        $this->object->setImageURL($this->requestData['image_link']);
+                        $this->object->setDescription($this->requestData['description']);
+                        $this->object->setModerationState("PENDING");
+
+                        //set links and compatibility dynamically
+                        foreach($this->requestData as $key => $value) {
+                            $substring = substr($key, 0, 4);
+                            if($substring === "link")
+                                $this->object->setStoreLink(substr($key, 4), $value);
+                            if($substring === "comp")
+                                $this->object->setCompatible(substr($key, 10), $value);
+                        }
+
+                        return $this->object;
+                    }
                 }
-                return $paramsPresent;
-            }
-            
-            public function processData() {
-                $this->object = new Application();
-                $this->object->setTitle($this->requestData['title']);
-                $this->object->setDeveloper($this->requestData['developer']);
-                $this->object->setPrice($this->requestData['price']);
-                $this->object->setCategory($this->requestData['category']);
-                $this->object->setDeveloperLink($this->requestData['developer_link']);
-                $this->object->setKeywords($this->requestData['keywords']);
-                $this->object->setDescription($this->requestData['description']);
-                $this->object->setModerationState("PENDING");
-                
-                //set links and compatibility dynamically
-                foreach($this->requestData as $key => $value) {
-                    $substring = substr($key, 0, 4);
-                    if($substring === "link")
-                        $this->object->setStoreLink(substr($key, 4), $value);
-                    if($substring === "comp")
-                        $this->object->setCompatible(substr($key, 10), $value);
-                }
-                
-                return $this->object;
-            }
-        }
 		
 		$formAction = new Add_Application($_REQUEST);
 		

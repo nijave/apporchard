@@ -6,16 +6,17 @@
 class Application {
 
     private static $MODERATION_STATES = array("ACTIVE", "PENDING", "DELETED"); //possible moderation states/visibility of an application    
-    private static $COMPATIBLE_PLATFORMS = array("Apple", "Android", "Windows"); //possible platforms that are supported
+    public static $COMPATIBLE_PLATFORMS = array("Apple", "Android", "Windows"); //possible platforms that are supported
     private $id; //application unique identifier integer
     private $title; //string
     private $developer; //string
     private $price; //double
     private $category; //category of the application
-    private $compatible_status; //boolean array, compatible with Apple
+    private $compatible_status; //integer (0 for false, 1 for true) array, compatible with Apple
     private $link_store; //string array, store links
     private $link_developer; //link to developer website
     private $keywords; //array[string] of keywords
+    private $image_url; //string link to URL of image to display
     private $description; //string, description of app
     private $moderation_state; //string (pending, active, deleted), current moderation state of app
 
@@ -26,15 +27,45 @@ class Application {
     public function __construct($id = null) {
         if ($id === null) {
             foreach (self::$COMPATIBLE_PLATFORMS as $platform) {
-                $this->compatible_status["$platform"] = false;
+                $this->compatible_status["$platform"] = 0;
             }
             $this->keywords = array();
-            $this->id = -1; //ids must be positive
+            $this->id = -1; //ids must be positive, if valid
         } else {
-            //TODO: create Application object from information in the database
+            $obj = Database::applicationGet($id);
+            $this->id = $obj->id;
+            $this->title = $obj->title;
+            $this->developer = $obj->developer;
+            $this->price = $obj->price;
+            $this->category = $obj->category;
+            $this->compatible_status = $obj->compatible_status;
+            $this->link_store = $obj->link_store;
+            $this->link_developer = $obj->link_developer;
+            $this->keywords = $obj->keywords;
+            $this->image_url = $obj->image_url;
+            $this->description = $obj->description;
+            $this->moderation_state = $obj->moderation_state;
         }
     }
+    
+    /**
+     * Dumps all the information about the application as a string
+     * @return string of application contents
+     */
+    public function __toString() {
+        return print_r($this, true);
+    }
 
+    /**
+     * Sets the ID of an application
+     *  ** this is needed for creating an 
+     *     Application object from the database
+     * @param int $id
+     */
+    public function setID($id) {
+        $this->id = $id;
+    }
+    
     /**
      * Sets title
      * @param string $title
@@ -132,6 +163,14 @@ class Application {
     }
 
     /**
+     * Sets an application's image URL
+     * @param string $url of image
+     */
+    public function setImageURL($url) {
+        $this->image_url = $url;
+    }
+    
+    /**
      * Sets description of the application
      * @param string $desc description
      */
@@ -177,11 +216,7 @@ class Application {
         if (!in_array($platform, self::$COMPATIBLE_PLATFORMS)) {
             throw new Exception("Invalid platform provided", 1);
         } else {
-            if (isset($this->compatible_status["$platform"])) {
-                return true;
-            } else {
-                return false;
-            }
+			return $this->compatible_status["$platform"];
         }
     }
 
@@ -234,6 +269,10 @@ class Application {
         return $this->keywords;
     }
 
+    public function getImageURL() {
+        return $this->image_url;
+    }
+    
     public function getDescription() {
         return $this->description;
     }
@@ -284,6 +323,9 @@ class Application {
         }
         if (sizeof($this->keywords) < 3) {
             throw new Exception("Must provide at least 3 keywords");
+        }
+        if (strlen($this->image_url) < 8 || substr($this->image_url, 0, 4) !== "http") {
+            throw new Exception("Image URL must be provided");
         }
         if (strlen($this->description) < 10) {
             throw new Exception("Description must be at least 10 characters");
