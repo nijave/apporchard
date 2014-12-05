@@ -8,19 +8,21 @@
 		$app = new Application();
 	}
 	$platforms = $app->getCompatiblePlatforms(); //Array of this apps platforms
-	$platformStr = "";	//string 
+	//TODO: refactor code below with implode
+        $platformStr = "";	//string 
 	//concatentates the platforms form the array into one string.
 	for($i = 0; $i < sizeof($platforms); $i++){
-		if($i === 0){
-			$platformStr = $platforms[$i];
-		}
-		else{
-			$platformStr = $platformStr . ", " . $platforms[$i];
-		}
+            if($i === 0){
+                    $platformStr = $platforms[$i];
+            }
+            else{
+                    $platformStr = $platformStr . ", " . $platforms[$i];
+            }
 	}
 ?>
 	<div id="detailsContent">
 		<?php
+                if($app->getModerationState() === "ACTIVE" || $user->groupID >= $user::MODERATOR) {
 		// figure out echoing of data
 		echo 
 		"<div id=\"detailsLeftCol\"> 
@@ -58,10 +60,10 @@
 			"<p>Price: \${$app->getPrice()}</p>";
 			$emptyStr = "";
 			foreach($platforms as $pform){
-				if($emptyStr !== $app->getStoreLink($pform)){
-					echo "<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($pform)}\" target=\"_blank\" role=\"button\">{$pform} &raquo;</a></p>";
-				}
-			}
+                            if($emptyStr !== $app->getStoreLink($pform)){
+                                    echo "<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($pform)}\" target=\"_blank\" role=\"button\">{$pform} &raquo;</a></p>";
+                            }
+                    }
 		?>
 		</div>
 	</div>
@@ -100,3 +102,4 @@
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	</div>
 </div>
+<?php } //end security check if ?>

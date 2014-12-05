@@ -3,7 +3,7 @@
         <h2>Add Application</h2>
 		<?php
 			if ($user->isSigned()) {
-				if($user->GroupID == 1){
+				if($user->groupID < $user::DEVELOPER){
 					echo "You do not have access to this page";
 				}
 				else{

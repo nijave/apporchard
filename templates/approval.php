@@ -3,7 +3,7 @@
 		<h2>Admin New App Approval</h2>
 		<?php
 			if ($user->isSigned()) {
-				if($user->GroupID == 1 || $user->GroupID == 2){
+				if($user->groupID < $user::MODERATOR){
                                     echo "You do not have access to this page";
 				}
 				else{
