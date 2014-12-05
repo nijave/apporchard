@@ -6,6 +6,13 @@
 require_once('libraries/ptejada/uFlex/autoload.php');
 
 class AO_User extends ptejada\uFlex\User { //AppOrchard user extends uFlex User
+    //Constants for user/groupIDs
+    const STANDARD_USER = 0;
+    const DEVELOPER = 100;
+    const MODERATOR = 200;
+    const ADMINISTRATOR = 500;
+    const SUPER_ADMINISTRATOR = 1000; //unused
+    
     
     /**
      * Creates an object and initializes the database connection
