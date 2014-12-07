@@ -358,10 +358,11 @@ class Database {
         }
         
         //Search for existing rating
-        $_rating = self::$instance->select("ratings", ["user_id"], ["AND" => ["user_id" => $id, "app_id" => $id]]);
+        $_rating = self::$instance->select("ratings", ["user_id"], ["AND" => ["user_id" => $user_id, "app_id" => $id]]);
         
-        if(count($_rating) === 0) {
+        if(count($_rating) === 1) {
             //return false; //rating already exists
+            throw new Exception("Rating already exists for this application and user");
         }
         
         //Add rating to database
