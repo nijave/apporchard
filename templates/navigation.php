@@ -1,9 +1,9 @@
 <?php
 if(isset($_GET['return'])) {
-    $uri = filter_input(INPUT_GET, "return", FILTER_SANITIZE_STRING);
+    $uri = filter_input(INPUT_GET, "return", FILTER_SANITIZE_ENCODED);
 }
 else {
-    $uri = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_STRING);  
+    $uri = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_ENCODED);  
 }
 ?>
 <div class="masthead">
