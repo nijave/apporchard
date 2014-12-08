@@ -1,3 +1,7 @@
+<?php
+//Security check to make sure user it allowed to access this page
+if($app->getModerationState() === "ACTIVE" || ($user->isSigned() && $user->GroupID >= $user::MODERATOR)) {
+?>
 <div class="details">
 <?php 
 	if (isset($_GET['id'])) {
@@ -22,7 +26,6 @@
 ?>
 	<div id="detailsContent">
             <?php
-            if($app->getModerationState() === "ACTIVE" || ($user->isSigned() && $user->GroupID >= $user::MODERATOR)) {
             // figure out echoing of data
             echo 
             "<div id=\"detailsLeftCol\"> 
