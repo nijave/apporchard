@@ -14,6 +14,7 @@ else if (isset($_GET['category'])) {
 require_once('classes/Application.php');
 require_once('classes/Database.php');
 require_once('classes/User.php');
+require_once('classes/HTMLGen.php');
 
 //Create and start the user object
 $user = new AO_User();
