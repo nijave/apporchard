@@ -35,23 +35,9 @@
                     }
                     else{
                             echo "<p>Developer: {$app->getDeveloper()}</p>";
-                    }  
-                    echo "<p>";
-                    $rating = Database::ratingGet($app->getID());
-                    for($i = 0; $i < 5; $i++) {
-                        if($i <= $rating - .5) {
-                            echo "<img src=\"assets/img/star_full.png\" alt=\"Star\">";
-                        }
-                        else if($i + .5 === $rating) {
-                            echo "<img src=\"assets/img/star_half.png\" alt=\"Half Star\">";
-                        }
-                        else {
-                            echo "<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">";
-                        }
-                    }
-                    echo "<br> Ratings: " . Database::ratingGetCount($app->getID());
-                    echo "</p>
-                    <p>Platforms: {$platformStr}</p>
+                    } 
+                    echo "<p>Platforms: {$platformStr}</p>
+                    HTMLGen::ratings($app->getID(), true);
             </div>";
             ?>
             <div id="detailsRightCol">
@@ -73,18 +59,6 @@
 	  "<h3>App Description</h3>
 	  <p>{$app->getDescription()}</p>";
 	  ?>
-	  <div id="rate-form">
-		<h3><br>Rate this App!</h3>
-		<form action="/" method="post" class="inline-form">
-                    <label><input type="radio" name="rating" value="1">1</label>
-                    <label><input type="radio" name="rating" value="2">2</label>
-                    <label><input type="radio" name="rating" value="3">3</label>
-                    <label><input type="radio" name="rating" value="4">4</label>
-                    <label><input type="radio" name="rating" value="5">5</label>
-                    <input type="hidden" name="id" value="<?php echo $app->getID(); ?>">
-                    <input type="submit" class="btn btn-default" name="action" value="Rate">
-		</form>
-	</div>
 	  
 	  <h2><br>Comments</h2>
 	  <div id="disqus_thread"></div>
