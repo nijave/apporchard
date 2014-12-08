@@ -4,7 +4,7 @@
 		<?php
                     $user->logout();
 
-                    header("Location: " . $uri);
+                    header("Location: " . $_uri);
 		?>
 	</div>
 </div>

@@ -14,7 +14,7 @@
                         <label>Remember me?:</label>
                         <input type="checkbox" name="auto">
                         <br>
-                        <input type="hidden" name="return_uri" value="<?php echo $uri; ?>">
+                        <input type="hidden" name="return" value="<?php echo $uri; ?>">
 			<input type="submit" class="btn btn-default" name="action" value="Login">
 		</form>
 	</div>

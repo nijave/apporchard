@@ -1,11 +1,8 @@
 <?php
-if(isset($_GET['return'])) {
-    $_uri = urldecode($_GET['return']);
+if(isset($_REQUEST['return'])) {
+    $_uri = urldecode($_REQUEST['return']);
+    $_uri = substring($_uri, 1); //remove the leading slash
     $uri = filter_var($_uri, FILTER_SANITIZE_ENCODED);
-}
-else if(isset($_POST['return_uri'])) {
-    $_uri = urldecode($_POST['return_uri']);
-    $uri = filter_var($_uri, FILTER_SANITIZE_STRING);
 }
 else {
     $uri = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_ENCODED);  

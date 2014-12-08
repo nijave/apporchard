@@ -61,7 +61,7 @@
         $register = new Register($_POST, $user);
         if($register->checkParams()) {
             $register->processData();
-            header("Location: " . $uri);
+            header("Location: " . $_uri);
         }
         ?>
     </div>

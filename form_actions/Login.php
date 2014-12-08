@@ -53,7 +53,7 @@
         $register = new Login($_POST);
         if ($register->checkParams()) {
             $register->processData();
-            header("Location: " . $uri);
+            header("Location: " . $_uri);
         }
         ?>
     </div>
