@@ -36,9 +36,9 @@
 	</div>
 	<ul class="nav nav-justified">
 	  <li <?php if($page === "home" && $category === '' && !isset($_REQUEST["action"])) echo 'class="active"'; ?>><a href="/?page=home">Home</a></li>
-	  <li <?php if($category === "productivity") echo 'class="active"'; ?>><a href="/?category=productivity">Productivity</a></li>
+          <li <?php if($category === "HighestRated") echo 'class="active"'; ?>><a href="/?category=HighestRated">Highest Rated</a></li>
+          <li <?php if($category === "productivity") echo 'class="active"'; ?>><a href="/?category=productivity">Productivity</a></li>
 	  <li <?php if($category === "games") echo 'class="active"'; ?>><a href="/?category=games">Games</a></li>
-	  <li <?php if($category === "music") echo 'class="active"'; ?>><a href="/?category=music">Music</a></li>
 	  <li <?php if($category === "social") echo 'class="active"'; ?>><a href="/?category=social">Social</a></li>
 	</ul>
 </div>

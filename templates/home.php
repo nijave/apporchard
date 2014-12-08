@@ -5,7 +5,12 @@
         $app_ids = Database::applicationGetNewest();
     }
     else {
-        $app_ids = Database::applicationGetByCategory($category);
+        if($category === 'HighestRated') {
+            $app_ids = Database::applicationGetHighestRated();
+        }
+        else {
+           $app_ids = Database::applicationGetByCategory($category);
+        }
     }
     
     foreach($app_ids as $id) {
