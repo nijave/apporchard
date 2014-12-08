@@ -8,12 +8,12 @@
                         $nav_options = array();
 
                         //Moderator and above can approve
-                        if ($user->groupID >= $user::MODERATOR){
+                        if ($user->GroupID >= $user::MODERATOR){
                                 $nav_options[] = '<a href="/?page=approval">Approve Apps</a>';
                         }
 
                         //Developer and above can submit
-                        if($user->groupID >= $user::DEVELOPER){
+                        if($user->GroupID >= $user::DEVELOPER){
                                 $nav_options[] = '<a href="/?page=add">Add new App</a>';
                         }
 

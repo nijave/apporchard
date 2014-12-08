@@ -3,7 +3,7 @@
         <?php
         $a = Database::applicationGet($_POST["id"]);
         if ($user->isSigned()) {
-            if ($user->groupID < $user::MODERATOR) {
+            if ($user->GroupID < $user::MODERATOR) {
                 echo "You do not have access to this page";
             } else if ( $a->getModerationState() !== "PENDING") {
                 echo "This application is not up for approval";
