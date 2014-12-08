@@ -22,7 +22,7 @@
 ?>
 	<div id="detailsContent">
             <?php
-            if($app->getModerationState() === "ACTIVE" || $user->groupID >= $user::MODERATOR) {
+            if($app->getModerationState() === "ACTIVE" || $user->GroupID >= $user::MODERATOR) {
             // figure out echoing of data
             echo 
             "<div id=\"detailsLeftCol\"> 
@@ -36,9 +36,9 @@
                     else{
                             echo "<p>Developer: {$app->getDeveloper()}</p>";
                     } 
-                    echo "<p>Platforms: {$platformStr}</p>
+                    echo "<p>Platforms: {$platformStr}</p>";
                     HTMLGen::ratings($app->getID(), true);
-            </div>";
+            echo "</div>";
             ?>
             <div id="detailsRightCol">
             <?php 
