@@ -222,7 +222,7 @@ class Database {
         $apps = self::$instance->query("
             SELECT app_id FROM ratings
             GROUP BY app_id
-            ORDER BY AVG(rating) DESC
+            ORDER BY AVG(rating) DESC, COUNT(*) DESC
             LIMIT 20;
         ");
         
