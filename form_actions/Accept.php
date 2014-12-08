@@ -10,16 +10,16 @@
             } else {
                 $a->setModerationState("ACTIVE");
                 $a->save();
-				echo 'Application successfully approved';
+                echo 'Application successfully approved';
             }
         } else {
             echo 'You must be logged in to view this page';
         }
         ?>
-		<script type="text/javascript">
-			setTimeout(function () {
-				window.location.href = "/?page=approval";
-			}, 1400);
-		</script>
+        <script type="text/javascript">
+            setTimeout(function () {
+                    window.location.href = "/?page=approval";
+            }, 1400);
+        </script>
     </div>
 </div>

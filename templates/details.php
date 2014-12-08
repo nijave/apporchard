@@ -21,50 +21,50 @@
 	}
 ?>
 	<div id="detailsContent">
-		<?php
-                if($app->getModerationState() === "ACTIVE" || $user->groupID >= $user::MODERATOR) {
-		// figure out echoing of data
-		echo 
-		"<div id=\"detailsLeftCol\"> 
-		<img src=\"{$app->getImageURL()}\" alt=\" {$app->getTitle()}\">
-		</div>
-		<div id=\"detailsCenter\">
-			<h2>{$app->getTitle()}</h2>";
-			if(strlen($app->getDeveloperLink()) > 0){
-				echo "<p>Developer: <a href=\"{$app->getDeveloperLink()}\" target=\"_blank\">{$app->getDeveloper()}</a></p>";
-			}
-			else{
-				echo "<p>Developer: {$app->getDeveloper()}</p>";
-			}  
-			echo "<p>";
-                        $rating = Database::ratingGet($app->getID());
-                        for($i = 0; $i < 5; $i++) {
-                            if($i <= $rating - .5) {
-                                echo "<img src=\"assets/img/star_full.png\" alt=\"Star\">";
-                            }
-                            else if($i + .5 === $rating) {
-                                echo "<img src=\"assets/img/star_half.png\" alt=\"Half Star\">";
-                            }
-                            else {
-                                echo "<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">";
-                            }
-                        }
-                        echo "<br> Ratings: " . Database::ratingGetCount($app->getID());
-			echo "</p>
-			<p>Platforms: {$platformStr}</p>
-		</div>";
-		?>
-		<div id="detailsRightCol">
-		<?php 
-			echo 
-			"<p>Price: \${$app->getPrice()}</p>";
-			$emptyStr = "";
-			foreach($platforms as $pform){
-                            if($emptyStr !== $app->getStoreLink($pform)){
-                                    echo "<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($pform)}\" target=\"_blank\" role=\"button\">{$pform} &raquo;</a></p>";
-                            }
+            <?php
+            if($app->getModerationState() === "ACTIVE" || $user->groupID >= $user::MODERATOR) {
+            // figure out echoing of data
+            echo 
+            "<div id=\"detailsLeftCol\"> 
+            <img src=\"{$app->getImageURL()}\" alt=\" {$app->getTitle()}\">
+            </div>
+            <div id=\"detailsCenter\">
+                    <h2>{$app->getTitle()}</h2>";
+                    if(strlen($app->getDeveloperLink()) > 0){
+                            echo "<p>Developer: <a href=\"{$app->getDeveloperLink()}\" target=\"_blank\">{$app->getDeveloper()}</a></p>";
                     }
-		?>
+                    else{
+                            echo "<p>Developer: {$app->getDeveloper()}</p>";
+                    }  
+                    echo "<p>";
+                    $rating = Database::ratingGet($app->getID());
+                    for($i = 0; $i < 5; $i++) {
+                        if($i <= $rating - .5) {
+                            echo "<img src=\"assets/img/star_full.png\" alt=\"Star\">";
+                        }
+                        else if($i + .5 === $rating) {
+                            echo "<img src=\"assets/img/star_half.png\" alt=\"Half Star\">";
+                        }
+                        else {
+                            echo "<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">";
+                        }
+                    }
+                    echo "<br> Ratings: " . Database::ratingGetCount($app->getID());
+                    echo "</p>
+                    <p>Platforms: {$platformStr}</p>
+            </div>";
+            ?>
+            <div id="detailsRightCol">
+            <?php 
+                    echo 
+                    "<p>Price: \${$app->getPrice()}</p>";
+                    $emptyStr = "";
+                    foreach($platforms as $pform){
+                        if($emptyStr !== $app->getStoreLink($pform)){
+                                echo "<p><a class=\"btn btn-primary\" href=\"{$app->getStoreLink($pform)}\" target=\"_blank\" role=\"button\">{$pform} &raquo;</a></p>";
+                        }
+                }
+            ?>
 		</div>
 	</div>
 	<div id="detailsLowerContent">

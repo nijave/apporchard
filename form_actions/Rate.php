@@ -34,6 +34,7 @@
                 return Database::ratingAdd($email, $id, $rating);
             }
         }
+        
         if($user->isSigned()) {
             $rate = new Rate($_POST, $user);
             if ($rate->checkParams()) {
@@ -41,7 +42,7 @@
                 if($status) {
                     echo "Rating successfully added!";
                 } else {
-                    echo "Rating not added. You can only rate each app once.";
+                    echo "Rating not added. There was an error processing your request.";
                 }
             }
         }
