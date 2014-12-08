@@ -206,7 +206,7 @@ class Database {
         
         //Generate clean array from SQL results
         foreach($apps as $app) {
-            $pending_ids[] = $app["app_id"];
+            $pending_ids[] = $app["id"];
         }
         return $pending_ids;
     }
@@ -231,7 +231,7 @@ class Database {
         
         //Generate clean array from SQL results
         foreach($apps as $app) {
-            $app_ids[] = $app["id"];
+            $app_ids[] = $app["app_id"];
         }
         return $app_ids;
     }
