@@ -1,6 +1,11 @@
 <?php
 if(isset($_GET['return'])) {
-    $uri = filter_input(INPUT_GET, "return", FILTER_SANITIZE_ENCODED);
+    $_uri = urldecode($_GET['return']);
+    $uri = filter_var($_uri, FILTER_SANITIZE_ENCODED);
+}
+else if(isset($_POST['return_uri'])) {
+    $_uri = urldecode($_POST['return_uri']);
+    $uri = filter_var($_uri, FILTER_SANITIZE_STRING);
 }
 else {
     $uri = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_ENCODED);  
