@@ -18,7 +18,7 @@ class HTMLGen {
                 if($i <= $rating) {
                     echo '<img src="assets/img/star_full.png" alt="Star">';
                 }
-                else if($i - .5 === $rating && rating > 0) {
+                else if($i - .5 === $rating && $rating > 0) {
                     echo '<img src="assets/img/star_half.png" alt="Half Star">';
                 }
                 else {
