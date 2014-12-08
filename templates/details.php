@@ -22,7 +22,7 @@
 ?>
 	<div id="detailsContent">
             <?php
-            if($app->getModerationState() === "ACTIVE" || $user->GroupID >= $user::MODERATOR) {
+            if($app->getModerationState() === "ACTIVE" || ($user->isSigned() && $user->GroupID >= $user::MODERATOR)) {
             // figure out echoing of data
             echo 
             "<div id=\"detailsLeftCol\"> 
