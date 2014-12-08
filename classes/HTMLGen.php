@@ -15,10 +15,10 @@ class HTMLGen {
         $rating = Database::ratingGet($app_id);
         echo "<p>";
             for($i = 0; $i < 5; $i++) {
-                if($i <= $rating) {
+                if($i <= $rating && $rating > 0) {
                     echo '<img src="assets/img/star_full.png" alt="Star">';
                 }
-                else if($i - .5 === $rating && $rating > 0) {
+                else if($i - .5 === $rating) {
                     echo '<img src="assets/img/star_half.png" alt="Half Star">';
                 }
                 else {
