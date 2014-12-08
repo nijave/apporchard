@@ -11,7 +11,7 @@ class HTMLGen {
      * @param int $app_id the id of the app to generate the stars for
      * @param boolean $include_form whether or not to include the HTML form for submitting a rating
      */
-    public static function ratings(int $app_id, boolean $include_form) {
+    public static function ratings($app_id, $include_form) {
         $rating = Database::ratingGet($app_id);
         echo "<p>";
             for($i = 0; $i < 5; $i++) {
