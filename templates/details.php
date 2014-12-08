@@ -1,16 +1,17 @@
 <?php
+if (isset($_GET['id'])) {
+    $appId = $_GET['id'];
+    $app = new Application($appId);
+}
+else{
+    $app = new Application();
+}
+
 //Security check to make sure user it allowed to access this page
 if($app->getModerationState() === "ACTIVE" || ($user->isSigned() && $user->GroupID >= $user::MODERATOR)) {
 ?>
 <div class="details">
-<?php 
-	if (isset($_GET['id'])) {
-		$appId = $_GET['id'];
-		$app = new Application($appId);
-	}
-	else{
-		$app = new Application();
-	}
+<?php
 	$platforms = $app->getCompatiblePlatforms(); //Array of this apps platforms
 	//TODO: refactor code below with implode
         $platformStr = "";	//string 
