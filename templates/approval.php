@@ -3,9 +3,9 @@
 		<h2>Admin New App Approval</h2>
 		<?php
                 if ($user->isSigned()) {
-                    if($user->GroupID < $user::MODERATOR){
-                        echo "You do not have access to this page";
-                    }
+                    if($user->GroupID < $user::MODERATOR){ ?>
+                        You do not have access to this page
+                    <?php }
                     else{
                         $apps = Database::applicationGetPending();
 
@@ -27,9 +27,8 @@
                         endfor;			
                     }
                 }
-                else {
-                    echo 'You must be logged in to view this page';
-                }
-		?>	
+                else { ?>
+                    You must be logged in to view this page
+                <?php } ?>	
 	</div>
 </div>
