@@ -53,12 +53,8 @@
         $register = new Login($_POST);
         if ($register->checkParams()) {
             $register->processData();
+            header("Location: " . $_uri);
         }
         ?>
     </div>
-    <script type="text/javascript">
-        setTimeout(function () {
-            window.location.href = "/";
-        }, 2000);
-    </script>
 </div>

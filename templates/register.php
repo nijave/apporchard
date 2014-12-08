@@ -16,13 +16,14 @@
 			<br>
 			<label>Account Type:
 			<select name="groupID">
-				<option value="1">Standard User</option>
-				<option value="2">Developer</option>
-				<option value="3">Moderator</option>
-				<option value="4">Administrator</option>
+				<option value="0">Standard User</option>
+				<option value="100">Developer</option>
+				<option value="200">Moderator</option>
+				<option value="500">Administrator</option>
 			</select>
 			</label>
 			<br>
+                        <input type="hidden" name="return" value="<?php echo $uri; ?>">
 			<input type="submit" class="btn btn-default" name="action" value="Register">
 			
 		</form>

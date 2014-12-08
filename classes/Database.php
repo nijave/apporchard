@@ -211,6 +211,31 @@ class Database {
         return $pending_ids;
     }
     
+    /**
+     * Returns the app ids for the 20 top rated applications
+     * @return interger array of the 20 highest rated apps
+     */
+    public static function applicationGetHighestRated() {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        $apps = self::$instance->query("
+            SELECT app_id FROM ratings
+            GROUP BY app_id
+            ORDER BY AVG(rating) DESC, COUNT(*) DESC
+            LIMIT 20;
+        ");
+        
+        //Create an array to hold app ids
+        $app_ids = array();
+        
+        //Generate clean array from SQL results
+        foreach($apps as $app) {
+            $app_ids[] = $app["app_id"];
+        }
+        return $app_ids;
+    }
+    
     private static function applicationGetKeywords($id) {
         //creates database connection if one doesn't already exist
         self::setInstance();
@@ -354,23 +379,31 @@ class Database {
             $user_id = $user_id[0]["ID"];
         }
         else {
-            return false; //invalid email address
+            throw new Exception("User id for: $email not found.");
         }
+        
+        //Where condition for checking see if rating exists or updating
+        //it if it does
+        $where_query = ["AND" => ["user_id" => $user_id, "app_id" => $id]];
         
         //Search for existing rating
-        $_rating = self::$instance->select("ratings", ["user_id"], ["AND" => ["user_id" => $id, "app_id" => $id]]);
+        $_rating = self::$instance->select("ratings", ["user_id"], $where_query);
         
-        if(count($_rating) === 0) {
-            //return false; //rating already exists
-        }
-        
-        //Add rating to database
-        $insert = self::$instance->insert("ratings", [
+        $data = [
             "user_id" => $user_id,
             "app_id" => $id,
             "rating" => $rating
-        ]);
-
+        ];
+        
+        //Update rating if rating already exists
+        if(count($_rating) > 0) {
+            //Update rating in database
+           $update = self::$instance->update("ratings", $data, $where_query);
+        } else {
+            //Add rating to database
+            $insert = self::$instance->insert("ratings", $data);
+        }
+        
         return true; //true is added, false if already rated
     }
 

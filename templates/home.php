@@ -5,7 +5,12 @@
         $app_ids = Database::applicationGetNewest();
     }
     else {
-        $app_ids = Database::applicationGetByCategory($category);
+        if($category === 'HighestRated') {
+            $app_ids = Database::applicationGetHighestRated();
+        }
+        else {
+           $app_ids = Database::applicationGetByCategory($category);
+        }
     }
     
     foreach($app_ids as $id) {
@@ -19,22 +24,9 @@
         echo '
         <div class="col-xs-2 app-box">
           <img src="'.$app->getImageURL().'" alt="'.$app->getTitle().'">
-          <h2>'.$app->getTitle().'</h2>
-          <p>';
-                $rating = Database::ratingGet($app->getID());
-                for($i = 0; $i < 5; $i++) {
-                    if($i <= $rating - .5) {
-                        echo "<img src=\"assets/img/star_full.png\" alt=\"Star\">";
-                    }
-                    else if($i + .5 === $rating) {
-                        echo "<img src=\"assets/img/star_half.png\" alt=\"Half Star\">";
-                    }
-                    else {
-                        echo "<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">";
-                    }
-                }
-          echo '</p>
-          <p class="app-desc">'.$desc.'</p>
+          <h2>'.$app->getTitle().'</h2>';
+          HTMLGen::ratings($app->getID(), false);
+          echo '<p class="app-desc">'.$desc.'</p>
           <p><a class="btn btn-primary" href="/?page=details&id='.$app->getID().'" role="button">View details &raquo;</a></p>
         </div>
         ';

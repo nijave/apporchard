@@ -3,6 +3,7 @@
   padding-bottom: 40px;
   margin-top: 40px;
   border-top: 1px solid #eee;
+  text-align: center;
 }
 
 .masthead > div > h1 {
@@ -107,11 +108,13 @@
 }
 
 #rate-form input[type=submit]{
-    margin: 0 0 18px 10px;    
+    margin: 0 0 18px 4px;    
 }
 
 #rate-form label {
-    width: 18px;
+    width: 15px;
+    line-height: 14px;
+    text-align: center;
 }
 
 #search-filters ul {
