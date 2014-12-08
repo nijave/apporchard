@@ -354,24 +354,31 @@ class Database {
             $user_id = $user_id[0]["ID"];
         }
         else {
-            return false; //invalid email address
+            throw new Exception("User id for: $email not found.");
         }
+        
+        //Where condition for checking see if rating exists or updating
+        //it if it does
+        $where_query = ["AND" => ["user_id" => $user_id, "app_id" => $id]];
         
         //Search for existing rating
-        $_rating = self::$instance->select("ratings", ["user_id"], ["AND" => ["user_id" => $user_id, "app_id" => $id]]);
+        $_rating = self::$instance->select("ratings", ["user_id"], $where_query);
         
-        if(count($_rating) === 1) {
-            //return false; //rating already exists
-            throw new Exception("Rating already exists for this application and user");
-        }
-        
-        //Add rating to database
-        $insert = self::$instance->insert("ratings", [
+        $data = [
             "user_id" => $user_id,
             "app_id" => $id,
             "rating" => $rating
-        ]);
-
+        ];
+        
+        //Update rating if rating already exists
+        if(count($_rating) > 0) {
+            //Update rating in database
+           $update = self::$instance->update("ratings", $data, $where_query);
+        } else {
+            //Add rating to database
+            $insert = self::$instance->insert("ratings", $data);
+        }
+        
         return true; //true is added, false if already rated
     }
 
