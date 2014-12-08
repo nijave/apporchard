@@ -1,3 +1,11 @@
+<?php
+if(isset($_GET['return'])) {
+    $uri = filter_input(INPUT_GET, "return", FILTER_SANITIZE_STRING);
+}
+else {
+    $uri = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_STRING);  
+}
+?>
 <div class="masthead">
 	<div class="clearfix">
 		<h1>AppOrchard</h1>
@@ -18,13 +26,13 @@
                         }
 
                         //Anyone logged in can logout
-                        $nav_options[] = '<a href="/?page=logout">Logout</a>';
+                        $nav_options[] = '<a href="/?page=logout&return='. $uri .'">Logout</a>';
 
                         //Display nav options separated by vertical pipes
                         echo "<span>" . implode(' | ', $nav_options) . "</span>";
                     }
                     else {
-                        echo '<span><a href="/?page=login">Login</a> | <a href="/?page=register">Register</a></span>';
+                        echo '<span><a href="/?page=login&return='. $uri .'">Login</a> | <a href="/?page=register&return='. $uri .'">Register</a></span>';
                     }
                     ?>
                     <br>

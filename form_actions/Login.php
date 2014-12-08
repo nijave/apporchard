@@ -53,12 +53,11 @@
         $register = new Login($_POST);
         if ($register->checkParams()) {
             $register->processData();
+            $return_uri = isset($_POST['return_uri']) ? filter_input(INPUT_POST, 'return_uri', FILTER_SANITIZE_STRING) : -1;
+            if($return_uri !== -1) {
+                header("Location: " . $return_uri);
+            }
         }
         ?>
     </div>
-    <script type="text/javascript">
-        setTimeout(function () {
-            window.location.href = "/";
-        }, 2000);
-    </script>
 </div>
