@@ -1,7 +1,7 @@
 <?php
 if(isset($_REQUEST['return'])) {
     $_uri = urldecode($_REQUEST['return']);
-    $_uri = substr($_uri, 1); //remove the leading slash
+    //$_uri = substr($_uri, 1); //remove the leading slash
     $uri = filter_var($_uri, FILTER_SANITIZE_ENCODED);
 }
 else {
