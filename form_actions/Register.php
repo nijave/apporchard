@@ -61,7 +61,7 @@
         $register = new Register($_POST, $user);
         if($register->checkParams()) {
             $register->processData();
-            header("Location: " . $_uri);
+            echo '<br><a href="'. $_uri .'">Return to previous page</a>';
         }
         ?>
     </div>
