@@ -14,7 +14,7 @@ class HTMLGen {
     public static function ratings($app_id, $include_form) {
         $rating = Database::ratingGet($app_id);
         echo "<p>";
-            for($i = 0; $i < 5; $i++) {
+            for($i = 1; $i < 6; $i++) {
                 if($i <= $rating && $rating > 0) {
                     echo '<img src="assets/img/star_full.png" alt="Star">';
                 }
