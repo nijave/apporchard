@@ -36,7 +36,7 @@
                     else{
                             echo "<p>Developer: {$app->getDeveloper()}";
                     } 
-                    echo "Platforms: {$platformStr}</p>";
+                    echo "<br>Platforms: {$platformStr}</p>";
                     HTMLGen::ratings($app->getID(), true);
             echo "</div>";
             ?>
