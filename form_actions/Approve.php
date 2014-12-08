@@ -19,7 +19,7 @@
                 }
                 $a->save(); 
             }
-            echo '<a href="'. $_uri .'">Return to previous page</a>';
+            echo '<br><a href="'. $_uri .'">Return to previous page</a>';
         } 
         else {
             echo 'You must be logged in to view this page';
