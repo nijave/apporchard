@@ -31,12 +31,12 @@
             <div id=\"detailsCenter\">
                     <h2>{$app->getTitle()}</h2>";
                     if(strlen($app->getDeveloperLink()) > 0){
-                            echo "<p>Developer: <a href=\"{$app->getDeveloperLink()}\" target=\"_blank\">{$app->getDeveloper()}</a></p>";
+                            echo "<p>Developer: <a href=\"{$app->getDeveloperLink()}\" target=\"_blank\">{$app->getDeveloper()}</a>";
                     }
                     else{
-                            echo "<p>Developer: {$app->getDeveloper()}</p>";
+                            echo "<p>Developer: {$app->getDeveloper()}";
                     } 
-                    echo "<p>Platforms: {$platformStr}</p>";
+                    echo "Platforms: {$platformStr}</p>";
                     HTMLGen::ratings($app->getID(), true);
             echo "</div>";
             ?>
