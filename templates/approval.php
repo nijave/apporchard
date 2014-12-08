@@ -19,8 +19,10 @@
                             echo $a->getDescription(); 
                             echo '</p>
                                 <input type="hidden" name="id" value="'.$a->getID().'">
-                                <input type="submit" class="btn btn-default" name="action" value="Accept">
-                                <input type="submit" class="btn btn-default" name="action" value="Decline">
+                                <input type="hidden" name="action" value="Approve">
+                                <input type="hidden" name="return" value="'. $uri .'">
+                                <input type="submit" class="btn btn-default" name="response" value="Accept">
+                                <input type="submit" class="btn btn-default" name="response" value="Decline">
                             </form>';
                         endfor;			
                     }
