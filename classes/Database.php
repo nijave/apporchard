@@ -211,6 +211,31 @@ class Database {
         return $pending_ids;
     }
     
+    /**
+     * Returns the app ids for the 20 top rated applications
+     * @return interger array of the 20 highest rated apps
+     */
+    public static function applicationGetHighestRated() {
+        //creates database connection if one doesn't already exist
+        self::setInstance();
+        
+        $apps = self::$instance->query("
+            SELECT app_id FROM ratings
+            GROUP BY app_id
+            ORDER BY AVG(rating) DESC
+            LIMIT 20;
+        ");
+        
+        //Create an array to hold app ids
+        $app_ids = array();
+        
+        //Generate clean array from SQL results
+        foreach($apps as $app) {
+            $app_ids[] = $app["id"];
+        }
+        return $app_ids;
+    }
+    
     private static function applicationGetKeywords($id) {
         //creates database connection if one doesn't already exist
         self::setInstance();
