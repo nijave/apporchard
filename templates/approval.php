@@ -12,7 +12,7 @@
                             $a = new Application($apps[$i]); ?>
                             <form action="/" method="post">
                                 <h3> 
-                                    <a href="/?page=details&id=.<?php echo $a->getID(); ?>">
+                                    <a href="/?page=details&id=<?php echo $a->getID(); ?>">
                                         <?php echo $a->getTitle(); ?>
                                     </a>
                                 </h3>
