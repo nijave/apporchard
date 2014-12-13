@@ -11,8 +11,8 @@
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
-	<!-- Google fonts CSS -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
+    <!-- Google fonts CSS -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
 	
     <!-- Custom styles for this template -->
     <link href="assets/css/justified-nav.css" rel="stylesheet">
