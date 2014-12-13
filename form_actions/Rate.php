@@ -4,9 +4,6 @@
         require_once('classes/Form_Action.php');
 
         class Rate extends Form_Action {
-
-            private $requestData;
-            private $requiredParams;
             private $user;
 
             public function __construct(&$request, &$user) {

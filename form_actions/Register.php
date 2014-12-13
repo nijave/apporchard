@@ -4,9 +4,6 @@
         require_once('classes/Form_Action.php');
 
         class Register extends Form_Action {
-
-            private $requiredParams;
-            private $requestData;
             private $user;
 
             public function __construct(&$request, $user) {

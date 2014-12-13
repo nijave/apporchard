@@ -4,10 +4,6 @@
         require_once('classes/Form_Action.php');
 
         class Login extends Form_Action {
-
-            private $requestData;
-            private $requiredParams;
-
             public function __construct(&$request) {
                 $this->requiredParams = [
                     "Username",

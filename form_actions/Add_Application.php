@@ -5,10 +5,6 @@
 		//check submitted parameters and make sure they all exist
 		require_once('classes/Form_Action.php');
 		class Add_Application extends Form_Action {
-		    private $requiredParams; //parameters required to complete the request
-                    private $requestData; //request payload/data
-                    private $object; //object created by class
-    
                     public function __construct(&$request) {
                         $this->requiredParams = [
                             "title", 
