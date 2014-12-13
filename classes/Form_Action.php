@@ -23,7 +23,7 @@ class Form_Action {
     public function checkParams() {
         $paramsPresent = true;
         foreach ($this->requiredParams as $param) {
-            if (!isset($param)) {
+            if (!isset($this->requestData[$param])) {
                 $paramsPresent = false;
             }
         }
