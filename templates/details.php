@@ -1,10 +1,12 @@
 <?php
 if (isset($_GET['id'])) {
-    $appId = $_GET['id'];
-    $app = new Application($appId);
-}
-else{
-    $app = new Application();
+    $appId = preg_replace("/[0-9]/", "", $_GET['id']);
+    try {
+        $app = new Application($appId);
+    }
+    catch(Exception $e) {
+        die("Error: " . $e->getMessage());
+    }
 }
 
 //Security check to make sure user it allowed to access this page
@@ -44,7 +46,7 @@ if($app->getModerationState() === "ACTIVE" || ($user->isSigned() && $user->Group
         <h3>App Description</h3>
         <p><?php echo $app->getDescription(); ?></p>
 
-        <h2>Comments</h2>
+        <h3>Comments</h3>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'apporchard1'; // required: replace example with your forum shortname
