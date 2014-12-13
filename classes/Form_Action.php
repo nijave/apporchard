@@ -3,7 +3,7 @@
  * This class is a template for Form Action handlers
  */
  
-abstract class Form_Action {
+class Form_Action {
     private $requiredParams; //parameters required to complete the request
     private $requestData; //request payload/data
     private $object; //object created by class
@@ -12,18 +12,26 @@ abstract class Form_Action {
      * Construct object
      * @param $request pass-by-reference $_REQUEST array
      */
-    abstract public function __construct(&$request);
+    public function __construct(&$request);
     
     /**
      * Checks the parameters required against what was submitted
      * @return boolean whether or not required parameters are set
      */
-    abstract public function checkParams();
+    public function checkParams() {
+        $paramsPresent = true;
+        foreach ($this->requiredParams as $param) {
+            if (!isset($param)) {
+                $paramsPresent = false;
+            }
+        }
+        return $paramsPresent;
+    }
     
     /**
      * Processes the data and creates an object representation based on the request
      * @return object representation of the data
      */
-     abstract public function processData();        
+     public function processData();        
 }
  

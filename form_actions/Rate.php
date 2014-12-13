@@ -17,16 +17,6 @@
                 $this->user = $user;
             }
 
-            public function checkParams() {
-                $paramsPresent = true;
-                foreach ($this->requiredParams as $param) {
-                    if (!isset($param)) {
-                        $paramsPresent = false;
-                    }
-                }
-                return $paramsPresent;
-            }
-
             public function processData() {
                 $rating = $this->requestData["rating"];
                 $id = $this->requestData["id"];

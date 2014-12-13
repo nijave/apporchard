@@ -21,15 +21,6 @@
                 $this->user = $user;
             }
 
-            public function checkParams() {
-                $paramsPresent = true;
-                foreach ($this->requiredParams as $param) {
-                    if (!isset($_REQUEST[$param]))
-                        $paramsPresent = false;
-                }
-                return $paramsPresent;
-            }
-
             public function processData() {
 
                 //$input = ptejada\uFlex\Collection($this->requestData);

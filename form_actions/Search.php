@@ -44,130 +44,115 @@ foreach($platforms as $p) {
     $platform_filters .= "<li><input type='checkbox' name='pla{$increment}' value='{$p}'{$_set}> {$p}</li>\n";
     $increment++;
 }
+
+//check submitted parameters and make sure they all exist
+require_once('classes/Form_Action.php');
+class Search {
+    private $requiredParams; //parameters required to complete the request
+    private $requestData; //request payload/data
+    private $object; //object created by class
+    private $filters;
+
+    public function __construct(&$request, $filters) {
+        //Set required parameters
+        $this->requiredParams = [
+            "search"
+            ];
+
+        //Set requestData variable with information from request
+        $this->requestData = $request;
+        if($this->requestData["search"] === '') {
+            $this->requestData["search"] = '%'; //wildcard search when nothing is entered
+        }
+        foreach($filters["Platform"] as $plat) {
+                $filters["compat_" . strtolower($plat)] = ["1"];
+        }
+        unset($filters["Platform"]);
+        $this->filters = $filters;
+    }
+
+    /**
+     * This only checks that they exist/are set
+     */
+    public function checkParams() {
+        $paramsPresent = true;
+        foreach($this->requiredParams as $param) {
+            if(!isset($_REQUEST[$param]))
+                $paramsPresent = false;
+        }
+        return $paramsPresent;
+    }
+
+    /**
+     * 
+     * @return array Application IDs
+     */
+    public function processData() {
+        //Search string is split at spaces
+        $keywords = explode(' ', urldecode($this->requestData["search"]));
+
+        //Database is searched for keywords and resulting
+        //IDs are stored in object
+        $this->object = Database::applicationSearch($keywords, $this->filters);
+
+        return $this->object;
+    }
+}
+
+$formAction = new Search($_REQUEST, ["Platform" => $setPlats, "Category" => $setCats, "Developer" => $setDevs]);
+
+if($formAction->checkParams()) {
+    //Get list of Application IDs returned from search
+    $app_ids = $formAction->processData();
+
+    //Array of Applications
+    $applications = array();
+
+    //Create an Application object from each ID
+    foreach($app_ids as $app_id) {
+        //Add new Application object to array
+        $applications[] = new Application($app_id);
+    }
+}
 ?>
 
 <div class="row">
     <div id="search-filters" class="col-xs-4 col-sm-4 col-lg-2">
         <h2>Filter</h2>
         <form action="/" method="get">
-			<h3>Platform</h3>
+            <h3>Platform</h3>
             <ul>
                 <?php echo $platform_filters; ?>
             </ul>
-			<h3>Category</h3>
+            
+            <h3>Category</h3>
             <ul>
                 <?php echo $category_filters; ?>
             </ul>
+            
             <h3>Developer</h3>
             <ul>
                 <?php echo $developer_filters; ?>
             </ul>
-            <?php echo "<input type='hidden' name='search' value='{$_GET['search']}'>"; ?>
+            <input type="hidden" name="search" value="<?php echo $_GET['search']; ?>">
             <input type="submit" name="action" value="Search">
         </form>
     </div>
     <div id="search-results" class="col-xs-12 col-sm-8 col-lg-10">
-            <h2>Search Results</h2>
-            <?php
-            //check submitted parameters and make sure they all exist
-            require_once('classes/Form_Action.php');
-
-            class Search {
-                private $requiredParams; //parameters required to complete the request
-                private $requestData; //request payload/data
-                private $object; //object created by class
-                private $filters;
-
-                public function __construct(&$request, $filters) {
-                    //Set required parameters
-                    $this->requiredParams = [
-                        "search"
-                        ];
-
-                    //Set requestData variable with information from request
-                    $this->requestData = $request;
-                    if($this->requestData["search"] === '') {
-                        $this->requestData["search"] = '%'; //wildcard search when nothing is entered
-                    }
-                    foreach($filters["Platform"] as $plat) {
-                            $filters["compat_" . strtolower($plat)] = ["1"];
-                    }
-                    unset($filters["Platform"]);
-                    $this->filters = $filters;
-                }
-
-                /**
-                 * This only checks that they exist/are set
-                 */
-                public function checkParams() {
-                    $paramsPresent = true;
-                    foreach($this->requiredParams as $param) {
-                        if(!isset($_REQUEST[$param]))
-                            $paramsPresent = false;
-                    }
-                    return $paramsPresent;
-                }
-
-                /**
-                 * 
-                 * @return array Application IDs
-                 */
-                public function processData() {
-                    //Search string is split at spaces
-                    $keywords = explode(' ', urldecode($this->requestData["search"]));
-                                        
-                    //Database is searched for keywords and resulting
-                    //IDs are stored in object
-                    $this->object = Database::applicationSearch($keywords, $this->filters);
-
-                    return $this->object;
-                }
-            }
-
-            $formAction = new Search($_REQUEST, ["Platform" => $setPlats, "Category" => $setCats, "Developer" => $setDevs]);
-
-            if($formAction->checkParams()) {
-                //Get list of Application IDs returned from search
-                $app_ids = $formAction->processData();
-
-                //Array of Applications
-                $applications = array();
-
-                //Create an Application object from each ID
-                foreach($app_ids as $app_id) {
-                    //Add new Application object to array
-                    $applications[] = new Application($app_id);
-                }
-
-                //Go through applications and generate HTML
-                echo "<ul id=\"search-results-list\">";
-                foreach($applications as $app) {
-                    echo "<li>"
-                    . "<img src=\"{$app->getImageURL()}\" alt=\"{$app->getTitle()}\">"
-                    . "<h3><a href=\"/?page=details&id={$app->getID()}\">{$app->getTitle()}</a></h3>";
-                    echo "<p>";
-                    $rating = Database::ratingGet($app->getID());
-                    for($i = 0; $i < 5; $i++) {
-                        if($i <= $rating - .5) {
-                            echo "<img src=\"assets/img/star_full.png\" alt=\"Star\">";
-                        }
-                        else if($i + .5 === $rating) {
-                            echo "<img src=\"assets/img/star_half.png\" alt=\"Half Star\">";
-                        }
-                        else {
-                            echo "<img src=\"assets/img/star_none.png\" alt=\"Empty Star\">";
-                        }
-                    }
-                    echo "<br> Ratings: " . Database::ratingGetCount($app->getID());
-                    echo "</p>"
-                    . "<p>{$app->getDescription()}</p>"
-                    . "</li>";
-                }
-                echo "</ul>";
-            }
-            else {
-                //parameters incorrect/not present
-            }
-    ?>
+        <h2>Search Results</h2>
+         <ul id="search-results-list">
+            <?php foreach($applications as $app) { ?>
+            <li>
+                <img src="<?php echo $app->getImageURL(); ?>" alt="<?php echo $app->getTitle(); ?>">
+                <h3>
+                    <a href="/?page=details&id=<?php echo $app->getID(); ?>"><?php echo $app->getTitle(); ?></a>
+                </h3>
+                <?php HTMLGen::ratings($app->getID(), false); ?>
+                <p>
+                    <?php echo $app->getDescription(); ?>
+                </p>
+            </li>
+            <?php } ?>
+        </ul>
     </div>
 </div>

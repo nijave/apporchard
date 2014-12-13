@@ -16,16 +16,6 @@
                 unset($this->requestData["action"]);
             }
 
-            public function checkParams() {
-                $paramsPresent = true;
-                foreach ($this->requiredParams as $param) {
-                    if (!isset($param)) {
-                        $paramsPresent = false;
-                    }
-                }
-                return $paramsPresent;
-            }
-
             public function processData() {
 
                 $username = $this->requestData['Username'];

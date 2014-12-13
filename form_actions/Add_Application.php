@@ -22,18 +22,6 @@
                         $this->requestData = $request;
                     }
 
-                    /**
-                     * This only checks that they exist/are set
-                     */
-                    public function checkParams() {
-                        $paramsPresent = true;
-                        foreach($this->requiredParams as $param) {
-                            if(!isset($_REQUEST[$param]))
-                                $paramsPresent = false;
-                        }
-                        return $paramsPresent;
-                    }
-
                     public function processData() {
                         $this->object = new Application();
                         $this->object->setTitle($this->requestData['title']);
