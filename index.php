@@ -5,7 +5,7 @@ $category = '';
 //Check to see if page is set and check to see if php file exists
 //for the particular page being requested
 if (isset($_GET['page']) && file_exists("templates/" . $_GET['page'] . ".php")) {
-    $page = $_GET['page'];
+    $page = preg_replace("/[^A-Za-z0-9_]/", "", $_GET['page']);
 }
 else if (isset($_GET['category'])) {
     $category = $_GET['category'];
@@ -36,6 +36,7 @@ $user->start();
             if (isset($_REQUEST['action'])) {
                 //Replace spaces with underscores
                 $form = str_replace(" ", "_", $_REQUEST['action']);
+                $form = preg_replace("/[^A-Za-z0-9_]/", "", $form);
                 
                 //Check to see if php file corresponding to action exists and include
                 //the code if it does, else report an error
