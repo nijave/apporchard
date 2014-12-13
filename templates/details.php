@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['id'])) {
-    $appId = preg_replace("/[0-9]/", "", $_GET['id']);
+    $appId = preg_replace("/[^0-9]/", "", $_GET['id']);
     try {
         $app = new Application($appId);
     }
