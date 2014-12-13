@@ -3,7 +3,7 @@
         <?php
         require_once('classes/Form_Action.php');
 
-        class Rate {
+        class Rate extends Form_Action {
 
             private $requestData;
             private $requiredParams;

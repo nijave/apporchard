@@ -3,7 +3,7 @@
         <?php
         require_once('classes/Form_Action.php');
 
-        class Register {
+        class Register extends Form_Action {
 
             private $requiredParams;
             private $requestData;
